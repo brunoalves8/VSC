@@ -8,8 +8,12 @@ public class MyController {
     public String teste() {
         return "teste"; // este é o nome do arquivo JSP que contém o código HTML
     }
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String kiko() {
         return "kiko"; // este é o nome do arquivo JSP que contém o código HTML
+    }*/
+    @GetMapping("/")
+    public String Login() {
+        return "Login"; // este é o nome do arquivo JSP que contém o código HTML
     }
 }
