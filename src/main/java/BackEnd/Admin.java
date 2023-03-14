@@ -2,11 +2,12 @@ package BackEnd;
 
 public class Admin extends User{
 
-    //Constructores
+    //Constructors
     public Admin() {
     }
     public Admin(String username, String password, String email) {
         super(username, password, email);
     }
+
 
 }
