@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+    /* Estilos para telas menores que 768px */
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Estilos para telas entre 768px e 1024px */
+}
+
+@media screen and (min-width: 1024px) {
+    /* Estilos para telas maiores que 1024px */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 90%; /* largura de 90% da largura da tela */
+    font-size: 1.2em; /* tamanho da fonte em relação ao tamanho da fonte padrão */
+}
+
+.sidebar {
+    background-color: #000;
+    border-radius: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+    padding: 10px;
+    width: 120px;
+}
+
+.logo img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.menu li a:hover {
+    color: rgb(199, 199, 199);
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px 20px;
+}
+.search input[type="text"] {
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #eee;
+    margin-right: 5px;
+    width: 200px;
+}
+.search button {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    background-color: rgb(0, 0, 0); /*221 221 221*/
+    color: #fff;
+    cursor: pointer;
+}
+.search button:hover {
+    background-color: #eee;
+    color: #000;
+}
+.search button:active {
+    opacity: 40%;
+}
+.features {
+    margin-top: 50px;
+    overflow-y: auto;
+    height: calc(100vh - 130px);
+}
+
+.features::-webkit-scrollbar {
+    width: 10px;
+}
+
+.features::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.features::-webkit-scrollbar-thumb {
+    background-color: #000;
+}
+
+.scrollable-content {
+    padding: 10px;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 40%;
+    left: 80%;
+    transform: translate(-10%, -70%);
+    /* Flaxbox centralizada no centro da página*/
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #eee;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.item a {
+    text-decoration: none;
+    color: black;
+}
+
+.item a:hover {
+    text-decoration: underline;
+}

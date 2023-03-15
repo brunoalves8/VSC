@@ -4,9 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 @Controller
 public class MyController {
-    @GetMapping("/teste")
-    public String teste() {
-        return "teste"; // este é o nome do arquivo JSP que contém o código HTML
+    @GetMapping("/menu")
+    public String Menu() {
+        return "Menu"; // este é o nome do arquivo JSP que contém o código HTML
     }
     /*@GetMapping("/")
     public String kiko() {
