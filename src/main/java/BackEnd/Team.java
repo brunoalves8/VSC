@@ -2,20 +2,26 @@ package BackEnd;
 
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Team {
     private String name;
-    private Collection<Player> players;
+    private Collection<Player> players = new HashSet<>();
+
+    private Collection<Match> playedMatches = new HashSet<>();
     private String pavilion;
     private int num_players;
 
+
+
     public Team() {
     }
-    public Team(String name, Collection<Player> players, String pavilion, int num_players) {
+    public Team(String name, Collection<Player> players,String pavilion, int num_players) {
         this.name = name;
-        this.players = players;
         this.pavilion = pavilion;
         this.num_players = num_players;
+        this.players = players;
     }
 
     public String getName() {
@@ -34,6 +40,14 @@ public class Team {
         this.players = players;
     }
 
+    public Collection<Match> getPlayedMatches() {
+        return playedMatches;
+    }
+
+    public void setPlayedMatches(Collection<Match> playedMatches) {
+        this.playedMatches = playedMatches;
+    }
+
     public String getPavilion() {
         return pavilion;
     }
@@ -49,4 +63,12 @@ public class Team {
     public void setNum_players(int num_players) {
         this.num_players = num_players;
     }
+
+
+    //Methods
+
+    public void addPlayedMatch(Match match){
+        playedMatches.add(match);
+    }
+
 }

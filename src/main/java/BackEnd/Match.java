@@ -90,4 +90,47 @@ public class Match {
     }
 
     // Methods
+
+    public void addSetToMatch(Set set){
+        sets.add(set);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
