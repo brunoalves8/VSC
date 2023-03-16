@@ -7,6 +7,7 @@ public class Coach extends User {
     private String name;
     private LocalDate birthDate;
     private Team team;
+    private String type;
 
     //Constructores
     public Coach() {
@@ -27,6 +28,14 @@ public class Coach extends User {
         this.name = name;
         this.birthDate = birthDate;
         this.team = team;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {
