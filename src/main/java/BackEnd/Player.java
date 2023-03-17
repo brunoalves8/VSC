@@ -1,6 +1,6 @@
 package BackEnd;
 
-public class Player {
+public class Player extends User{
     private String name;
     private int age;
     private int height; //Em cm
