@@ -13,7 +13,7 @@ public class SiVoleiVscApplication {
         SpringApplication.run(SiVoleiVscApplication.class, args);
 
        // Defina os detalhes da conexão com o banco de dados
-        String url = "jdbc:mysql://localhost:3306/vsc";
+        String url = "jdbc:mysql://<192.168.1.154>:3306/vsc";
         String username = "root";
         String password = "password";
 

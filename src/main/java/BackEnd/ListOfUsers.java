@@ -13,7 +13,7 @@ public class ListOfUsers {
 
     }
 
-    public boolean verifyuserexists(String username) {
+    public boolean verifyIfUserExists(String username) {
         for (User u : listUsers.values()) {
             if (u.getUsername().equals(username)) {
                 return true;
