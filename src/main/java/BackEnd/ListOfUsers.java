@@ -33,7 +33,7 @@ public class ListOfUsers {
         }
         return false;
     }
-/* // por acabar
+/*  por acabar
     public void registerUser(String username, String password, String email) {
 
         if (ListOfUsers.verifyuserexists() == false) {
@@ -45,7 +45,7 @@ public class ListOfUsers {
         listUsers.put(username, User);
 
     }
-}
+}*/
 
 
 }
