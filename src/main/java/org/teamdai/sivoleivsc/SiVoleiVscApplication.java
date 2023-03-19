@@ -13,7 +13,7 @@ public class SiVoleiVscApplication {
         SpringApplication.run(SiVoleiVscApplication.class, args);
 
        // Defina os detalhes da conexão com o banco de dados
-        String url = "jdbc:mysql://<192.168.1.154>:3306/vsc";
+        String url = "jdbc:mysql://192.168.1.154:3306/vsc";
         String username = "root";
         String password = "password";
 
@@ -21,7 +21,7 @@ public class SiVoleiVscApplication {
         try (Connection conexao = DriverManager.getConnection(url, username, password)) {
 
             // Crie uma instrução SQL para inserir dados na tabela "minha_tabela"
-            String sql = "INSERT INTO users (username, password,email) VALUES ('admin', 'admin','admin@gmail.com')";
+            String sql = "INSERT INTO users (username, password,email) VALUES ('admin2', 'admin2','admin2@gmail.com')";
 
             // Crie um objeto Statement para executar a instrução SQL
             try (Statement stmt = conexao.createStatement()) {
