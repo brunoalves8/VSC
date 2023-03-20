@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class ListOfUsers {
 
-    private HashMap<String, User> listUsers;
+    private static HashMap<String, User> listUsers;
     private UserDao userDao;
 
     public ListOfUsers(){
@@ -13,13 +13,13 @@ public class ListOfUsers {
 
     }
 
-    public boolean verifyIfUserExists(String username) {
+    public static String verifyIfUserExists(String username) {
         for (User u : listUsers.values()) {
             if (u.getUsername().equals(username)) {
-                return true;
+                return "Encontrou";
             }
         }
-        return false;
+        return "Não encontrou";
     }
     public void removeUser(String username){
         listUsers.remove(username);
