@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class ListOfUsers {
 
     private static HashMap<String, User> listUsers;
-    private UserDao userDao;
+   // private UserDao userDao;
 
     public ListOfUsers() {
         listUsers = new HashMap<String, User>();
@@ -36,7 +36,7 @@ public class ListOfUsers {
         return false;
     }
 
-    public String registerUser(String username, String password, String email) {
+   /* public String registerUser(String username, String password, String email) {
 
         if (listUsers.containsKey(username)) {
 
@@ -53,7 +53,7 @@ public class ListOfUsers {
     }
 // no frontend temos que criar uma instancia tipo utilizador logado, depois o que passa por referencia para o metodo
     // é o username desse mesmo utilizador
-
+/*
     public String showUserProfile(String username) {
         for (User u : listUsers.values()) {
             if (username.getClass() instanceof Coach) {
@@ -65,7 +65,7 @@ public class ListOfUsers {
         }
 
 
-    }
+    }*/
 }
 
 

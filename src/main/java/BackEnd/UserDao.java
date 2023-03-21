@@ -1,6 +1,6 @@
 package BackEnd;
 
-import org.apache.commons.validator.routines.EmailValidator;
+/*import org.apache.commons.validator.routines.EmailValidator;
 
 public class UserDao {
     // criar um validador de e-mail
@@ -10,4 +10,4 @@ public class UserDao {
         return validator.isValid(email);
     }
 
-}
+} */

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,20 +15,22 @@
 <section class="side">
     <img src="./Logo-512x512-1.png" alt="">
 </section>
-
+<form:form action="/login" modelAttribute="Login" method="post">
 <section class="main">
     <div class="login-container">
         <p class="title">Volei VSC</p>
         <div class="separator"></div>
         <p class="welcome-message"></p>
-
+        <% if (request.getAttribute("error") != null) { %>
+        <p><%= request.getAttribute("error") %></p>
+        <% } %>
         <form class="login-form">
             <div class="form-control">
-                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Username" id="username" required>
                 <i class="fas fa-user"></i>
             </div>
             <div class="form-control">
-                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Password" id="password" required>
                 <i class="fas fa-lock"></i>
             </div>
 
@@ -33,6 +38,6 @@
         </form>
     </div>
 </section>
-
+</form:form>
 </body>
 </html>

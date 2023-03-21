@@ -3,7 +3,7 @@ package org.teamdai.sivoleivsc;
 
 import BackEnd.ListOfUsers;
 
-public class test {
+/*public class test {
     public static void main(String [] args){
 
         ListOfUsers userList = new ListOfUsers();
@@ -21,3 +21,4 @@ public class test {
         System.out.println(userList.authenticate("user2", "password3")); // false
     }
     }
+*/

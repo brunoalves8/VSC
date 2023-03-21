@@ -1,6 +1,6 @@
 package BackEnd;
 
-public class User {
+public class    User {
     private String username;
     private String password;
     private String email;
@@ -8,6 +8,12 @@ public class User {
     public User() {
 
     }
+
+    public User(String username,String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
@@ -15,7 +21,7 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return "admin";
     }
 
     public void setUsername(String username) {
@@ -23,7 +29,7 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return "admin";
     }
 
     public void setPassword(String password) {
