@@ -1,25 +1,15 @@
 package BackEnd;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import org.apache.commons.validator.routines.EmailValidator;
 
 public class UserDao {
-    private Connection conn;
 
-    public UserDao(Connection conn) {
-        this.conn = conn;
+    public boolean isValidEmail(String email) {
+        // criar um validador de e-mail
+        EmailValidator validator = EmailValidator.getInstance();
+
+        return validator.isValid(email);
     }
 
 
-    public void saveUser(User user) throws SQLException {
-        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
-            stmt.setString(3, user.getEmail());
-            stmt.executeUpdate();
-        }
-    }
 }
