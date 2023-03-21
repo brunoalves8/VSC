@@ -3,13 +3,14 @@ package BackEnd;
 import java.util.Collection;
 import java.util.HashMap;
 
+
 public class ListOfUsers {
 
     private static HashMap<String, User> listUsers;
     private UserDao userDao;
 
-    public ListOfUsers(){
-        listUsers= new HashMap<String, User>();
+    public ListOfUsers() {
+        listUsers = new HashMap<String, User>();
 
     }
 
@@ -21,7 +22,8 @@ public class ListOfUsers {
         }
         return "Não encontrou";
     }
-    public void removeUser(String username){
+
+    public void removeUser(String username) {
         listUsers.remove(username);
     }
 
@@ -33,23 +35,38 @@ public class ListOfUsers {
         }
         return false;
     }
-/*  por acabar
-    public void registerUser(String username, String password, String email) {
 
-        if (ListOfUsers.verifyuserexists() == false) {
-            // usuário já existe, retornar false
-            System.exit(0); // só para testar
+    public String registerUser(String username, String password, String email) {
+
+        if (listUsers.containsKey(username)) {
+
+            return "Já existe um usuário com esse username";
+
+        } else if (userDao.isValidEmail(email) == false) {
+
+            return "Não existe nenhum email atribuido com esse nome";
+
+        }
+        User newUser = new User(username, password, email);
+        listUsers.put(username, newUser);
+        return "";
+    }
+// no frontend temos que criar uma instancia tipo utilizador logado, depois o que passa por referencia para o metodo
+    // é o username desse mesmo utilizador
+
+    public String showUserProfile(String username) {
+        for (User u : listUsers.values()) {
+            if (username.getClass() instanceof Coach) {
+                íf(u.getUsername().equals(username)) {
+
+                }
+            }
+            if ()
         }
 
-        User newUser = new User(username, password, email);
-        listUsers.put(username, User);
 
     }
-}*/
-
-
 }
-
 
 
 
