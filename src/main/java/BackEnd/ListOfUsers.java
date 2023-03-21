@@ -58,7 +58,7 @@ public class ListOfUsers {
         for (User u : listUsers.values()) {
             if (username.getClass() instanceof Coach) {
                 íf(u.getUsername().equals(username)) {
-
+                    .
                 }
             }
             if ()
