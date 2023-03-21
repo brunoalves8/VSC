@@ -21,7 +21,7 @@ public class SiVoleiVscApplication {
         try (Connection conexao = DriverManager.getConnection(url, username, password)) {
 
             // Crie uma instrução SQL para inserir dados na tabela "minha_tabela"
-            String sql = "INSERT INTO users (username, password,email) VALUES ('admin', 'admin','admin@gmail.com')";
+            String sql = "INSERT INTO users (username, password,email) VALUES ('bruno', 'bruno','ba578731@gmail.com')";
 
             // Crie um objeto Statement para executar a instrução SQL
             try (Statement stmt = conexao.createStatement()) {

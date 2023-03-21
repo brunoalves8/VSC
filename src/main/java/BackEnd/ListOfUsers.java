@@ -2,11 +2,10 @@ package BackEnd;
 
 import java.util.Collection;
 import java.util.HashMap;
-import BackEnd.UserDao;
 
 public class ListOfUsers {
 
-    private final HashMap<String, User> listUsers;
+    private static HashMap<String, User> listUsers;
     private UserDao userDao;
 
     public ListOfUsers(){
@@ -14,13 +13,13 @@ public class ListOfUsers {
 
     }
 
-    public boolean verifyuserexists(String username) {
+    public static String verifyIfUserExists(String username) {
         for (User u : listUsers.values()) {
             if (u.getUsername().equals(username)) {
-                return true;
+                return "Encontrou";
             }
         }
-        return false;
+        return "Não encontrou";
     }
     public void removeUser(String username){
         listUsers.remove(username);
@@ -34,24 +33,22 @@ public class ListOfUsers {
         }
         return false;
     }
-
+/*  por acabar
     public void registerUser(String username, String password, String email) {
 
-        if (listUsers.containsKey(username)) { // containskey é boolean
-            // usuário já existe
+        if (ListOfUsers.verifyuserexists() == false) {
+            // usuário já existe, retornar false
             System.exit(0); // só para testar
         }
 
         User newUser = new User(username, password, email);
-        listUsers.put(username, newUser);
-    }
+        listUsers.put(username, User);
 
+    }
+}*/
 
 
 }
-
-
-
 
 
 
