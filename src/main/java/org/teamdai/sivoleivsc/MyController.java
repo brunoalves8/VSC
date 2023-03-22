@@ -48,6 +48,7 @@ public class MyController {
     public String submitLoginForm(@ModelAttribute User login) {
         if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
             return "redirect:/home";
+            //Para já deixar estar assim
         } else {
             return "Login";
         }
