@@ -13,15 +13,12 @@ public class SiVoleiVscApplication {
 
     public static void main(String[] args) {
 
-        User user1 = new User("admin", "admin");
-        ListOfUsers.addUser(user1);
-
         SpringApplication.run(SiVoleiVscApplication.class, args);
 
        // Defina os detalhes da conexão com o banco de dados
-        String url = "jdbc:mysql://localhost:3306/vsc";
-        String username = "root";
-        String password = "password";
+        String url = "vsc23.database.windows.net";
+        String username = "InteliiJ";
+        String password = "vsc.DAI23";
 
         // Crie a conexão com o banco de dados
         try (Connection conexao = DriverManager.getConnection(url, username, password)) {
