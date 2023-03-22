@@ -16,7 +16,7 @@ public class SiVoleiVscApplication {
         SpringApplication.run(SiVoleiVscApplication.class, args);
 
        // Defina os detalhes da conexão com o banco de dados
-        String url = "vsc23.database.windows.net";
+        String url = "jdbc:mysql://vsc23.database.windows.net";
         String username = "InteliiJ";
         String password = "vsc.DAI23";
 
