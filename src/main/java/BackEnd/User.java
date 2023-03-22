@@ -21,7 +21,7 @@ public class    User {
     }
 
     public String getUsername() {
-        return "admin";
+        return username;
     }
 
     public void setUsername(String username) {
@@ -29,7 +29,7 @@ public class    User {
     }
 
     public String getPassword() {
-        return "admin";
+        return username;
     }
 
     public void setPassword(String password) {

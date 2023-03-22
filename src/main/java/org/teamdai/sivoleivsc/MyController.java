@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
 @Controller
 public class MyController {
     @GetMapping("/home")
@@ -46,11 +49,36 @@ public class MyController {
 
     @PostMapping("/login")
     public String submitLoginForm(@ModelAttribute User login) {
-        if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
+        if (login.getUsername().equals(ListOfUsers.authenticateUsername(login.getUsername()))
+                && login.getPassword().equals("admin")) {
             return "redirect:/home";
         } else {
             return "Login";
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

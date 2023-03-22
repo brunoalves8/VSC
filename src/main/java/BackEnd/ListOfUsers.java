@@ -7,11 +7,10 @@ import java.util.HashMap;
 public class ListOfUsers {
 
     private static HashMap<String, User> listUsers;
-   // private UserDao userDao;
+
 
     public ListOfUsers() {
-        listUsers = new HashMap<String, User>();
-
+        listUsers = new HashMap<>();
     }
 
     public static String verifyIfUserExists(String username) {
@@ -23,18 +22,22 @@ public class ListOfUsers {
         return "Não encontrou";
     }
 
+    public static void addUser(User user){
+        listUsers.put(user.getUsername(), user);
+    }
     public void removeUser(String username) {
         listUsers.remove(username);
     }
 
-    public boolean authenticate(String username, String passwd) {  // está a percorrer a hashmap , temos que relacionar com a BD//
+    public static String authenticateUsername(String username) {
         for (User u : listUsers.values()) {
-            if (username.equals(u.getUsername()) && passwd.equals(u.getPassword())) {
-                return true;
+            if (username.equals(u.getUsername())) {
+                return u.getUsername();
             }
         }
-        return false;
+        return "a";
     }
+
 
    /* public String registerUser(String username, String password, String email) {
 
@@ -65,7 +68,9 @@ public class ListOfUsers {
         }
 
 
-    }*/
+    }
+
+    */
 }
 
 
