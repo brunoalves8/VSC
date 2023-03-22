@@ -1,5 +1,7 @@
 package org.teamdai.sivoleivsc;
 
+import BackEnd.ListOfUsers;
+import BackEnd.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +12,10 @@ import java.sql.*;
 public class SiVoleiVscApplication {
 
     public static void main(String[] args) {
+
+        User user1 = new User("admin", "admin");
+        ListOfUsers.addUser(user1);
+
         SpringApplication.run(SiVoleiVscApplication.class, args);
 
        // Defina os detalhes da conexão com o banco de dados
