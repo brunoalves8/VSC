@@ -6,21 +6,21 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Team {
+    private String timeID;
     private String name;
-    private Collection<Player> players = new HashSet<>();
-
-    private Collection<Match> playedMatches = new HashSet<>();
     private String pavilion;
-    private int num_players;
+    private Collection<Player> players = new HashSet<>();
+    private Collection<Match> playedMatches = new HashSet<>();
+
+
 
 
 
     public Team() {
     }
-    public Team(String name, Collection<Player> players,String pavilion, int num_players) {
+    public Team(String name, Collection<Player> players,String pavilion) {
         this.name = name;
         this.pavilion = pavilion;
-        this.num_players = num_players;
         this.players = players;
     }
 
@@ -54,14 +54,6 @@ public class Team {
 
     public void setPavilion(String pavilion) {
         this.pavilion = pavilion;
-    }
-
-    public int getNum_players() {
-        return num_players;
-    }
-
-    public void setNum_players(int num_players) {
-        this.num_players = num_players;
     }
 
 

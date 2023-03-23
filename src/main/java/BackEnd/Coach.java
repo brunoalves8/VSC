@@ -6,8 +6,8 @@ public class Coach extends User {
 
     private String name;
     private LocalDate birthDate;
-    private Team team;
     private String type;
+    private Team team;
 
     //Constructores
     public Coach() {

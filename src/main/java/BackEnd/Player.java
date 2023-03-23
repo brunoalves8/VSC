@@ -7,5 +7,7 @@ public class Player extends User{
     private double weight; //Em kg
     private String position; //No futuro, mudar o tipo, pois não faz sentido ser String
     private int shirtNumber;
+    private boolean injured;
+    private Team team;
 
 }
