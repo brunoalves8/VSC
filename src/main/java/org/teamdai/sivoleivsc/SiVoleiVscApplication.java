@@ -14,36 +14,13 @@ public class SiVoleiVscApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(SiVoleiVscApplication.class, args);
+        final Console console = new Console();
 
-       // Defina os detalhes da conexão com o banco de dados
-        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
-        String username = "IntelliJ";
-        String password = "vsc.DAI23";
+        console.insertIntoDirector();
 
-        // Crie a conexão com o banco de dados
-        try (Connection conexao = DriverManager.getConnection(url, username, password)) {
 
-            // Crie uma instrução SQL para inserir dados na tabela "minha_tabela"
-            String sql = "INSERT INTO Users (usernames, passwords,email) VALUES ('bruno', 'bruno','ba578731@gmail.com')";
 
-            // Crie um objeto Statement para executar a instrução SQL
-            try (Statement stmt = conexao.createStatement()) {
 
-                // Execute a instrução SQL
-                stmt.executeUpdate(sql);
-
-                // Exiba uma mensagem informando que os dados foram inseridos com sucesso
-                System.out.println("Os dados foram inseridos com sucesso na tabela.");
-
-            } catch (SQLException ex) {
-                // Trate a exceção
-                ex.printStackTrace();
-            }
-
-        } catch (SQLException ex) {
-            // Trate a exceção
-            ex.printStackTrace();
-        }
     }
 
 
