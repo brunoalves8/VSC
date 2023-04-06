@@ -10,17 +10,20 @@ public class Console {
     private final Scanner scan = new Scanner(System.in);
 
 
-    public void insertIntoDirector(){
+    public void insertIntoDirector(String us, String pass, String em, String team ){
         // Defina os detalhes da conexão com o banco de dados
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String username = "IntelliJ";
         String password = "vsc.DAI23";
 
+
+
         // Crie a conexão com o banco de dados
         try (Connection conexao = DriverManager.getConnection(url, username, password)) {
 
             // Crie uma instrução SQL para inserir dados na tabela "minha_tabela"
-            String sql = "INSERT INTO Director (username, password,email,team_id) VALUES ('Vitor', 'vitor','vitinho@gmail.com','1234')";
+
+            String sql = "INSERT INTO Director (username, password,email,team_id) VALUES ("+us+","+pass+","+em+","+team+")";
 
             // Crie um objeto Statement para executar a instrução SQL
             try (Statement stmt = conexao.createStatement()) {
