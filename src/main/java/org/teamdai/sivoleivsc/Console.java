@@ -23,8 +23,15 @@ public class Console {
 
             // Crie uma instrução SQL para inserir dados na tabela "minha_tabela"
 
-            String sql = "INSERT INTO Director (username, password,email,team_id) VALUES ("+us+","+pass+","+em+","+team+")";
+            String sql = "INSERT INTO Director (username, password,email,team_id) VALUES (?,?,?,?)";
+            PreparedStatement pst = conexao.prepareStatement(sql);
 
+            pst.setString(1, us);
+            pst.setString(2, pass);
+            pst.setString(3, em);
+            pst.setString(4, team);
+
+            pst.executeUpdate();
             // Crie um objeto Statement para executar a instrução SQL
             try (Statement stmt = conexao.createStatement()) {
 

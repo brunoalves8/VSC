@@ -1,3 +1,5 @@
+
+
 package BackEnd;
 
 import java.time.LocalDate;
@@ -28,63 +30,48 @@ public class Match {
     public int getCodeMatch() {
         return codeMatch;
     }
-
     public void setCodeMatch(int codeMatch) {
         this.codeMatch = codeMatch;
     }
-
     public LocalDate getGameDate() {
         return gameDate;
     }
-
     public void setGameDate(LocalDate gameDate) {
         this.gameDate = gameDate;
     }
-
     public Team getHomeTeam() {
         return homeTeam;
     }
-
     public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
     }
-
     public Team getAwayTeam() {
         return awayTeam;
     }
-
     public void setAwayTeam(Team awayTeam) {
         this.awayTeam = awayTeam;
     }
-
     public String getPavilion() {
         return pavilion;
     }
-
     public void setPavilion(String pavilion) {
         this.pavilion = pavilion;
     }
-
     public Collection<Set> getSets() {
         return sets;
     }
-
     public void setSets(Collection<Set> sets) {
         this.sets = sets;
     }
-
     public Collection<Play> getPlays() {
         return plays;
     }
-
     public void setPlays(Collection<Play> plays) {
         this.plays = plays;
     }
-
     public Collection<Player> getDraftedPlayers() {
         return draftedPlayers;
     }
-
     public void setDraftedPlayers(Collection<Player> draftedPlayers) {
         this.draftedPlayers = draftedPlayers;
     }

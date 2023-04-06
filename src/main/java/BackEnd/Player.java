@@ -86,4 +86,5 @@ public class Player extends User{
     public void setTeam(Team team) {
         this.team = team;
     }
+
 }
