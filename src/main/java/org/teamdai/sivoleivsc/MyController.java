@@ -1,7 +1,7 @@
 package org.teamdai.sivoleivsc;
 
 import BackEnd.ListOfUsers;
-import BackEnd.User;
+import BackEnd.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -46,17 +47,37 @@ public class MyController {
         model.addAttribute("login", new User());
         return "Login";
     }
-
     @PostMapping("/login")
-    public String submitLoginForm(@ModelAttribute User login) {
-        if (login.getUsername().equals(ListOfUsers.authenticateUsername(login.getUsername()))
-                && login.getPassword().equals("admin")) {
+    public String processLoginForm(@ModelAttribute("user") User login, Model model) {
+        boolean authenticated = AuthenticatePlayer.authenticate(login.getUsername(), login.getPassword());
+
+        if (authenticated) {
             return "redirect:/home";
-            //Para já deixar estar assim
         } else {
+            model.addAttribute("error", "Invalid credentials. Please try again.");
             return "Login";
         }
     }
+
+
+     /*@PostMapping("/login")
+    public String processLoginForm(@ModelAttribute LoginForm form, Model model) {
+        String username = login.getUsername();
+        String password = login.getPassword();
+        boolean authenticated;
+        authenticated = AuthenticatePlayer.authenticate(username, password);
+        if (authenticated){
+            return "redirect:/home";
+        } else {
+            return "Login";
+        }
+    }*/
+
+   /* @PostMapping("/login")
+    public String submitLoginForm(@ModelAttribute User login){
+
+    }*/
+
 
 
 

@@ -29,14 +29,14 @@ public class ListOfUsers {
         listUsers.remove(username);
     }
 
-    public static String authenticateUsername(String username) {
+   /* public static String authenticateUsername(String username) {
         for (User u : listUsers.values()) {
             if (username.equals(u.getUsername())) {
                 return u.getUsername();
             }
         }
         return "a";
-    }
+    }*/
 
 
    /* public String registerUser(String username, String password, String email) {

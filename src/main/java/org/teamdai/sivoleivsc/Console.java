@@ -10,14 +10,14 @@ public class Console {
     private final Scanner scan = new Scanner(System.in);
 
 
-    public void insertIntoDirector(String us, String pass, String em, String team ){
+    public void insertIntoDirector(String us, String pass, String em, String team) {
         // Defina os detalhes da conexão com o banco de dados
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String username = "IntelliJ";
         String password = "vsc.DAI23";
 
 
-
+/*
         // Crie a conexão com o banco de dados
         try (Connection conexao = DriverManager.getConnection(url, username, password)) {
 
@@ -51,7 +51,7 @@ public class Console {
             ex.printStackTrace();
         }
     }
-
+*/
     /*public static void lerDadosTabela() {
 
         // Defina os detalhes da conexão com o banco de dados
@@ -95,4 +95,5 @@ public class Console {
         }
     }*/
 
+    }
 }
