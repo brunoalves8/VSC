@@ -60,6 +60,13 @@ public class MyController {
     }
 
 
+    @GetMapping("/userRegistration")
+    public String showUserRegistration(Model model){
+        model.addAttribute("newUser", new User());
+        return "UserRegistration";
+    }
+
+
      /*@PostMapping("/login")
     public String processLoginForm(@ModelAttribute LoginForm form, Model model) {
         String username = login.getUsername();
