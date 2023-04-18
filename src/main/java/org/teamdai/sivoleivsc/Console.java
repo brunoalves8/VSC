@@ -4,11 +4,109 @@ import org.springframework.boot.SpringApplication;
 
 import java.sql.*;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Console {
 
     private final Scanner scan = new Scanner(System.in);
 
+    public void write(String mesage) {
+        System.out.println(mesage);
+    }
+
+    public void writeError(String mesage) {
+        System.err.println(mesage);
+    }
+
+    public String readString(String mesage) {
+        write(mesage);
+        return scan.nextLine();
+    }
+
+    public int readInt(String mesage) {
+        Integer number = null;
+        String text;
+
+        do {
+            write(mesage);
+            text = scan.nextLine();
+
+            try {
+                number = Integer.parseInt(text);
+            } catch (NumberFormatException e) {
+                writeError(text + " não é um número inteiro válido.");
+            }
+
+        } while (number == null);
+
+        return number;
+    }
+
+    public int readOptionsMenu(String[] options) {
+        Integer number = null;
+        String text = "";
+
+        do {
+            write("Selecione uma das seguintes opcões:");
+            for (int i = 0; i < options.length; i++) {
+                write((i + 1) + " - " + options[i]);
+            }
+
+            try {
+                text = scan.nextLine();
+                number = Integer.parseInt(text);
+            } catch (NumberFormatException e) {
+                writeError(text + " não é uma opção válida");
+            }
+
+            if (number == null || number <= 0 || number > options.length) {
+                number = null;
+                writeError(text + " não é uma opção válida");
+            }
+
+        } while (number == null);
+
+        return number;
+    }
+
+    public double lerDecimal(String mensagem) {
+        Double number = null;
+        String texto;
+
+        do {
+            write(mensagem);
+            texto = scan.nextLine();
+
+            try {
+                number = Double.parseDouble(texto);
+            } catch (NumberFormatException e) {
+                writeError(texto + " não é um número decimal válido.");
+            }
+        } while (number == null);
+
+        return number;
+    }
+
+    public LocalDate lerData(String mensagem) {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data = null;
+        String text;
+        do {
+            write(mensagem);
+            text = scan.nextLine();
+            try {
+                data = LocalDate.parse(text, formato);
+            } catch (DateTimeParseException e) {
+                writeError(text + " não é uma de data válida! Deve ser do tipo DD/MM/AAAA");
+            }
+
+        } while (data == null);
+
+        return data;
+
+    }
 
     public void insertIntoDirector(String us, String pass, String em, String team) {
         // Defina os detalhes da conexão com o banco de dados

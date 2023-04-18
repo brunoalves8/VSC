@@ -46,9 +46,16 @@
                 </a></li>
             </div>
             <li><a href="#" class="logout">
+                <form action="/login" method="post">
                 <i class="fas fa-sign-out-alt"></i>
-                <span class="nav-item">Sair</span>
+                <button type="submit" class="nav-item">Sair</button>
+                </form>
             </a></li>
+            <style>
+                .logout button{
+                    background-color: transparent;
+                }
+            </style>
         </ul>
     </nav>
 </div>

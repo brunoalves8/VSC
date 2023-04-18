@@ -16,7 +16,7 @@ public class SiVoleiVscApplication {
         SpringApplication.run(SiVoleiVscApplication.class, args);
         final Console console = new Console();
 
-        //console.insertIntoDirector("Kiko5", "nuno","kiko3@gmail.com","1234");
+        console.insertIntoDirector("Kiko5", "nuno","kiko3@gmail.com","1234");
 
 
 
