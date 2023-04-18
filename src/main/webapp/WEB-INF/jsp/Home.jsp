@@ -91,8 +91,8 @@
 
         <div class="option"><a href="#">
             <div class="nameCat">
-                <i class="icon fa-solid fa-magnifying-glass"></i>
-                <span class="catName">Visualizar Jogos</span>
+                <i class="fa fa-user-plus"></i>
+                <span class="catName">Registar Utilizador</span>
             </div></a>
         </div>
     </div>
