@@ -18,28 +18,27 @@
 </section>
 <%--@elvariable id="user" type=""--%>
 <form:form action="/login" modelAttribute="user" method="post">
-<section class="main">
-    <div class="login-container">
-        <p class="title">Volei VSC</p>
-        <div class="separator"></div>
-        <p class="welcome-message"></p>
-        <% if (request.getAttribute("error") != null) { %>
-        <p><%= request.getAttribute("error") %></p>
-        <% } %>
-        <form:form class="login-form">
-            <div class="form-control">
-                <input type="text" placeholder="Username" name= "username" id="username" required/>
-                <i class="fas fa-user"></i>
+    <section class="main">
+        <div class="login-container">
+            <p class="title">Volei VSC</p>
+            <div class="separator"></div>
+            <p class="welcome-message"></p>
+            <% if (request.getAttribute("error") != null) { %>
+            <p><%= request.getAttribute("error") %></p>
+            <% } %>
+            <div class="login-form">
+                <div class="form-control">
+                    <input type="text" placeholder="Username" name="username" id="username" required/>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-control">
+                    <input type="password" placeholder="Password" name="password" id="password" required/>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button class="submit">Login</button>
             </div>
-            <div class="form-control">
-                <input type="password" placeholder="Password" name= "password" id="password" required/>
-                <i class="fas fa-lock"></i>
-            </div>
-
-            <button class="submit">Login</button>
-        </form:form>
-    </div>
-</section>
+        </div>
+    </section>
 </form:form>
 </body>
 </html>

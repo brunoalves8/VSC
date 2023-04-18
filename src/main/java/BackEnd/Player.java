@@ -9,9 +9,13 @@ public class Player extends User{
     private int shirtNumber;
     private boolean injured;
     private Team team;
+    private int phoneNumber;
 
+    public Player(){
+
+    }
     public Player(String username, String password, String email, String name, int age, int height, double weight,
-                  String position, int shirtNumber, boolean injured, Team team) {
+                  String position, int shirtNumber, boolean injured, Team team, int phoneNumber) {
         super(username, password, email);
         this.name = name;
         this.age = age;
@@ -21,6 +25,7 @@ public class Player extends User{
         this.shirtNumber = shirtNumber;
         this.injured = injured;
         this.team = team;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
@@ -87,4 +92,11 @@ public class Player extends User{
         this.team = team;
     }
 
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

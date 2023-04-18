@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
@@ -13,10 +14,14 @@
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<%--@elvariable id="player" type=""--%>
+<form:form action="/playerRegistration" modelAttribute="player" method="post" class = "playerRegistration-form">
 <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-        <form:form action="/userRegistration" modelAttribute="user" method="post" class = "registration-form">
+        <% if (request.getAttribute("error") != null) { %>
+        <p><%= request.getAttribute("error") %></p>
+        <% } %>
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">Full Name</span>
@@ -32,21 +37,18 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Phone Number</span>
-                    <input type="text" placeholder="Enter your number" name="number" required>
+                    <input type="text" placeholder="Enter your number" name="phoneNumber" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Password</span>
-                    <input type="text" placeholder="Enter your password" name="password" required>
+                    <input type="password" placeholder="Enter your password" name="password" required>
                 </div>
-                <div class="input-box">
-                    <span class="details">Confirm Password</span>
-                    <input type="text" placeholder="Confirm your password" name="password" required>
-                </div>
+
             </div>
             <div class="gender-details">
-                <input type="radio" name="gender" id="dot-1">
-                <input type="radio" name="gender" id="dot-2">
-                <input type="radio" name="gender" id="dot-3">
+                <input type="radio" name="gender" id="dot-1" value="male">
+                <input type="radio" name="gender" id="dot-2" value="female">
+                <input type="radio" name="gender" id="dot-3" value="prefer not to say">
                 <span class="gender-title">Gender</span>
                 <div class="category">
                     <label for="dot-1">
@@ -63,9 +65,8 @@
                     </label>
                 </div>
             </div>
-            <div class="button">
-                <input type="submit" value="Register">
-            </div>
+
+                <button class="submit">Registar</button>
         </form:form>
     </div>
 </div>

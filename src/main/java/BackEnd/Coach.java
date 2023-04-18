@@ -9,6 +9,8 @@ public class Coach extends User {
     private String type;
     private Team team;
 
+    private int phoneNumber;
+
     //Constructores
     public Coach() {
     }
@@ -62,5 +64,11 @@ public class Coach extends User {
         this.team = team;
     }
 
-    //Methods
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

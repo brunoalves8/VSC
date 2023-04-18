@@ -1,6 +1,5 @@
 package org.teamdai.sivoleivsc;
 
-import BackEnd.ListOfUsers;
 import BackEnd.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
@@ -8,10 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.sql.SQLException;
-import java.util.List;
 
 @Controller
 public class MyController {
@@ -19,29 +14,7 @@ public class MyController {
     public String Home() {
         return "Home"; // este é o nome do arquivo JSP que contém o código HTML
     }
-    /*@GetMapping("/")
-    public String kiko() {
-        return "kiko"; // este é o nome do arquivo JSP que contém o código HTML
-    }*/
-   /* @GetMapping("/")
-    public String Login() {
-        return "Login"; // este é o nome do arquivo JSP que contém o código HTML
-    }*/
-    /*@PostMapping("/login")
-    public String login(@RequestParam("Username") String username,
-                        @RequestParam("Password") String password,
-                        Model model) {
 
-        // Verifica as credenciais
-        if (username.equals("admin") && password.equals("admin")) {
-            // Login bem sucedido, redireciona para a página principal
-            return "redirect:/home";
-        } else {
-            // Login falhou, retorna para a página de login com uma mensagem de erro
-            model.addAttribute("error", "Credenciais inválidas");
-            return "Login";
-        }
-    }*/
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("login", new User());
@@ -60,30 +33,49 @@ public class MyController {
     }
 
 
-    @GetMapping("/userRegistration")
-    public String showUserRegistration(Model model){
-        model.addAttribute("newUser", new User());
-        return "UserRegistration";
+    @GetMapping("/playerRegistration")
+    public String showPlayerRegistration(Model model){
+        model.addAttribute("player", new Player());
+        return "PlayerRegistration";
+    }
+
+    @PostMapping("/playerRegistration")
+    public String processRegistrationForm(@ModelAttribute("player") Player player, Model model) {
+        boolean userAlreadyExists = RegisterPlayer.verifyIfUserExists(player.getUsername());
+
+        if (userAlreadyExists) {
+            model.addAttribute("error", "Username already in use");
+            return "PlayerRegistration";
+        } else {
+            RegisterPlayer.registerPlayer(player.getName(), player.getUsername(), player.getEmail(),
+                    player.getPhoneNumber(), player.getPassword());
+            return "redirect:/home";
+        }
+    }
+
+    @GetMapping("/coachRegistration")
+    public String showCoachRegistration(Model model){
+        model.addAttribute("player", new Player());
+        return "CoachRegistration";
+    }
+
+    @PostMapping("/coachRegistration")
+    public String processRegistrationForm(@ModelAttribute("coach") Coach coach, @RequestParam String type, Model model) {
+        boolean userAlreadyExists = RegisterPlayer.verifyIfUserExists(coach.getUsername());
+
+        if (userAlreadyExists) {
+            model.addAttribute("error", "Username already in use");
+            return "CoachRegistration";
+        } else {
+            coach.setType(type);
+
+            RegisterCoach.registerCoach(coach.getName(), coach.getUsername(), coach.getEmail(),
+                    coach.getPhoneNumber(), coach.getPassword(), coach.getType());
+            return "redirect:/home";
+        }
     }
 
 
-     /*@PostMapping("/login")
-    public String processLoginForm(@ModelAttribute LoginForm form, Model model) {
-        String username = login.getUsername();
-        String password = login.getPassword();
-        boolean authenticated;
-        authenticated = AuthenticatePlayer.authenticate(username, password);
-        if (authenticated){
-            return "redirect:/home";
-        } else {
-            return "Login";
-        }
-    }*/
-
-   /* @PostMapping("/login")
-    public String submitLoginForm(@ModelAttribute User login){
-
-    }*/
 
 
 
