@@ -18,12 +18,14 @@
         <input type="text" id="username" name="username" required>
         <button type="submit">Remover</button>
     </form:form>
-    <% if (request.getAttribute("error") != null) { %>
-    <span id="error-message" class="error-message"><%= request.getAttribute("error") %></span>
-    <% } %>
-    <% if (request.getAttribute("success") != null) { %>
-    <span id="success-message" class="success-message"><%= request.getAttribute("success") %></span>
-    <% } %>
+    <div class="message-container">
+        <% if (request.getAttribute("error") != null) { %>
+        <span id="error-message" class="error-message"><%= request.getAttribute("error") %></span>
+        <% } %>
+        <% if (request.getAttribute("success") != null) { %>
+        <span id="success-message" class="success-message"><%= request.getAttribute("success") %></span>
+        <% } %>
+    </div>
 </div>
 </body>
 </html>
