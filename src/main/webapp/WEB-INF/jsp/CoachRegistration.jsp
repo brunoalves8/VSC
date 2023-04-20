@@ -2,11 +2,10 @@
          pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
+
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <!---<title> Responsive Registration Form | CodingLab </title>--->
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserRegistration.css">
@@ -15,11 +14,12 @@
 </head>
 <body>
 <%--@elvariable id="coach" type=""--%>
-<form th:action="@{/coachRegistration}" th:object="${coach}" method="post" class="coachRegistration-form">
+
 <div class="container">
     <div class="title">Registration</div>
     <div class="content">
         <p th:if="${error}" th:text="${error}"></p>
+        <form th:action="@{/coachRegistration}" th:object="${coach}" method="post" class="coachRegistration-form">
         <div class="user-details">
             <div class="input-box">
                 <span class="details">Full Name</span>
@@ -41,7 +41,6 @@
                 <span class="details">Password</span>
                 <input type="password" placeholder="Enter your password" name="password" th:field="*{password}" required>
             </div>
-
         </div>
         <div class="gender-details">
             <input type="radio" name="type" id="dot-1" value="Head" th:field="*{type}" required>

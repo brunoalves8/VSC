@@ -15,13 +15,14 @@
 </head>
 <body>
 <%--@elvariable id="player" type=""--%>
-<form:form action="/playerRegistration" modelAttribute="player" method="post" class = "playerRegistration-form">
+
 <div class="container">
     <div class="title">Registration</div>
     <div class="content">
         <% if (request.getAttribute("error") != null) { %>
         <p><%= request.getAttribute("error") %></p>
         <% } %>
+        <form:form action="/playerRegistration" modelAttribute="player" method="post" class = "playerRegistration-form">
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">Full Name</span>
