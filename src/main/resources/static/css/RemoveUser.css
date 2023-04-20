@@ -52,6 +52,14 @@ button:hover {
     background-color: #000000;
 }
 
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
 .success-message {
     color: green;
 }
@@ -60,10 +68,3 @@ button:hover {
     color: red;
 }
 
-.message-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-}
