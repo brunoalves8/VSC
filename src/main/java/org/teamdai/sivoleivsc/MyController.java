@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyController {
+
+
     @GetMapping("/home")
     public String Home() {
         return "Home"; // este é o nome do arquivo JSP que contém o código HTML
@@ -85,7 +87,6 @@ public class MyController {
     @PostMapping("/removeUser")
     public String processRemoveUserForm(@ModelAttribute("user") User user, Model model) {
         boolean removed = RemoveUser.removeUser(user.getUsername());
-
         if (removed) {
             model.addAttribute("success", "Utilizador removido!");
         } else {
