@@ -1,0 +1,11 @@
+{
+  "name": "seu-projeto",
+  "version": "1.0.0",
+  "description": "Descrição do seu projeto",
+  "scripts": {
+    "scss": "sass --watch src/main/resources/static/scss:src/main/resources/static/css"
+  },
+  "dependencies": {
+    "sass": "^1.62.0"
+  }
+}
