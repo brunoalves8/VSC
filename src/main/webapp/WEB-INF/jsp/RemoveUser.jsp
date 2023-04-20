@@ -19,10 +19,10 @@
         <button type="submit">Remover</button>
     </form:form>
     <% if (request.getAttribute("error") != null) { %>
-    <p><%= request.getAttribute("error") %></p>
+    <span id="error-message" class="error-message"><%= request.getAttribute("error") %></span>
     <% } %>
     <% if (request.getAttribute("success") != null) { %>
-    <p><%= request.getAttribute("success") %></p>
+    <span id="success-message" class="success-message"><%= request.getAttribute("success") %></span>
     <% } %>
 </div>
 </body>
