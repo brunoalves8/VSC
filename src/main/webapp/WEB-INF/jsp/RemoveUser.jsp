@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,11 +12,18 @@
 <body>
 <div class="container">
     <h1>Remover Utilizador</h1>
-    <form>
+    <%--@elvariable id="user" type=""--%>
+    <form:form action="/removeUser" modelAttribute="user" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <button type="submit">Remover</button>
-    </form>
+    </form:form>
+    <% if (request.getAttribute("error") != null) { %>
+    <p><%= request.getAttribute("error") %></p>
+    <% } %>
+    <% if (request.getAttribute("success") != null) { %>
+    <p><%= request.getAttribute("success") %></p>
+    <% } %>
 </div>
 </body>
 </html>

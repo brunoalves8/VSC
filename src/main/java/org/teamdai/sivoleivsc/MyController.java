@@ -27,7 +27,7 @@ public class MyController {
         if (authenticated) {
             return "redirect:/home";
         } else {
-            model.addAttribute("error", "Invalid credentials. Please try again.");
+            model.addAttribute("error", "Credenciais Inválidas. Tente novamente.");
             return "Login";
         }
     }
@@ -44,7 +44,7 @@ public class MyController {
         boolean userAlreadyExists = RegisterPlayer.verifyIfUserExists(player.getUsername());
 
         if (userAlreadyExists) {
-            model.addAttribute("error", "Username already in use");
+            model.addAttribute("error", "Username já está em uso!");
             return "PlayerRegistration";
         } else {
             RegisterPlayer.registerPlayer(player.getName(), player.getUsername(), player.getEmail(),
@@ -61,10 +61,10 @@ public class MyController {
 
     @PostMapping("/coachRegistration")
     public String processRegistrationForm(@ModelAttribute("coach") Coach coach, @RequestParam String type, Model model) {
-        boolean userAlreadyExists = RegisterPlayer.verifyIfUserExists(coach.getUsername());
+        boolean userAlreadyExists = RegisterCoach.verifyIfUserExists(coach.getUsername());
 
         if (userAlreadyExists) {
-            model.addAttribute("error", "Username already in use");
+            model.addAttribute("error", "Username já está em uso!");
             return "CoachRegistration";
         } else {
             coach.setType(type);
@@ -76,7 +76,28 @@ public class MyController {
     }
 
 
+    @GetMapping("/removeUser")
+    public String showRemoveUser(Model model){
+        model.addAttribute("user", new User());
+        return "RemoveUser";
+    }
+
+    @PostMapping("/removeUser")
+    public String processRemoveUserForm(@ModelAttribute("user") User user, Model model) {
+        boolean removed = RemoveUser.removeUser(user.getUsername());
+
+        if (removed) {
+            model.addAttribute("success", "Utilizador removido!");
+        } else {
+            model.addAttribute("error", "Utilizador não existe!");
+        }
+
+        return "RemoveUser";
+    }
+
 
 
 
 }
+
+
