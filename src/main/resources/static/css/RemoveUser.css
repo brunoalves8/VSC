@@ -54,8 +54,11 @@ button:hover {
 
 .success-message {
     color: green;
+    margin-left: 275px;
+
 }
 
 .error-message {
     color: red;
+    margin-left: 275px;
 }
