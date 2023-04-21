@@ -133,6 +133,6 @@
     </script>
 </div>
 
-<script src="${pageContext.request.contextPath}js/calendar.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/calendar.js"></script>
 </body>
 </html>
