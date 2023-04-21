@@ -21,7 +21,7 @@
             <div class="month">
                 <i class="fas fa-angle-left prev"></i>
                 <a href="#" class="logo">
-                    <img src="./Logo-512x512-1.png" alt="Vitória SC Logo">
+                    <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
                 </a>
                 <div class="date">dezembro 2015</div>
                 <i class="fas fa-angle-right next"></i>
@@ -89,7 +89,7 @@
     <nav>
         <div class="nav-header"></div>
         <a href="#" class="logo">
-            <img src="./Logo-512x512-1.png" alt="Vitória SC Logo">
+            <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
         <ul class="nav-links">

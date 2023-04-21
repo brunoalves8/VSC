@@ -21,7 +21,7 @@
             <div class="profile-tab-nav border-right">
                 <div class="p-4">
                     <div class="img-circle text-center mb-3">
-                        <img src="img/channels4_profile.jpg" alt="Image" class="shadow">
+                        <img src="static/images/channels4_profile.jpg" alt="Image" class="shadow">
                     </div>
                     <h4 class="text-center">Name of User</h4>
                 </div>
