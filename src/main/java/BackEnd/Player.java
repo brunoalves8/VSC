@@ -1,8 +1,14 @@
 package BackEnd;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Player extends User{
     private String name;
-    private int age;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date birthDate;
     private int height; //Em cm
     private double weight; //Em kg
     private String position;
@@ -14,11 +20,12 @@ public class Player extends User{
     public Player(){
 
     }
-    public Player(String username, String password, String email, String name, int age, int height, double weight,
+    public Player(String username, String password, String email, String name, Date birth, int height, double weight,
                   String position, int shirtNumber, boolean injured, Team team, int phoneNumber) {
         super(username, password, email);
         this.name = name;
-        this.age = age;
+
+        this.birthDate = birth;
         this.height = height;
         this.weight = weight;
         this.position = position;
@@ -36,12 +43,12 @@ public class Player extends User{
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthDate(Date birth) {
+        this.birthDate = birth;
     }
 
     public int getHeight() {

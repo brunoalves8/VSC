@@ -39,45 +39,45 @@
             <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                     <h3 class="mb-4">Ficha de Atleta</h3>
-                    <%--@elvariable id="user" type=""--%>
-                    <form:form action="/userSettings" modelAttribute="user" method="post" class = "userSettings-form">
+                    <%--@elvariable id="player" type=""--%>
+                    <form:form action="/userSettings" modelAttribute="player" method="post" class = "userSettings-form">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nome</label>
-                                <input type="text" class="form-control" value="Cristiano Ronaldo">
+                                <label>Username</label>
+                                <input type="text" class="form-control" value="Miguel" name="username"required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Posição</label>
-                                <input type="text" class="form-control" value="Central">
+                                <input type="text" class="form-control"  value="Central" name="position"required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Altura</label>
-                                <input type="text" class="form-control" value="187cm">
+                                <label>Altura (cm)</label>
+                                <input type="text" class="form-control" value="187" name="height"required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Peso</label>
-                                <input type="text" class="form-control" value="77kg">
+                                <label>Peso (kg)</label>
+                                <input type="text" class="form-control" value="77" name="weight"required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Número da Camisola</label>
-                                <input type="text" class="form-control" value="7">
+                                <input type="text" class="form-control" value="7" name="shirtNumber"required>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Data de Nascimento</label>
-                                <input type="text" class="form-control" value="10/02/2003">
                             </div>
-                        </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Data de Nascimento</label>
+                                    <input type="text" id="birthDate" class="form-control" name="birthDate" value="2003-12-01" pattern="\d{4}-\d{1,2}-\d{1,2}" required>
+                                </div>
+                            </div>
                     </div>
                     <div>
                         <button class="btn btn-primary">Atualizar</button>
@@ -87,7 +87,7 @@
                 </form:form>
                 <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                     <h3 class="mb-4">Alterar Password</h3>
-                    <form:form action="/userSettings" modelAttribute="user" method="post" class = "userSettingsPassword-form">
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -114,7 +114,7 @@
                         <button class="btn btn-primary">Atualizar</button>
                         <button class="btn btn-light">Cancelar</button>
                     </div>
-                    </form:form>
+
                 </div>
 
             </div>

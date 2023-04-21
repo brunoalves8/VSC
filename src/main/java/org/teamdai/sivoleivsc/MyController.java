@@ -1,12 +1,17 @@
 package org.teamdai.sivoleivsc;
 
 import BackEnd.*;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Date;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class MyController {
@@ -98,20 +103,27 @@ public class MyController {
 
     @GetMapping("/userSettings")
     public String showUserSettings(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("player", new Player());
         return "UserSettings";
     }
 
     @PostMapping("/userSettings")
-    public String processUserSettingsForm(@ModelAttribute("user") User user, Model model) {
+    public String processUserSettingsForm(@ModelAttribute("player") Player player, Model model) {
+        boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(player.getUsername());
 
+        if (userAlreadyExists) {
+            UserSettings.addInfoPlayer(player.getPosition(), player.getHeight(), (int) player.getWeight(), player.getShirtNumber(), player.getBirthDate());
+            return "UserSettings";
+        } else {
 
-        return "UserSettings";
+            model.addAttribute("error", "Utilizador não existe!");
+        }
+     return "UserSettings";
     }
 
     @GetMapping("/calendar")
     public String showCalendar(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("player", new Player());
         return "Calendar";
     }
 
