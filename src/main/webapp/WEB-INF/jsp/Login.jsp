@@ -14,10 +14,9 @@
 </head>
 <body>
 <section class="side">
-    <img src="./Logo-512x512-1.png" alt="">
+    <img src="static/images/Logo-512x512-1.png" alt="">
 </section>
 <%--@elvariable id="user" type=""--%>
-<form:form action="/login" modelAttribute="user" method="post">
     <section class="main">
         <div class="login-container">
             <p class="title">Volei VSC</p>
@@ -26,6 +25,7 @@
             <% if (request.getAttribute("error") != null) { %>
             <p><%= request.getAttribute("error") %></p>
             <% } %>
+            <form:form action="/login" modelAttribute="user" method="post">
             <div class="login-form">
                 <div class="form-control">
                     <input type="text" placeholder="Username" name="username" id="username" required/>
@@ -37,9 +37,9 @@
                 </div>
                 <button class="submit">Login</button>
             </div>
+            </form:form>
         </div>
     </section>
-</form:form>
 </body>
 </html>
 

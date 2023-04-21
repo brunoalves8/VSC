@@ -17,7 +17,7 @@
     <nav>
         <div class="nav-header"></div>
         <a href="#" class="logo">
-            <img src="${pageContext.request.contextPath}/images/Logo-512x512-1.png" alt="Vitória SC Logo">
+            <img src="/static/images/Logo-512x512-1.png" alt="Vitória SC Logo"/>
             <span class="nav-item">Voleibol VSC</span>
         </a>
         <ul class="nav-links">
@@ -68,12 +68,15 @@
 
     <div class="options">
 
-        <div class="option"><a href="#">
-            <div class="nameCat">
-                <i class="icon fa-solid fa-arrow-trend-up"></i>
-                <span class="catName">Físico dos Atletas</span>
-            </div></a>
+        <div class="option">
+            <a href="${customFormLink}">
+                <div class="nameCat">
+                    <i class="icon fa-solid fa-arrow-trend-up"></i>
+                    <span class="catName">Responder Questionários</span>
+                </div>
+            </a>
         </div>
+
 
         <div class="option"><a href="#">
             <div class="nameCat">
