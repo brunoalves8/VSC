@@ -10,7 +10,7 @@
     <title>
         Calendar
     </title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}calendar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/calendar.css">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
 </head>
 
@@ -133,6 +133,6 @@
     </script>
 </div>
 
-<script src="${pageContext.request.contextPath}/static/js/calendar.js"></script>
+<script src="${pageContext.request.contextPath}js/calendar.js"></script>
 </body>
 </html>

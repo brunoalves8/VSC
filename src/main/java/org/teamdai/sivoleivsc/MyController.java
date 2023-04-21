@@ -96,6 +96,24 @@ public class MyController {
         return "RemoveUser";
     }
 
+    @GetMapping("/userSettings")
+    public String showUserSettings(Model model){
+        model.addAttribute("user", new User());
+        return "UserSettings";
+    }
+
+    @PostMapping("/userSettings")
+    public String processUserSettingsForm(@ModelAttribute("user") User user, Model model) {
+
+
+        return "UserSettings";
+    }
+
+    @GetMapping("/calendar")
+    public String showCalendar(Model model){
+        model.addAttribute("user", new User());
+        return "Calendar";
+    }
 
 
 

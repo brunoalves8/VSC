@@ -39,11 +39,13 @@
             <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                     <h3 class="mb-4">Ficha de Atleta</h3>
+                    <%--@elvariable id="user" type=""--%>
+                    <form:form action="/userSettings" modelAttribute="user" method="post" class = "userSettings-form">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input type="text" class="form-control" value="Miguel Bruno">
+                                <input type="text" class="form-control" value="Cristiano Ronaldo">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -82,8 +84,10 @@
                         <button class="btn btn-light">Cancelar</button>
                     </div>
                 </div>
+                </form:form>
                 <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                     <h3 class="mb-4">Alterar Password</h3>
+                    <form:form action="/userSettings" modelAttribute="user" method="post" class = "userSettingsPassword-form">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -110,6 +114,7 @@
                         <button class="btn btn-primary">Atualizar</button>
                         <button class="btn btn-light">Cancelar</button>
                     </div>
+                    </form:form>
                 </div>
 
             </div>
