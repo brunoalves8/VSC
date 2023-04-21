@@ -68,12 +68,15 @@
 
     <div class="options">
 
-        <div class="option"><a href="#">
-            <div class="nameCat">
-                <i class="icon fa-solid fa-arrow-trend-up"></i>
-                <span class="catName">Físico dos Atletas</span>
-            </div></a>
+        <div class="option">
+            <a href="${customFormLink}">
+                <div class="nameCat">
+                    <i class="icon fa-solid fa-arrow-trend-up"></i>
+                    <span class="catName">Responder Questionários</span>
+                </div>
+            </a>
         </div>
+
 
         <div class="option"><a href="#">
             <div class="nameCat">
