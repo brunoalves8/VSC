@@ -15,7 +15,7 @@ public class Forms {
     }
 
     // Etapa 2
-    String username = getCurrentPlayerUsername(); // Substitua esta função pela função que retorna o nome de usuário do jogador atual.
+    String username = getUsername(); // Substitua esta função pela função que retorna o nome de usuário do jogador atual.
     String customFormLink = Forms.getCustomFormLink(username);
     request.setAttribute("customFormLink", customFormLink); // Use o método adequado para passar a variável à sua página HTML, dependendo do seu framework (Servlet, JSP, Thymeleaf, etc.).
 
