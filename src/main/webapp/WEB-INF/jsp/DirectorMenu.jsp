@@ -85,6 +85,14 @@
                 </div>
             </a>
         </div>
+
+        <div class="option"><a href="#">
+            <div class="nameCat">
+                <i class=" icon fa-regular fa-clipboard"></i>
+                <span class="catName">Relatório de Estatísticas</span>
+            </div></a>
+        </div>
+
     </div>
 </div>
 </body>
