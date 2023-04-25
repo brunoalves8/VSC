@@ -17,7 +17,7 @@
 <%--@elvariable id="player" type=""--%>
 
 <div class="container">
-    <div class="title">Registration</div>
+    <div class="title">Registar Atleta</div>
     <div class="content">
         <% if (request.getAttribute("error") != null) { %>
         <p><%= request.getAttribute("error") %></p>
@@ -25,24 +25,24 @@
         <form:form action="/playerRegistration" modelAttribute="player" method="post" class = "playerRegistration-form">
             <div class="user-details">
                 <div class="input-box">
-                    <span class="details">Full Name</span>
-                    <input type="text" placeholder="Enter your name" name ="name"required>
+                    <span class="details">Nome Completo</span>
+                    <input type="text" placeholder="Introduza o nome" name ="name"required>
                 </div>
                 <div class="input-box">
                     <span class="details">Username</span>
-                    <input type="text" placeholder="Enter your username" name="username" required>
+                    <input type="text" placeholder="Introduza o username" name="username" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Email</span>
-                    <input type="text" placeholder="Enter your email" name="email" required>
+                    <input type="text" placeholder="Introduza o email" name="email" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Phone Number</span>
-                    <input type="text" placeholder="Enter your number" name="phoneNumber" required>
+                    <span class="details">Número de Telemóvel</span>
+                    <input type="text" placeholder="Introduza o número de telemóvel" name="phoneNumber" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Password</span>
-                    <input type="password" placeholder="Enter your password" name="password" required>
+                    <input type="password" placeholder="Introduza a password" name="password" required>
                 </div>
 
             </div>
@@ -50,19 +50,15 @@
                 <input type="radio" name="gender" id="dot-1" value="male">
                 <input type="radio" name="gender" id="dot-2" value="female">
                 <input type="radio" name="gender" id="dot-3" value="prefer not to say">
-                <span class="gender-title">Gender</span>
+                <span class="gender-title">Género</span>
                 <div class="category">
                     <label for="dot-1">
                         <span class="dot one"></span>
-                        <span class="gender">Male</span>
+                        <span class="gender">Masculino</span>
                     </label>
                     <label for="dot-2">
                         <span class="dot two"></span>
-                        <span class="gender">Female</span>
-                    </label>
-                    <label for="dot-3">
-                        <span class="dot three"></span>
-                        <span class="gender">Prefer not to say</span>
+                        <span class="gender">Feminino</span>
                     </label>
                 </div>
             </div>

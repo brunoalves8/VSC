@@ -16,44 +16,44 @@
 <%--@elvariable id="coach" type=""--%>
 
 <div class="container">
-    <div class="title">Registration</div>
+    <div class="title">Registar Treinador</div>
     <div class="content">
         <p th:if="${error}" th:text="${error}"></p>
         <form th:action="@{/coachRegistration}" th:object="${coach}" method="post" class="coachRegistration-form">
         <div class="user-details">
             <div class="input-box">
-                <span class="details">Full Name</span>
-                <input type="text" placeholder="Enter your name" name ="name" th:field="*{name}" required>
+                <span class="details">Nome Completo</span>
+                <input type="text" placeholder="Introduza o nome" name ="name" th:field="*{name}" required>
             </div>
             <div class="input-box">
                 <span class="details">Username</span>
-                <input type="text" placeholder="Enter your username" name="username" th:field="*{username}" required>
+                <input type="text" placeholder="Introduza o username" name="username" th:field="*{username}" required>
             </div>
             <div class="input-box">
                 <span class="details">Email</span>
-                <input type="text" placeholder="Enter your email" name="email" th:field="*{email}" required>
+                <input type="text" placeholder="Introduza o email" name="email" th:field="*{email}" required>
             </div>
             <div class="input-box">
-                <span class="details">Phone Number</span>
-                <input type="text" placeholder="Enter your number" name="phoneNumber" th:field="*{phoneNumber}" required>
+                <span class="details">Número de Telemóvel</span>
+                <input type="text" placeholder="Introduza o número de telemóvel" name="phoneNumber" th:field="*{phoneNumber}" required>
             </div>
             <div class="input-box">
                 <span class="details">Password</span>
-                <input type="password" placeholder="Enter your password" name="password" th:field="*{password}" required>
+                <input type="password" placeholder="Introduza a password" name="password" th:field="*{password}" required>
             </div>
         </div>
         <div class="gender-details">
             <input type="radio" name="type" id="dot-1" value="Head" th:field="*{type}" required>
             <input type="radio" name="type" id="dot-2" value="Assistant" th:field="*{type}" required>
-            <span class="Type-title">Type</span>
+            <span class="Type-title">Tipo</span>
             <div class="category">
                 <label for="dot-1">
                     <span class="dot one"></span>
-                    <span class="type">Head</span>
+                    <span class="type">Principal</span>
                 </label>
                 <label for="dot-2">
                     <span class="dot two"></span>
-                    <span class="type">Assistant</span>
+                    <span class="type">Adjunto</span>
                 </label>
             </div>
         </div>
