@@ -1,3 +1,4 @@
+/*
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,6 @@ public class Forms {
     request.setAttribute("customFormLink", customFormLink); // Use o método adequado para passar a variável à sua página HTML, dependendo do seu framework (Servlet, JSP, Thymeleaf, etc.).
 
 }
-
+*/
 
 
