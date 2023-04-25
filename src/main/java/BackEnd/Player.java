@@ -106,4 +106,10 @@ public class Player extends User{
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public static double calculateBMI(double weight, double height) {
+        double heightMeters = height / 100; // converter para metros
+        double bmi = weight / (heightMeters * heightMeters);
+        return bmi;
+    }
 }
