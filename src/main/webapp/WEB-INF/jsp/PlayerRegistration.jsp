@@ -38,7 +38,7 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Número de Telemóvel</span>
-                    <input type="text" placeholder="Introduza o número de telemóvel" name="phoneNumber" required>
+                    <input type="number" placeholder="Introduza o número de telemóvel" name="phoneNumber" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Password</span>
