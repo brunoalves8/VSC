@@ -1,17 +1,14 @@
 package org.teamdai.sivoleivsc;
 
 import BackEnd.*;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.Date;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class MyController {
@@ -127,6 +124,11 @@ public class MyController {
         return "Calendar";
     }
 
+    @PostMapping("/addFormLink")
+    public String addFormLink(@RequestParam String link, @RequestParam String name, @RequestParam Date endDate) {
+        FormsDAO.insertForm(link, name, endDate.toString());
+        return "redirect:/home";
+    }
 
 
 }
