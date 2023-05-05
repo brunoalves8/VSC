@@ -117,6 +117,22 @@ public class MyController {
         }
      return "UserSettings";
     }
+/*
+    @PostMapping("/changePassword")
+    public String processChangePasswordForm(@ModelAttribute("player") Player player, Model model) {
+        boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(player.getUsername());
+
+        if (userAlreadyExists) {
+            UserSettings.addInfoPlayer(player.getPosition(), player.getHeight(), (int) player.getWeight(), player.getShirtNumber(), player.getBirthDate());
+            return "UserSettings";
+        } else {
+
+            model.addAttribute("error", "Utilizador não existe!");
+        }
+        return "UserSettings";
+    }
+*/
+
 
     @GetMapping("/calendar")
     public String showCalendar(Model model){

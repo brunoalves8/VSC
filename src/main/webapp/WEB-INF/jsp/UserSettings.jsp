@@ -87,7 +87,8 @@
                 </form:form>
                 <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                     <h3 class="mb-4">Alterar Password</h3>
-
+                    <%--@elvariable id="player" type=""--%>
+                    <form:form id="form2" action="/changePassword" modelAttribute="player" method="post" class = "userSettings-form2">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -111,10 +112,10 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-primary">Atualizar</button>
+                        <button type="submit" form="form2" class="btn btn-primary">Atualizar</button>
                         <button class="btn btn-light">Cancelar</button>
                     </div>
-
+                    </form:form>
                 </div>
 
             </div>
