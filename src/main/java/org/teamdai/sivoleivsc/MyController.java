@@ -117,21 +117,31 @@ public class MyController {
         }
      return "UserSettings";
     }
-/*
+
     @PostMapping("/changePassword")
-    public String processChangePasswordForm(@ModelAttribute("player") Player player, Model model) {
-        boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(player.getUsername());
+    public String processChangePasswordForm(@ModelAttribute("passwordForm") PasswordForm passwordForm, Model model) {
+        String username = "Miguel";
+        String currentPassword = passwordForm.getCurrentPassword();
+        String newPassword = passwordForm.getNewPassword();
+        String confirmPassword = passwordForm.getConfirmPassword();
 
-        if (userAlreadyExists) {
-            UserSettings.addInfoPlayer(player.getPosition(), player.getHeight(), (int) player.getWeight(), player.getShirtNumber(), player.getBirthDate());
-            return "UserSettings";
-        } else {
+        // Adicione aqui a lógica para verificar se a senha atual corresponde à senha armazenada no banco de dados
+       if(UserSettings.verifyCurrentPassword(username, currentPassword) == false){
+           model.addAttribute("error", "Palavra-passe introduzida não corresponde à atual!");
+       }
 
-            model.addAttribute("error", "Utilizador não existe!");
-        }
-        return "UserSettings";
-    }
-*/
+       if(UserSettings.verifyIfNewPasswordEqualConfirmPassword(newPassword,confirmPassword)){
+           UserSettings.changePassword(username,newPassword);
+           return "redirect:/userSettings";
+       }
+       else
+       {
+           model.addAttribute("error", "Palavras-passes não coincidem!");
+       }
+
+        return "redirect:/userSettings";
+}
+
 
 
     @GetMapping("/calendar")
