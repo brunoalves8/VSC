@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
+import java.util.List;
+import BackEnd.Form;
+
 
 @Controller
 public class MyController {
@@ -130,6 +133,23 @@ public class MyController {
         return "redirect:/home";
     }
 
+    @PostMapping("/removeFormLink")
+    public String removeFormLink(@RequestParam String link) {
+        FormsDAO.deleteFormByLink(link);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/forms")
+    public List<Form> getAllForms() {
+        List<Form> forms = FormsDAO.getAllForms();
+        return forms;
+    }
+
+    @GetMapping("/currentforms")
+    public List<Form> getCurrentForms() {
+        List<Form> forms = FormsDAO.getCurrentForms();
+        return forms;
+    }
 
 }
 
