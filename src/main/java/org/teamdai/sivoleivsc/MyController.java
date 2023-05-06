@@ -181,7 +181,7 @@ public class MyController {
     public String showFormulariosPage(Model model) {
         List<Form> forms = FormsDAO.getAllForms();
         model.addAttribute("forms", forms);
-        return "formularios";
+        return "UserList";
     }
 
 }
