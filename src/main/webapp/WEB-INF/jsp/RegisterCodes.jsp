@@ -7,26 +7,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web App</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CreateQuestionaries.css">
+    <title>Registro de Jogadas - Voleibol</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/RegisterCodes.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container">
-    <h1>Criar Questionário</h1>
-    <a href="https://docs.google.com/forms/create" target="_blank" class="centralizar-botao">
-        <button>Criar Questionário no Google Forms</button>
-    </a>
-    <form id="formulario" action="processar_formulario.php" method="post">
-        <label for="link">Link:</label>
-        <input type="text" id="link" name="link" required>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        <label for="data">Data:</label>
-        <input type="date" id="data" name="data" required>
-        <button class="submit">Salvar</button>
+<div class="main-content">
+    <form id="jogadaForm">
+        <!-- Adicione o campo para inserir a URL da transmissão -->
+        <label for="streamUrl">URL da Transmissão:</label>
+        <input type="text" id="streamUrl" name="streamUrl">
+        <br>
+        <button id="loadStream">Carregar Transmissão</button>
+        <br>
+        <!-- Adicione a tag video para exibir o vídeo -->
+        <video id="videoStream" controls>
+            <source src="./VITÓRIA SC x SL BENFICA PLAYOFF 11 - JOGO 1 - TAÇA FEDERAÇÃO - LIGA LIDL 2022_2023.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        <label for="tipoJogada">Tipo de Jogada:</label>
+        <select id="tipoJogada" name="tipoJogada">
+            <option value="S">Serviço</option>
+            <option value="R">Receção</option>
+            <option value="A">Ataque</option>
+            <option value="AR">Ataque depois de Receção</option>
+            <option value="T">Transição</option>
+            <option value="B">Bloqueio</option>
+            <option value="D">Defesa</option>
+            <option value="F">Free Ball</option>
+            <option value="SE">Set</option>
+        </select>
+        <br>
+        <label for="jogador">Jogador:</label>
+        <input type="text" id="jogador" name="jogador" required>
+        <br>
+        <label for="equipe">Equipa:</label>
+        <input type="text" id="equipe" name="equipe" required>
+        <br>
+        <label for="numeroJogadora">Número da Jogadora:</label>
+        <input type="number" id="numeroJogadora" name="numeroJogadora" required>
+        <label for="set">Set:</label>
+        <input type="number" id="set" name="set" required>
+        <br>
+        <button type="submit">Gerar Código</button>
     </form>
+    <div id="resultado">
+        <h2>Código da Jogada:</h2>
+        <p id="codigoJogada"></p>
+        <div id="listaJogadas"></div>
+    </div>
 </div>
 <div class="nav-container">
     <nav>
@@ -75,5 +105,6 @@
         });
     </script>
 </div>
+<script src="srcipt.js"></script>
 </body>
 </html>
