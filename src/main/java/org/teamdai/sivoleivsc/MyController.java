@@ -177,6 +177,13 @@ public class MyController {
         return forms;
     }
 
+    @GetMapping("/formularios")
+    public String showFormulariosPage(Model model) {
+        List<Form> forms = FormsDAO.getAllForms();
+        model.addAttribute("forms", forms);
+        return "formularios";
+    }
+
 }
 
 
