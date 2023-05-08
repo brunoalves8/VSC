@@ -75,7 +75,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Data de Nascimento</label>
-                                    <input type="text" id="birthDate" class="form-control" name="birthDate" value="2003-12-01" pattern="\d{4}-\d{1,2}-\d{1,2}" required>
+                                    <input type="date" id="birthDate" class="form-control" name="birthDate" value="2003-12-01" pattern="\d{4}-\d{1,2}-\d{1,2}" required>
                                 </div>
                             </div>
                     </div>

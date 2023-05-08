@@ -1,20 +1,22 @@
 package BackEnd;
 import java.time.LocalDate;
+import java.util.Date;
 
 
 public class Form {
     private String link;
     private String name;
-    private LocalDate endDate;
+    private Date endDate;
 
     public Form() {
     }
 
-    public Form(String link, String name, LocalDate endDate) {
+    public Form(String link, String name, Date endDate) {
         this.link = link;
         this.name = name;
         this.endDate = endDate;
     }
+
 
     public String getLink() {
         return link;
@@ -32,11 +34,11 @@ public class Form {
         this.name = name;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 }

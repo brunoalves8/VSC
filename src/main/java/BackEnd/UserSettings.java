@@ -57,7 +57,7 @@ public class UserSettings {
         }
     }
 
-    public static boolean addInfoPlayer(String position, int height, int weight, int shirtNumber, Date birthDate) {
+    public static boolean addInfoPlayer(String position, int height, int weight, int shirtNumber, java.util.Date birthDate, String username) {
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
         String dbPassword = "vsc.DAI23";
@@ -69,14 +69,15 @@ public class UserSettings {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
             // Fazer uma consulta ao banco de dados para verificar se as credenciais do usuário
-            String sql = "INSERT INTO [dbo].[Players] ([position],[height], [weight],[shirtNumber],[birthDate]) " +
-                    "VALUES ( ? , ? , ? , ? , ? , ? )";
+            String sql = "UPDATE [dbo].[Players] SET [birth_date] = ?, [height] = ?, [weight] = ?, [position] = ?, [shirt_number] = ? " +
+                    "WHERE [username] = ?";
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, position);
+            stmt.setDate(1, new java.sql.Date(birthDate.getTime()));
             stmt.setInt(2, height);
             stmt.setInt(3, weight);
-            stmt.setInt(4, shirtNumber);
-            stmt.setDate(5, (java.sql.Date) birthDate);
+            stmt.setString(4, position);
+            stmt.setInt(5, shirtNumber);
+            stmt.setString(6, username);
             rowsAffected = stmt.executeUpdate();
 
             if (rowsAffected > 0) {

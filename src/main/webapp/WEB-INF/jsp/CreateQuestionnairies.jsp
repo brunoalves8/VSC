@@ -18,13 +18,13 @@
     <a href="https://docs.google.com/forms/create" target="_blank" class="centralizar-botao">
         <button>Criar Questionário no Google Forms</button>
     </a>
-    <form id="formulario" action="processar_formulario.php" method="post">
+    <form id="formulario" action="/criarQuestionario" method="post">
         <label for="link">Link:</label>
         <input type="text" id="link" name="link" required>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        <label for="data">Data:</label>
-        <input type="date" id="data" name="data" required>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="endDate">Data:</label>
+        <input type="date" id="endDate" name="endDate" pattern="\d{4}-\d{2}-\d{2}" required>
         <button class="submit">Salvar</button>
     </form>
 </div>

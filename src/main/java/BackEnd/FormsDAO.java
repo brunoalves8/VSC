@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 public class FormsDAO {
 
     // Insere um novo registro na tabela forms
-    public static boolean insertForm(String link, String name, String endDate) {
+    public static boolean insertForm(String link, String name, Date endDate) {
         // Conectar ao banco de dados
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
@@ -30,7 +30,7 @@ public class FormsDAO {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, link);
             stmt.setString(2, name);
-            stmt.setString(3, endDate);
+            stmt.setDate(3, new java.sql.Date (endDate.getTime()));
 
             // Executar a instrução SQL para inserir o registro
             int rowsAffected = stmt.executeUpdate();
@@ -134,7 +134,7 @@ public class FormsDAO {
             while (rs.next()) {
                 String link = rs.getString("link");
                 String name = rs.getString("name");
-                LocalDate endDate = rs.getDate("end_date").toLocalDate();
+                Date endDate = rs.getDate("end_date");
                 Form form = new Form(link, name, endDate);
                 forms.add(form);
             }
@@ -195,7 +195,7 @@ public class FormsDAO {
             while (rs.next()) {
                 String link = rs.getString("link");
                 String name = rs.getString("name");
-                LocalDate endDate = rs.getDate("end_date").toLocalDate();
+                Date endDate = rs.getDate("end_date");
                 Form form = new Form(link, name, endDate);
                 forms.add(form);
             }

@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Player extends User{
     private String name;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
     private int height; //Em cm
     private double weight; //Em kg

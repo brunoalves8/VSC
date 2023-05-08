@@ -112,7 +112,8 @@ public class MyController {
         boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(player.getUsername());
 
         if (userAlreadyExists) {
-            UserSettings.addInfoPlayer(player.getPosition(), player.getHeight(), (int) player.getWeight(), player.getShirtNumber(), player.getBirthDate());
+            UserSettings.addInfoPlayer(player.getPosition(), player.getHeight(), (int) player.getWeight(),
+                    player.getShirtNumber(), player.getBirthDate(), player.getUsername());
             return "UserSettings";
         } else {
 
@@ -144,7 +145,17 @@ public class MyController {
 
         return "redirect:/userSettings";
 }
+    @GetMapping("/criarQuestionario")
+    public String showCreateQuestionnairies(Model model) {
+        model.addAttribute("form", new Form());
+        return "CreateQuestionnairies";
+    }
 
+    @PostMapping("/criarQuestionario")
+    public String addFormLink(@ModelAttribute("form") Form form, Model model) {
+        FormsDAO.insertForm(form.getLink(), form.getName(), form.getEndDate());
+        return "redirect:/home";
+    }
 
 
     @GetMapping("/calendar")
@@ -178,17 +189,6 @@ public class MyController {
         return "QuestionnairiesList";
     }
 
-    @GetMapping("/criarQuestionario")
-    public String showCreateQuestionnairies(Model model) {
-        model.addAttribute("form", new Form());
-        return "CreateQuestionnairies";
-    }
-
-    @PostMapping("/criarQuestionario")
-    public String addFormLink(@RequestParam String link, @RequestParam String name, @RequestParam Date endDate) {
-        FormsDAO.insertForm(link, name, endDate.toString());
-        return "redirect:/home";
-    }
 
 }
 
