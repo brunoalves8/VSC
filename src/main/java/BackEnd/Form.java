@@ -1,4 +1,6 @@
 package BackEnd;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -6,6 +8,7 @@ import java.util.Date;
 public class Form {
     private String link;
     private String name;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     public Form() {

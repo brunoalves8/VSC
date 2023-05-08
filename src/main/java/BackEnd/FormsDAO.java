@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 public class FormsDAO {
 
     // Insere um novo registro na tabela forms
-    public static boolean insertForm(String link, String name, Date endDate) {
+    public static boolean insertForm(String link, String name, java.util.Date endDate) {
         // Conectar ao banco de dados
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
@@ -22,18 +22,19 @@ public class FormsDAO {
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        int rowsAffected = 0;
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
             // Preparar a instrução SQL para inserir um novo registro
-            String sql = "INSERT INTO forms (link, name, end_date) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO [dbo].[Forms] ([link], [name], [end_date]) VALUES (?, ?, ?)";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, link);
             stmt.setString(2, name);
             stmt.setDate(3, new java.sql.Date (endDate.getTime()));
 
             // Executar a instrução SQL para inserir o registro
-            int rowsAffected = stmt.executeUpdate();
+            rowsAffected = stmt.executeUpdate();
 
             // Verificar se a inserção foi bem sucedida
             if (rowsAffected > 0) {
