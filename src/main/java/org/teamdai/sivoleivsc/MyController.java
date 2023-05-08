@@ -29,7 +29,7 @@ public class MyController {
     }
     @PostMapping("/login")
     public String processLoginForm(@ModelAttribute("user") User login, Model model) {
-        boolean authenticated = AuthenticatePlayer.authenticate(login.getUsername(), login.getPassword());
+        boolean authenticated = AuthenticateUser.authenticate(login.getUsername(), login.getPassword());
 
         if (authenticated) {
             return "redirect:/home";

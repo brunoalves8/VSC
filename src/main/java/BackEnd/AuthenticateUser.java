@@ -1,6 +1,6 @@
 package BackEnd;
 import java.sql.*;
-public class AuthenticatePlayer {
+public class AuthenticateUser {
     public static boolean authenticate(String username, String password){
         // Conectar ao banco de dados
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
@@ -13,20 +13,47 @@ public class AuthenticatePlayer {
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
-            // Fazer uma consulta ao banco de dados para verificar se as credenciais do usuário são válidas
-            String sql = "SELECT username FROM Director WHERE username = ? AND password = ?";
-            stmt = conn.prepareStatement(sql);
+            // Verificar se o username existe na primeira tabela
+            String sql1 = "SELECT username FROM Players WHERE username = ? AND password = ?";
+            stmt = conn.prepareStatement(sql1);
             stmt.setString(1, username);
             stmt.setString(2, password);
             rs = stmt.executeQuery();
-
             if (rs.next()) {
-                // Se as credenciais forem válidas, retornar true
                 return true;
-            } else {
-                // Se as credenciais forem inválidas, retornar false
-                return false;
             }
+
+            // Verificar se o username existe na segunda tabela
+            String sql2 = "SELECT username FROM Coach WHERE username = ? AND password = ?";
+            stmt = conn.prepareStatement(sql2);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+
+            // Verificar se o username existe na terceira tabela
+            String sql3 = "SELECT username FROM Scouter WHERE username = ? AND password = ?";
+            stmt = conn.prepareStatement(sql3);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+
+            // Verificar se o username existe na quarta tabela
+            String sql4 = "SELECT username FROM Director WHERE username = ? AND password = ?";
+            stmt = conn.prepareStatement(sql4);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
