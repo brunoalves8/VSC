@@ -153,12 +153,6 @@ public class MyController {
         return "Calendar";
     }
 
-    @PostMapping("/addFormLink")
-    public String addFormLink(@RequestParam String link, @RequestParam String name, @RequestParam Date endDate) {
-        FormsDAO.insertForm(link, name, endDate.toString());
-        return "redirect:/home";
-    }
-
     @PostMapping("/removeFormLink")
     public String removeFormLink(@RequestParam String link) {
         FormsDAO.deleteFormByLink(link);
@@ -181,7 +175,19 @@ public class MyController {
     public String showFormulariosPage(Model model) {
         List<Form> forms = FormsDAO.getAllForms();
         model.addAttribute("forms", forms);
-        return "UserList";
+        return "QuestionnairiesList";
+    }
+
+    @GetMapping("/criarQuestionario")
+    public String showCreateQuestionnairies(Model model) {
+        model.addAttribute("form", new Form());
+        return "CreateQuestionnairies";
+    }
+
+    @PostMapping("/criarQuestionario")
+    public String addFormLink(@RequestParam String link, @RequestParam String name, @RequestParam Date endDate) {
+        FormsDAO.insertForm(link, name, endDate.toString());
+        return "redirect:/home";
     }
 
 }

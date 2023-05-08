@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web App</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CreateQuestionaries.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CreateQuestionnairies.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
 </head>
