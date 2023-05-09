@@ -15,19 +15,21 @@ body{
     background-color: rgb(255, 255, 255);
     /*font-family: "Poppins", sans-serif;*/
     position: relative;
+
 }
 
 nav{
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     height:100%;
     Left:0;
-    /*background:;*/
+    background-color: white;
     width: 90px;
     overflow: hidden;
     transition: width 0.3s linear;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    z-index: 2;
 }
 
 .logo{
@@ -73,6 +75,7 @@ a{
     font-size: 35px;
     text-align: center;
 }
+
 .nav-item{
     position: relative;
     top: 12px;
@@ -85,12 +88,12 @@ a{
 nav:hover{
     width: 280px;
     transition: all 0.5s ease;
+    z-index: 1;
 }
 
 .logout{
     position: absolute;
     bottom: 0;
-    font-size: 18px;
 }
 
 
@@ -115,7 +118,6 @@ nav:hover{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /*font-family: 'Raleway', sans-serif;*/
 }
 body{
     background-color: var(--bodyBack);
@@ -123,10 +125,11 @@ body{
     display: grid;
     place-content: center;
     position: relative;
+    z-index: -1;
 }
 .container{
     width: 80vw;
-    height:80vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -152,12 +155,13 @@ body{
 .option{
     position: relative;
     background-color: var(--sectionBack);
-    width: 350px;
-    height: 20%;
+    width: 290px;
+    height: 120px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     padding: 20px 20px 40px;
     border-radius: 10px;
     transition: .3s;
@@ -170,32 +174,21 @@ body{
 .option:active{
     background:rgba(155, 155, 155, 0.2);
 }
-
 .nameCat{
     width: 100%;
     display: flex;
-    justify-content: space-between;
-}
-.nameCat h3{
-    font-size: 2em;
-    text-transform: capitalize;
-    color: var(--textColor);
-}
-.option p{
-    font-size: 18px;
-    line-height: 25px;
+    justify-content: center;
+    align-items: center;
 }
 .icon{
     position: relative;
     font-size: 50px;
     text-align: center;
+    margin-right: 10px;
 }
-
-.nameCat{
+.catName{
     position: relative;
     font-size: 20px;
-    top: 12px;
-    margin-left: 10px;
     text-align: center;
 }
 
@@ -206,7 +199,6 @@ body{
         justify-content: center;
         align-items: center;
         padding-left: 70px;
-
     }
     .container{
         width: 80vw;
@@ -222,6 +214,7 @@ body{
     .header h1{
         font-size: 1.5em;
         text-transform: uppercase;
+        display: sticky;
         color: var(--textColor);
     }
     .options{
@@ -237,11 +230,11 @@ body{
         position: relative;
         background-color: var(--sectionBack);
         width: 70%;
-        height: 20%;
+        height: 30%;
         box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
         padding: 20px 20px 40px;
         border-radius: 10px;
         transition: .3s;
@@ -256,38 +249,31 @@ body{
     }
 
     .nameCat{
-        width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
-    .nameCat h3{
-        font-size: 2em;
-        text-transform: capitalize;
-        color: var(--textColor);
-    }
-    .option p{
-        font-size: 18px;
-        line-height: 25px;
-    }
+
     .icon{
         position: relative;
         font-size: 20px;
         text-align: center;
+        margin-right: 10px;
     }
 
     .nameCat{
         position: relative;
         font-size: 15px;
-        top: 10px;
+        top: 0px;
         margin-left: 0px;
         text-align: center;
     }
-
     .fa{
         position: relative;
-        width:70px;
-        height:40px;
-        top:14px;
+        width: 70px;
+        height: 40px;
+        top: 0px;
         font-size: 25px;
         text-align: center;
     }
@@ -345,7 +331,6 @@ body{
         text-align:center;
     }
 }
-
 @media screen and (min-width: 1024px) {
     /* Estilos para telas maiores que 1024px */
 }
