@@ -34,7 +34,7 @@
                         %>
                         <tr>
                             <td>
-                                <a href="<%= form.getLink() %>">Question link</a>
+                                <a href="<%= form.getLink() %>">Link para o Questionário</a>
                             </td>
                             <td>
                                 <span class="user-link"><%= form.getName() %></span>

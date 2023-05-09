@@ -294,11 +294,90 @@ nav:hover{
 
 @media screen and (max-width: 767px) {
 
-    .container{
-
-        width: 360px;
-
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 70px;
     }
+    .container{
+        width: 80vw;
+        height:80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .header{
+        width: 100%;
+        text-align: center;
+    }
+    .header h1{
+        font-size: 1.5em;
+        text-transform: uppercase;
+        display: sticky;
+        color: var(--textColor);
+    }
+    .options{
+        width: 100%;
+        align-self: center;
+        height: 70%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2px;
+    }
+    .option{
+        position: relative;
+        background-color: var(--sectionBack);
+        width: 70%;
+        height: 30%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 20px 40px;
+        border-radius: 10px;
+        transition: .3s;
+    }
+    .option:hover{
+        transform: translateY(-15px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+        background:rgba(209, 209, 209, 0.2);
+    }
+    .option:active{
+        background:rgba(155, 155, 155, 0.2);
+    }
+
+    .nameCat{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .icon{
+        position: relative;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 10px;
+    }
+
+    .nameCat{
+        position: relative;
+        font-size: 15px;
+        top: 0px;
+        margin-left: 0px;
+        text-align: center;
+    }
+    .fa{
+        position: relative;
+        width: 70px;
+        height: 40px;
+        top: 0px;
+        font-size: 25px;
+        text-align: center;
+    }
+
 
     nav{
         position: fixed;
@@ -339,15 +418,5 @@ nav:hover{
         font-size:20px;
         text-align: center;
         margin-left: -17px;
-    }
-
-
-    body{
-        margin-top:20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding-left: 150px;
     }
 }
