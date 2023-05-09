@@ -10,8 +10,7 @@ public class Director extends User{
     }
 
 
-
-
-
-
+    public Director(String username) {
+        super(username);
+    }
 }

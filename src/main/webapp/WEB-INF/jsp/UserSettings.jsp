@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
                     <div class="img-circle text-center mb-3">
                         <img src="static/images/channels4_profile.jpg" alt="Image" class="shadow">
                     </div>
-                    <h4 class="text-center">Name of User</h4>
+                    <h4 class="text-center">${sessionScope.user.username} </h4>
                 </div>
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
@@ -45,7 +46,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" class="form-control" value="Miguel" name="username"required>
+                                <input type="text" class="form-control" value="${sessionScope.user.username}" name="username"required>
                             </div>
                         </div>
                         <div class="col-md-6">

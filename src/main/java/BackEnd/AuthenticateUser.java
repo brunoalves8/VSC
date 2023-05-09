@@ -1,7 +1,7 @@
 package BackEnd;
 import java.sql.*;
 public class AuthenticateUser {
-    public static boolean authenticate(String username, String password){
+    public static int authenticate(String username, String password){
         // Conectar ao banco de dados
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
@@ -20,7 +20,7 @@ public class AuthenticateUser {
             stmt.setString(2, password);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                return true;
+                return 1;
             }
 
             // Verificar se o username existe na segunda tabela
@@ -30,7 +30,7 @@ public class AuthenticateUser {
             stmt.setString(2, password);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                return true;
+                return 2;
             }
 
             // Verificar se o username existe na terceira tabela
@@ -40,7 +40,7 @@ public class AuthenticateUser {
             stmt.setString(2, password);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                return true;
+                return 2;
             }
 
             // Verificar se o username existe na quarta tabela
@@ -50,13 +50,13 @@ public class AuthenticateUser {
             stmt.setString(2, password);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                return true;
+                return 3;
             }
 
-            return false;
+            return 0;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return 0;
         } finally {
             // Fechar o ResultSet, o Statement e a Connection
             if (rs != null) {

@@ -20,6 +20,11 @@ public class Player extends User{
     public Player(){
 
     }
+
+    public Player(String username) {
+        super(username);
+    }
+
     public Player(String username, String password, String email, String name, Date birth, int height, double weight,
                   String position, int shirtNumber, boolean injured, Team team, int phoneNumber) {
         super(username, password, email);

@@ -1,6 +1,7 @@
 package org.teamdai.sivoleivsc;
 
 import BackEnd.*;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
 import java.util.List;
 import BackEnd.Form;
 
@@ -17,9 +17,43 @@ import BackEnd.Form;
 public class MyController {
 
 
+    private final HttpSession session;
+
+    public MyController(HttpSession session) {
+        this.session = session;
+    }
+
+
     @GetMapping("/home")
     public String Home() {
-        return "Home"; // este é o nome do arquivo JSP que contém o código HTML
+        return "Home";
+    }
+
+    @GetMapping("/player")
+    public String PlayerMenu() {
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Player) {
+            return "PlayerMenu";
+        }
+        return "Login";
+    }
+
+    @GetMapping("/coach")
+    public String CoachMenu() {
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Coach) {
+            return "CoachMenu";
+        }
+        return "Login";
+    }
+
+    @GetMapping("/director")
+    public String DirectorMenu() {
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Director) {
+            return "DirectorMenu";
+        }
+        return "Login";
     }
 
     @GetMapping("/login")
@@ -29,10 +63,19 @@ public class MyController {
     }
     @PostMapping("/login")
     public String processLoginForm(@ModelAttribute("user") User login, Model model) {
-        boolean authenticated = AuthenticateUser.authenticate(login.getUsername(), login.getPassword());
-
-        if (authenticated) {
-            return "redirect:/home";
+        int authenticated = AuthenticateUser.authenticate(login.getUsername(), login.getPassword());
+        if (authenticated == 1) {
+            Player user = new Player(login.getUsername());
+            session.setAttribute("user", user);
+            return "redirect:/player";
+        } else if (authenticated == 2){
+            Coach user = new Coach(login.getUsername());
+            session.setAttribute("user", user);
+            return "redirect:/coach";
+        } else if (authenticated == 3){
+            Director user = new Director(login.getUsername());
+            session.setAttribute("user", user);
+            return "redirect:/director";
         } else {
             model.addAttribute("error", "Credenciais Inválidas. Tente novamente.");
             return "Login";
@@ -41,9 +84,13 @@ public class MyController {
 
 
     @GetMapping("/playerRegistration")
-    public String showPlayerRegistration(Model model){
-        model.addAttribute("player", new Player());
-        return "PlayerRegistration";
+    public String showPlayerRegistration(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Director) {
+            model.addAttribute("player", new Player());
+            return "PlayerRegistration";
+        }
+        return "Login";
     }
 
     @PostMapping("/playerRegistration")
@@ -56,14 +103,18 @@ public class MyController {
         } else {
             RegisterPlayer.registerPlayer(player.getName(), player.getUsername(), player.getEmail(),
                     player.getPhoneNumber(), player.getPassword());
-            return "redirect:/home";
+            return "redirect:/director";
         }
     }
 
     @GetMapping("/coachRegistration")
-    public String showCoachRegistration(Model model){
-        model.addAttribute("player", new Player());
-        return "CoachRegistration";
+    public String showCoachRegistration(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Director) {
+            model.addAttribute("coach", new Coach());
+            return "CoachRegistration";
+        }
+        return "Login";
     }
 
     @PostMapping("/coachRegistration")
@@ -78,15 +129,19 @@ public class MyController {
 
             RegisterCoach.registerCoach(coach.getName(), coach.getUsername(), coach.getEmail(),
                     coach.getPhoneNumber(), coach.getPassword(), coach.getType());
-            return "redirect:/home";
+            return "redirect:/director";
         }
     }
 
 
     @GetMapping("/removeUser")
-    public String showRemoveUser(Model model){
-        model.addAttribute("user", new User());
-        return "RemoveUser";
+    public String showRemoveUser(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Director) {
+            model.addAttribute("user", new User());
+            return "RemoveUser";
+        }
+        return "Login";
     }
 
     @PostMapping("/removeUser")
@@ -102,9 +157,13 @@ public class MyController {
     }
 
     @GetMapping("/userSettings")
-    public String showUserSettings(Model model){
-        model.addAttribute("player", new Player());
-        return "UserSettings";
+    public String showUserSettings(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Player) {
+            model.addAttribute("player", new Player());
+            return "UserSettings";
+        }
+        return "Login";
     }
 
     @PostMapping("/userSettings")
@@ -123,8 +182,9 @@ public class MyController {
     }
 
     @PostMapping("/changePassword")
-    public String processChangePasswordForm(@ModelAttribute("passwordForm") PasswordForm passwordForm, Model model) {
-        String username = "Miguel";
+    public String processChangePasswordForm(@ModelAttribute("passwordForm") PasswordForm passwordForm, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        String username = user.getUsername();
         String currentPassword = passwordForm.getCurrentPassword();
         String newPassword = passwordForm.getNewPassword();
         String confirmPassword = passwordForm.getConfirmPassword();
@@ -144,7 +204,7 @@ public class MyController {
        }
 
         return "redirect:/userSettings";
-}
+    }
     @GetMapping("/criarQuestionario")
     public String showCreateQuestionnairies(Model model) {
         model.addAttribute("form", new Form());

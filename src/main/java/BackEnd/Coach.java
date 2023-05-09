@@ -32,6 +32,10 @@ public class Coach extends User {
         this.team = team;
     }
 
+    public Coach(String username) {
+        super(username);
+    }
+
     public String getType() {
         return type;
     }
