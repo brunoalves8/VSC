@@ -1,13 +1,13 @@
 package org.teamdai.sivoleivsc;
 
 import BackEnd.*;
+import BackEnd.SaveEvent;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import BackEnd.Form;
@@ -248,6 +248,37 @@ public class MyController {
         model.addAttribute("forms", forms);
         return "QuestionnairiesList";
     }
+
+
+    @PostMapping("/adicionar-evento")
+    public ResponseEntity<String> adicionarEvento(@RequestBody Event evento) {
+
+        boolean insertedEvent = SaveEvent.insertEvent(evento);
+
+        if (insertedEvent) {
+            return ResponseEntity.ok("Evento adicionado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao adicionar evento");
+        }
+    }
+
+    @GetMapping("/events")
+    public List<Event> getAllEvents() {
+        List<Event> events = SaveEvent.getAllEvents();
+        return events;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
