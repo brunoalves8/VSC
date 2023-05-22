@@ -274,12 +274,12 @@ public class MyController {
         }
     }
 
-    @GetMapping("/events")
-    public List<Event> getAllEvents() {
-        List<Event> events = SaveEvent.getAllEvents();
+    @GetMapping("/eventos")
+    @ResponseBody
+    public Iterable<Event> getEvents() {
+        Iterable<Event> events = SaveEvent.getAllEvents();
         return events;
     }
-
 
     @GetMapping("/availableRidesForEvent/{eventID}")
     public List<Ride> getAvailableRidesForEvent(@PathVariable String eventID) {

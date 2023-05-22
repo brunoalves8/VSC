@@ -68,7 +68,7 @@ public class SaveEvent {
 
     }
 
-    public static List<Event> getAllEvents(){
+    public static Iterable<Event> getAllEvents(){
 
         List<Event> events = new ArrayList<>();
 

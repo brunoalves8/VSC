@@ -54,9 +54,79 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ];
 
 
+    let importedEventsArr = [];
     let eventsArr = [];
+    function getEvents() {
+
+        fetch('http://localhost:8080/eventos')
+            .then(response => response.json())
+            .then(data => {
+                importedEventsArr.push(...data);
+
+                convertEvents(importedEventsArr, eventsArr);
+                initCalendar();
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+    }
+
+    function convertEvents(importedEventsArr, eventsArr) {
+        // Cria um objeto vazio para armazenar os novos eventos
+        let newEvents = {};
+
+        importedEventsArr.forEach(event => {
+            // Converte a data do evento antigo em um objeto Date
+            let dateParts = event.date.split('-');
+            let year = parseInt(dateParts[0]);
+            let month = parseInt(dateParts[1]);
+            let day = parseInt(dateParts[2]);
+
+            let startParts = event.start.split(':');
+            let startHourMinute = startParts[0] + ':' + startParts[1];
+
+            let finishParts = event.finish.split(':');
+            let finishHourMinute = finishParts[0] + ':' + finishParts[1];
+
+            // Concatena os horários de início e término
+            let time = startHourMinute + ' - ' + finishHourMinute;
+
+
+            // Cria a chave do novo evento baseado no ano, mês e dia
+            let key = `${year}-${month}-${day}`;
+
+            // Se a chave já existir no novo objeto de eventos, apenas adiciona o novo evento ao array existente
+            if (newEvents[key]) {
+                newEvents[key].events.push({ title: event.name, time: time });
+            }
+            // Se a chave não existir, cria um novo objeto de evento e o adiciona ao novo objeto de eventos
+            else {
+                newEvents[key] = {
+                    day: day,
+                    month: month,
+                    year: year,
+                    events: [
+                        {
+                            title: event.name,
+                            time: time
+                        }
+                    ]
+                };
+            }
+
+        });
+
+        // Converte o objeto de novos eventos em um array de objetos
+        let newEventsArr = Object.values(newEvents);
+
+        // Adiciona os novos eventos ao eventsArr
+        eventsArr.push(...newEventsArr);
+
+        return eventsArr;
+    }
+
     getEvents();
-    console.log(eventsArr);
+
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
     function initCalendar() {
@@ -83,8 +153,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 if (
                     eventObj.day === i &&
                     eventObj.month === month + 1 &&
-                    eventObj.year === year
+                    eventObj.year === year &&
+                    eventObj.events.length > 0
                 ) {
+                    console.log(eventObj.day,eventObj.month,eventObj.year);
                     event = true;
                 }
             });
@@ -238,15 +310,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 //function update events when a day is active
     function updateEvents(date) {
-        let events = "";
-        eventsArr.forEach((event) => {
-            if (
-                date === event.day &&
-                month + 1 === event.month &&
-                year === event.year
-            ) {
-                event.events.forEach((event) => {
-                    events += `<div class="event">
+            let events = "";
+            eventsArr.forEach((event) => {
+                if (
+                    date === event.day &&
+                    month + 1 === event.month &&
+                    year === event.year
+                ) {
+                    console.log(date, month,year)
+                    event.events.forEach((event) => {
+                        events += `<div class="event">
             <div class="title">
               <i class="fas fa-circle"></i>
               <h3 class="event-title">${event.title}</h3>
@@ -255,17 +328,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
               <span class="event-time">${event.time}</span>
             </div>
         </div>`;
-                });
-            }
-        });
-        if (events === "") {
-            events = `<div class="no-event">
+                    });
+                }
+            });
+            if (events === "") {
+                events = `<div class="no-event">
             <h3>Sem Eventos</h3>
         </div>`;
-        }
-        eventsContainer.innerHTML = events;
-        saveEvents();
+            }
+            eventsContainer.innerHTML = events;
+            saveEvents();
     }
+    updateEvents(activeDay);
+
 
 //function to add event
     addEventBtn.addEventListener("click", () => {
@@ -494,13 +569,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 //function to get events from local storage
-    function getEvents() {
+    /*function getEvents() {
         //check if events are already saved in local storage then return event else nothing
         if (localStorage.getItem("events") === null) {
             return;
         }
         eventsArr.push(...JSON.parse(localStorage.getItem("events")));
-    }
+    }*/
+
+
 
 
 
@@ -514,4 +591,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
         time = timeHour + ":" + timeMin + " " + timeFormat;
         return time;
     }
+
+    function convertToGroupedEvents(events) {
+        const groupedEvents = {};
+
+        events.forEach((event) => {
+            const { name, start, finish, date } = event;
+            const eventDate = new Date(date);
+
+            const day = eventDate.getDate();
+            const month = eventDate.getMonth() + 1;
+            const year = eventDate.getFullYear();
+
+            const formattedEvent = { title: name, time: `${start} - ${finish}` };
+
+            const eventKey = `${day}-${month}-${year}`;
+            if (!groupedEvents[eventKey]) {
+                groupedEvents[eventKey] = {
+                    day,
+                    month,
+                    year,
+                    events: [formattedEvent],
+                };
+            } else {
+                groupedEvents[eventKey].events.push(formattedEvent);
+            }
+        });
+
+        return Object.values(groupedEvents);
+    }
+
+
+
+
 });

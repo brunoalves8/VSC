@@ -1,14 +1,23 @@
 package BackEnd;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Event {
 
+    @JsonProperty("name")
     private String name;
+    //@JsonFormat(pattern = "hh:mm:ss")
+    @JsonProperty("start")
     private LocalTime start;
+    //@JsonFormat(pattern = "hh:mm:ss")
+    @JsonProperty("finish")
     private LocalTime finish;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonProperty("date")
     private LocalDate date;
 
     public Event() {
