@@ -125,7 +125,7 @@
         </ul>
     </nav>
     <script>
-        var toggleMenu = document.getElementById('nav-links');
+        var toggleMenu = document.querySelector('.nav-links');
         var nav = document.querySelector('nav');
 
         toggleMenu.addEventListener('click', function() {

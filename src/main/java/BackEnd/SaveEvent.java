@@ -26,7 +26,7 @@ public class SaveEvent {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
             // Fazer uma consulta ao banco de dados para verificar se as credenciais do usuário
-            String sql = "INSERT INTO [dbo].[Events] ([name],[start_hour], [finish_hour], [date]) " +
+            String sql = "INSERT INTO [dbo].[Events] ([nameOfEvent],[hourOfStart], [hourOfFinish], [dayOfEvent]) " +
                     "VALUES ( ? , ? , ? , ? )";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);
@@ -84,16 +84,16 @@ public class SaveEvent {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
             // Fazer uma consulta ao banco de dados para buscar todos os registros
-            String sql = "SELECT name, start_hour, finish_hour, date FROM Events";
+            String sql = "SELECT nameOfEvent, hourOfStart, hourOfFinish, dayOfEvent FROM Events";
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
 
             // Ler os resultados da consulta e criar objetos Form correspondentes
             while (rs.next()) {
-                String name = rs.getString("name");
-                LocalTime start = rs.getTime("start_hour").toLocalTime();
-                LocalTime finish = rs.getTime("finish_hour").toLocalTime();
-                LocalDate date = rs.getDate("date").toLocalDate();
+                String name = rs.getString("nameOfEvent");
+                LocalTime start = rs.getTime("hourOfStart").toLocalTime();
+                LocalTime finish = rs.getTime("hourOfFinish").toLocalTime();
+                LocalDate date = rs.getDate("dayOfEvent").toLocalDate();
                 Event evento = new Event(name, start, finish, date);
 
                 events.add(evento);

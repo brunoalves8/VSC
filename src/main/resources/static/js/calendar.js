@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     }, 100);
                 } else if (e.target.classList.contains("next-date")) {
                     nextMonth();
-                    //add active to clicked day afte month is changed
+                    //add active to clicked day after month is changed
                     setTimeout(() => {
                         const days = document.querySelectorAll(".day");
                         days.forEach((day) => {
@@ -442,6 +442,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     ) {
                         event.events.forEach((item, index) => {
                             if (item.title === eventTitle) {
+                                const evento = {
+                                    name: eventTitle,
+                                    date: event.day + "-" + event.month + "-" + event.year,
+                                    start: item.time.split(" - ")[0],
+                                    finish: item.time.split(" - ")[1]
+                                };
+                                // Faz uma chamada AJAX para enviar o evento para o backend
+                                const xhr = new XMLHttpRequest();
+                                xhr.open("POST", "/remover-evento", true);
+                                xhr.setRequestHeader("Content-Type", "application/json");
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        if (xhr.status === 200) {
+                                            // Se a resposta do backend for bem sucedida exibe uma mensagem de sucesso
+                                            alert("Evento removido com sucesso!");
+                                        } else {
+                                            // Se ocorrer algum erro no backend, exibe uma mensagem de erro adequada
+                                            alert("Erro ao remover evento");
+                                        }
+                                    }
+                                };
+                                xhr.send(JSON.stringify(evento));
+
+                                console.log(evento);
                                 event.events.splice(index, 1);
                             }
                         });

@@ -262,6 +262,18 @@ public class MyController {
         }
     }
 
+    @PostMapping("/remover-evento")
+    public ResponseEntity<String> removerEvento(@RequestBody Event evento) {
+
+        boolean removedEvent = RemoveEvent.removeEvent(evento);
+
+        if (removedEvent) {
+            return ResponseEntity.ok("Evento removido com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao remover evento");
+        }
+    }
+
     @GetMapping("/events")
     public List<Event> getAllEvents() {
         List<Event> events = SaveEvent.getAllEvents();
