@@ -442,12 +442,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     ) {
                         event.events.forEach((item, index) => {
                             if (item.title === eventTitle) {
+                                const formattedDate = `${event.year}-${event.month.toString().padStart(2, '0')}-${event.day.toString().padStart(2, '0')}`;
                                 const evento = {
                                     name: eventTitle,
-                                    date: event.day + "-" + event.month + "-" + event.year,
+                                    date: formattedDate,
                                     start: item.time.split(" - ")[0],
                                     finish: item.time.split(" - ")[1]
                                 };
+
                                 // Faz uma chamada AJAX para enviar o evento para o backend
                                 const xhr = new XMLHttpRequest();
                                 xhr.open("POST", "/remover-evento", true);
