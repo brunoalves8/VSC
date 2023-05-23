@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/CreateTeams&Players.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/static/js/createTeams&Players.js"></script>
 </head>
 <body>
 <div class="container">
@@ -21,13 +22,14 @@
         <button onclick="addPlayer('playersTeam1')">Adicionar jogador à Equipa 1</button>
     </div>
     <div class="team">
+
         <input type="text" placeholder="Nome da Equipa 2" id="teamName2">
         <div id="playersTeam2">
             <!-- Jogadores serão adicionados aqui dinamicamente -->
         </div>
         <button onclick="addPlayer('playersTeam2')">Adicionar jogador à Equipa 2</button>
     </div>
-    <button id="saveBtn">Salvar e Registrar Códigos</button>
+    <button id="saveBtn" onclick="enviarDados()">Salvar e Registrar Códigos</button>
 </div>
 <div class="nav-container">
     <nav>
@@ -76,6 +78,6 @@
         });
     </script>
 </div>
-<script src="${pageContext.request.contextPath}/static/js/createTeams&Players.js"></script>
+
 </body>
 </html>
