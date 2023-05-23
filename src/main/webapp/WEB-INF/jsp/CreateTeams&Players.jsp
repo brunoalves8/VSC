@@ -10,16 +10,17 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/CreateTeams&Players.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
-    <script src="${pageContext.request.contextPath}/static/js/createTeams&Players.js"></script>
+
 </head>
 <body>
+
 <div class="container">
     <div class="team">
         <input type="text" placeholder="Nome da Equipa 1" id="teamName1">
         <div id="playersTeam1">
             <!-- Jogadores serão adicionados aqui dinamicamente -->
         </div>
-        <button onclick="addPlayer('playersTeam1')">Adicionar jogador à Equipa 1</button>
+        <button onclick="addPlayer('playersTeam1','team1')">Adicionar jogador à Equipa 1</button>
     </div>
     <div class="team">
 
@@ -27,9 +28,9 @@
         <div id="playersTeam2">
             <!-- Jogadores serão adicionados aqui dinamicamente -->
         </div>
-        <button onclick="addPlayer('playersTeam2')">Adicionar jogador à Equipa 2</button>
+        <button onclick="addPlayer('playersTeam2', 'team2')">Adicionar jogador à Equipa 2</button>
     </div>
-    <button id="saveBtn" onclick="enviarDados()">Salvar e Registrar Códigos</button>
+    <button id="saveBtn" >Salvar e Registrar Códigos</button>
 </div>
 <div class="nav-container">
     <nav>
@@ -38,7 +39,7 @@
             <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <div class="navOPT">
                 <li><a href="#">
                     <i class="fas fa-home"></i>
@@ -78,6 +79,7 @@
         });
     </script>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/createTeams&Players.js"></script>
 </body>
 </html>
