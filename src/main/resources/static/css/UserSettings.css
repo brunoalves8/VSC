@@ -26,6 +26,13 @@ body {
     border-radius: 0;
     color: #333;
 }
+
+.nav-pills a.nav-link.active {
+    background-color: #000; /* Cor de fundo alterada para preto no hover e quando ativo */
+}
+.nav-pills a.nav-link:hover{
+    opacity: 0.8; /* Cor de fundo alterada para preto no hover e quando ativo */
+}
 .nav-pills a.nav-link i {
     width: 20px;
 }
@@ -35,5 +42,18 @@ body {
     width: 100px;
     border-radius: 100%;
     border: 5px solid #fff;
+}
+.btn-primary {
+    background-color: #000; /* Cor de fundo alterada para preto */
+    border-color: #000;
+}
+.btn-primary:hover{
+    opacity: 0.8;
+    background-color: #000 !important; /* Cor de fundo alterada para preto no hover e quando ativo */
+    border-color: #000 !important;
+}
+
+.btn-primary:active{
+    opacity: 0.6;
 }
 
