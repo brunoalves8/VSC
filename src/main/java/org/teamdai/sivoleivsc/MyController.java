@@ -320,7 +320,7 @@ public class MyController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("A Equipa digitada não se encontra no sistema");
         }
 
-        RegisterInfoGameVideo.registerInfoGameVideo(info.getTeam1(),info.getTeam2(),info.getPlayersTeam1(),info.getPlayersTeam2());
+        RegisterInfoGameVideo.registerGame(info.getTeam1(),info.getTeam2(),info.getPlayersTeam1(),info.getPlayersTeam2());
 
         return ResponseEntity.ok("Informações guardadas com sucesso");
     }

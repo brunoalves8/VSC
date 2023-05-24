@@ -7,11 +7,11 @@ import java.util.HashSet;
 public class RegisterInfoGameVideo {
     private String team1;
     private String team2;
-    private Collection<PlayerOfGame> playersTeam1 = new HashSet<>();
-    private Collection<PlayerOfGame> playersTeam2 = new HashSet<>();
+    private Collection<Appearances> playersTeam1 = new HashSet<>();
+    private Collection<Appearances> playersTeam2 = new HashSet<>();
 
 
-    public RegisterInfoGameVideo(String team1, String team2, Collection<PlayerOfGame> playersTeam1, Collection<PlayerOfGame> playersTeam2) {
+    public RegisterInfoGameVideo(String team1, String team2, Collection<Appearances> playersTeam1, Collection<Appearances> playersTeam2) {
         this.team1 = team1;
         this.team2 = team2;
         this.playersTeam1 = playersTeam1;
@@ -30,11 +30,11 @@ public class RegisterInfoGameVideo {
         return team2;
     }
 
-    public Collection<PlayerOfGame> getPlayersTeam1() {
+    public Collection<Appearances> getPlayersTeam1() {
         return playersTeam1;
     }
 
-    public Collection<PlayerOfGame> getPlayersTeam2() {
+    public Collection<Appearances> getPlayersTeam2() {
         return playersTeam2;
     }
 
@@ -46,11 +46,11 @@ public class RegisterInfoGameVideo {
         this.team2 = team2;
     }
 
-    public void setPlayersTeam1(Collection<PlayerOfGame> playersTeam1) {
+    public void setPlayersTeam1(Collection<Appearances> playersTeam1) {
         this.playersTeam1 = playersTeam1;
     }
 
-    public void setPlayersTeam2(Collection<PlayerOfGame> playersTeam2) {
+    public void setPlayersTeam2(Collection<Appearances> playersTeam2) {
         this.playersTeam2 = playersTeam2;
     }
 
@@ -107,29 +107,41 @@ public class RegisterInfoGameVideo {
         }
     }
 
-    public static boolean registerInfoGameVideo(String team1, String team2, Collection<PlayerOfGame> playersTeam1, Collection<PlayerOfGame> playersTeam2) {
+
+    public static boolean registerGame(String team1, String team2, Collection<Appearances> playersTeam1, Collection<Appearances> playersTeam2) {
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
         String dbPassword = "vsc.DAI23";
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         int rowsAffected = 0;
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
+            String sql3 = "SELECT pavillion FROM [dbo].[Teams] WHERE team_id=?";
+                stmt = conn.prepareStatement(sql3);
+
+                stmt.setString(1, team1);
+                rs = stmt.executeQuery();
+
+            String pavillion =
+
             // Inserir Equipas
-            String sql2 = "INSERT INTO [dbo].[InfoGameVideo] ([team1],[team2]) VALUES (?, ?)";
+            String sql2 = "INSERT INTO [dbo].[Game] ([home_team_id],[away_team_id],[pavillion],[game_date]) VALUES (?, ?,?,?)";
                 stmt = conn.prepareStatement(sql2);
                 stmt.setString(1, team1);
                 stmt.setString(2, team2);
+                stmt.setString(3, );
+                stmt.setDate(4, team2);
                 rowsAffected += stmt.executeUpdate();
 
 
 
             // Inserir Jogadores Da Team1
             String sql = "INSERT INTO [dbo].[PlayersOfGame] ([name],[teamID],[shirt]) VALUES (?, ?, ?)";
-            for(PlayerOfGame player: playersTeam1 ) {
+            for(Appearances player: playersTeam1 ) {
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, player.getName());
                 stmt.setString(2, team1);
@@ -137,7 +149,7 @@ public class RegisterInfoGameVideo {
                 rowsAffected += stmt.executeUpdate();
             }
             // Inserir Jogadores Da Team2
-            for(PlayerOfGame player: playersTeam2 ) {
+            for(Appearances player: playersTeam2 ) {
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, player.getName());
                 stmt.setString(2, team2);
