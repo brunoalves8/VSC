@@ -1,24 +1,25 @@
 package BackEnd;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class RegisterInfoGameVideo {
+public class RegisterGame {
     private String team1;
     private String team2;
     private Collection<Appearances> playersTeam1 = new HashSet<>();
     private Collection<Appearances> playersTeam2 = new HashSet<>();
 
 
-    public RegisterInfoGameVideo(String team1, String team2, Collection<Appearances> playersTeam1, Collection<Appearances> playersTeam2) {
+    public RegisterGame(String team1, String team2, Collection<Appearances> playersTeam1, Collection<Appearances> playersTeam2) {
         this.team1 = team1;
         this.team2 = team2;
         this.playersTeam1 = playersTeam1;
         this.playersTeam2 = playersTeam2;
     }
 
-    public RegisterInfoGameVideo() {
+    public RegisterGame() {
 
     }
 
@@ -116,36 +117,52 @@ public class RegisterInfoGameVideo {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        ResultSet rs1 = null;
+        LocalDate todayDate = LocalDate.now();
+
         int rowsAffected = 0;
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
-            String sql3 = "SELECT pavillion FROM [dbo].[Teams] WHERE team_id=?";
+            String sql3 = "SELECT pavilion FROM [dbo].[Teams] WHERE team_id = ?";
                 stmt = conn.prepareStatement(sql3);
-
                 stmt.setString(1, team1);
                 rs = stmt.executeQuery();
-
-            String pavillion =
+            String pavilion = null;
+            if(rs.next()) {
+                    pavilion = rs.getString("pavilion");
+                }
 
             // Inserir Equipas
-            String sql2 = "INSERT INTO [dbo].[Game] ([home_team_id],[away_team_id],[pavillion],[game_date]) VALUES (?, ?,?,?)";
+            String sql2 = "INSERT INTO [dbo].[Game] ([home_team_id],[away_team_id],[pavilion],[game_date]) VALUES (?,?,?,?)";
                 stmt = conn.prepareStatement(sql2);
                 stmt.setString(1, team1);
                 stmt.setString(2, team2);
-                stmt.setString(3, );
-                stmt.setDate(4, team2);
+                stmt.setString(3, pavilion );
+                stmt.setDate(4, java.sql.Date.valueOf(todayDate));
                 rowsAffected += stmt.executeUpdate();
 
 
+            String sql4 = "SELECT code_match FROM [dbo].[Game] WHERE home_team_id = ? AND away_team_id = ? AND CAST([game_date] AS date) = ?";
+            stmt = conn.prepareStatement(sql4);
+            stmt.setString(1, team1);
+            stmt.setString(2, team2);
+            stmt.setDate(3,java.sql.Date.valueOf(todayDate));
+            rs1 = stmt.executeQuery();
+            int code_match = 0;
+            if(rs1.next()) {
+                code_match = rs1.getInt("code_match");
+            }
+
 
             // Inserir Jogadores Da Team1
-            String sql = "INSERT INTO [dbo].[PlayersOfGame] ([name],[teamID],[shirt]) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO [dbo].[Appearances] ([name],[teamID],[shirt],[match_id]) VALUES (?, ?, ?, ?)";
             for(Appearances player: playersTeam1 ) {
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, player.getName());
                 stmt.setString(2, team1);
                 stmt.setInt(3, player.getShirt());
+                stmt.setInt(4, code_match);
                 rowsAffected += stmt.executeUpdate();
             }
             // Inserir Jogadores Da Team2
@@ -154,6 +171,7 @@ public class RegisterInfoGameVideo {
                 stmt.setString(1, player.getName());
                 stmt.setString(2, team2);
                 stmt.setInt(3, player.getShirt());
+                stmt.setInt(4, code_match);
                 rowsAffected += stmt.executeUpdate();
             }
 

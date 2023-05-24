@@ -299,14 +299,14 @@ public class MyController {
 
     @GetMapping("/infoGameVideo")
     public String showInfoGameVideo(Model model){
-        model.addAttribute("info", new RegisterInfoGameVideo());
+        model.addAttribute("info", new RegisterGame());
         return "CreateTeams&Players";
     }
 
     @PostMapping("/adicionarInfoGameVideo")
-    public ResponseEntity<?> adicionarInfoGameVideo(@RequestBody RegisterInfoGameVideo info, Model model) {
-        boolean team1exist = RegisterInfoGameVideo.verifyIfTeamExists(info.getTeam1());
-        boolean team2exist = RegisterInfoGameVideo.verifyIfTeamExists(info.getTeam2());
+    public ResponseEntity<?> adicionarInfoGameVideo(@RequestBody RegisterGame info, Model model) {
+        boolean team1exist = RegisterGame.verifyIfTeamExists(info.getTeam1());
+        boolean team2exist = RegisterGame.verifyIfTeamExists(info.getTeam2());
 
         if (team1exist) {
 
@@ -320,7 +320,7 @@ public class MyController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("A Equipa digitada não se encontra no sistema");
         }
 
-        RegisterInfoGameVideo.registerGame(info.getTeam1(),info.getTeam2(),info.getPlayersTeam1(),info.getPlayersTeam2());
+        RegisterGame.registerGame(info.getTeam1(),info.getTeam2(),info.getPlayersTeam1(),info.getPlayersTeam2());
 
         return ResponseEntity.ok("Informações guardadas com sucesso");
     }

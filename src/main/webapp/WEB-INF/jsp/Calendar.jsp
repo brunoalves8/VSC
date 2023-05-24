@@ -132,6 +132,7 @@
             nav.classList.toggle('show');
         });
     </script>
+
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/calendar.js"></script>
