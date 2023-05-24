@@ -22,7 +22,7 @@
         </a>
         <ul class="nav-links">
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/director">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>
@@ -45,7 +45,7 @@
                     <span class="nav-item">Definições</span>
                 </a></li>
             </div>
-            <li><a href="#" class="logout">
+            <li><a href="http://localhost:8080/login" class="logout">
                 <form action="/login" method="post">
                     <i class="fas fa-sign-out-alt"></i>
                     <button type="submit" class="nav-item">Sair</button>
@@ -69,7 +69,7 @@
     <div class="options">
 
         <div class="option">
-            <a href="#">
+            <a href="http://localhost:8080/directorRegister">
                 <div class="nameCat">
                     <i class="icon fa fa-user-plus"></i>
                     <span class="catName">Registar Utilizador</span>
@@ -78,7 +78,7 @@
         </div>
 
         <div class="option">
-            <a href="#">
+            <a href="http://localhost:8080/removeUser">
                 <div class="nameCat">
                     <i class="icon fa fa-user-minus"></i>
                     <span class="catName">Remover Utilizador</span>

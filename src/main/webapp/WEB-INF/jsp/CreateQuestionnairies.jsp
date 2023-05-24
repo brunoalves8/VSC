@@ -37,7 +37,7 @@
         </a>
         <ul class="nav-links">
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/coach">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>
@@ -60,7 +60,7 @@
                     <span class="nav-item">Definições</span>
                 </a></li>
             </div>
-            <li><a href="#" class="logout">
+            <li><a href="http://localhost:8080/login" class="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="nav-item">Sair</span>
             </a></li>

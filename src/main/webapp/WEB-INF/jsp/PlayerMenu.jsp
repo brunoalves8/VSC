@@ -22,13 +22,13 @@
         </a>
         <ul class="nav-links">
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/player">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/userSettings">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Perfil</span>
                 </a></li>
@@ -45,7 +45,7 @@
                     <span class="nav-item">Definições</span>
                 </a></li>
             </div>
-            <li><a href="#" class="logout">
+            <li><a href="http://localhost:8080/login" class="logout">
                 <form action="/login" method="post">
                     <i class="fas fa-sign-out-alt"></i>
                     <button type="submit" class="nav-item">Sair</button>
@@ -75,7 +75,7 @@
             </div></a>
         </div>
 
-        <div class="option"><a href="#">
+        <div class="option"><a href="http://localhost:8080/calendar">
             <div class="nameCat">
                 <i class="icon fa-regular fa-calendar"></i>
                 <span class="catName">Calendarização de Treinos e Jogos</span>

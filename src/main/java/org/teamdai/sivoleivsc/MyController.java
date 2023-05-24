@@ -56,6 +56,24 @@ public class MyController {
         return "Login";
     }
 
+    @GetMapping("/coachQuestionnaries")
+    public String CoachSubMenu() {
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Coach) {
+            return "CoachSubMenuQuestionnaires";
+        }
+        return "Login";
+    }
+
+    @GetMapping("/directorRegister")
+    public String DirectorSubMenu() {
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Director) {
+            return "DirectorSubMenu";
+        }
+        return "Login";
+    }
+
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("login", new User());

@@ -1,3 +1,7 @@
+<%@ page import="BackEnd.User" %>
+<%@ page import="BackEnd.Player" %>
+<%@ page import="BackEnd.Coach" %>
+<%@ page import="BackEnd.Director" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -95,13 +99,29 @@
         </a>
         <ul class="nav-links">
             <div class="navOPT">
-                <li><a href="#">
+                <li>
+                    <%
+                        Object userObject = session.getAttribute("user");
+                        String menuURL = "";
+                        // Determine o perfil do utilizador e defina o link apropriado
+                        if (userObject != null ) {
+                            User user = (User) userObject;
+                            if (user instanceof Player) {
+                                menuURL = "http://localhost:8080/player";
+                            } else if (user instanceof Coach) {
+                                menuURL = "http://localhost:8080/coach";
+                            } else if (user instanceof Director) {
+                                menuURL = "http://localhost:8080/director";
+                            }
+                        }
+                    %>
+                    <a href="<%= menuURL %>">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/userSettings">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Perfil</span>
                 </a></li>
@@ -118,7 +138,7 @@
                     <span class="nav-item">Definições</span>
                 </a></li>
             </div>
-            <li><a href="#" class="logout">
+            <li><a href="http://localhost:8080/login" class="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="nav-item">Sair</span>
             </a></li>
