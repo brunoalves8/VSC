@@ -39,25 +39,35 @@
             <option value="SE">Set</option>
         </select>
         <br>
-        <label for="jogador">Jogador:</label>
-        <input type="text" id="jogador" name="jogador" required>
-        <br>
         <label for="equipe">Equipa:</label>
-        <input type="text" id="equipe" name="equipe" required>
+        <select id="equipe" name="equipe">
+            <option value="" disabled selected>Selecione uma equipe</option>
+        </select>
+        <br>
+        <label for="jogador">Jogador:</label>
+        <select id="jogador" name="jogador">
+            <option value="" disabled selected>Selecione um jogador</option>
+        </select>
         <br>
         <label for="numeroJogadora">Número da Jogadora:</label>
-        <input type="number" id="numeroJogadora" name="numeroJogadora" required>
+        <select id="numeroJogadora" name="numeroJogadora">
+            <option value="" disabled selected>Selecione um número</option>
+        </select>
         <label for="set">Set:</label>
-        <input type="number" id="set" name="set" required>
+        <select id="set" name="set">
+            <option value="" disabled selected>Selecione um set</option>
+        </select>
         <br>
-        <button type="submit">Gerar Código</button>
+        <button type="button" onclick="gerarCodigo()">Gerar Código</button>
     </form>
     <div id="resultado">
         <h2>Código da Jogada:</h2>
         <p id="codigoJogada"></p>
-        <div id="listaJogadas"></div>
+        <div id="listaJogadas">Lista de Jogadas:</div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
@@ -105,6 +115,7 @@
         });
     </script>
 </div>
-<script src="srcipt.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/registerCodes.js"></script>
 </body>
 </html>
+

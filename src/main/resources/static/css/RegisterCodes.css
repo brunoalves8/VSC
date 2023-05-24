@@ -5,6 +5,29 @@ body {
     padding: 0;
 }
 
+#listaJogadas {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20%; /* Ajuste a largura conforme necessário */
+    height: 100vh;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: transparent; /* Ajuste a cor de fundo conforme necessário */
+    z-index: 999; /* Para garantir que a lista de códigos sempre fique no topo */
+}
+
+.jogada-item {
+    cursor: pointer;
+    color: #000000;
+    margin: 0.5rem;
+}
+
+.jogada-item:hover {
+    text-decoration: underline;
+}
+
+
 h1 {
     text-align: center;
     background-color: #000000;
@@ -16,7 +39,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     padding: 1rem;
 }
 
@@ -163,10 +186,20 @@ nav:hover{
     position: absolute;
     bottom: 0;
 }
-
+@media screen and (max-width: 1067px) {
+    #listaJogadas {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+}
 
 @media screen and (max-width: 810px) {
-
+    #listaJogadas {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
     body {
         display: flex;
         justify-content: center;
