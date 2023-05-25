@@ -72,7 +72,17 @@ input[type="number"] {
     border: 1px solid #ccc;
     padding: 6px 10px;
 }
-
+.progress-text {
+    margin-top: 120px;
+    align-items: center;
+    font-size: 70px;
+    background: linear-gradient(to right, #000000 50%, #ddd 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 8s;
+}
 
 
 
