@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+body{
+    background-color: rgb(255, 255, 255);
+    /*font-family: "Poppins", sans-serif;*/
+    position: relative;
+
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height:100%;
+    Left:0;
+    background-color: white;
+    width: 90px;
+    overflow: hidden;
+    transition: width 0.3s linear;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.logo{
+    text-align: center;
+    display: flex;
+    transition: all 0.5s ease;
+    margin: 10px 0 0 10px;
+}
+
+.logo img{
+    width: 60px;
+    height: 60px;
+}
+
+.logo span{
+    font-weight: bold;
+    padding-left: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+a{
+    position: relative;
+    color:rgb(0, 0, 0);
+    font-size: 18px;
+    display: table;
+    width: 200px;
+    padding: 10px;
+}
+.fas{
+    position: relative;
+    width:70px;
+    height:40px;
+    top:14px;
+    font-size: 25px;
+    text-align: center;
+}
+.fa{
+    position: relative;
+    width:70px;
+    height:40px;
+    top:14px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.nav-item{
+    position: relative;
+    top: 12px;
+    margin-left: 10px;
+}
+
+.navOPT:hover{
+    background: rgb(226, 226, 226);
+}
+nav:hover{
+    width: 280px;
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.logout{
+    position: absolute;
+    bottom: 0;
+}
+
+
+/*CÓDIGO ALTERAR*/
+:root{
+    --bodyBack: #ffffff;
+    --textColor: #afb167;
+    --starColor: #f67034;
+    --sectionBack: #ffffff;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--bodyBack);
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    position: relative;
+    z-index: -1;
+}
+.container{
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.options{
+    width: 100%;
+    align-self: center;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+.option{
+    position: relative;
+    background-color: var(--sectionBack);
+    width: 1000px;
+    height: 500px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px 40px;
+    border-radius: 10px;
+    transition: .3s;
+}
+.nameCat{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon{
+    position: relative;
+    font-size: 50px;
+    text-align: center;
+    margin-right: 10px;
+}
+.catName {
+    position: absolute;
+    top: -100px;
+    left: -330px;
+    font-size: 50px;
+    text-align: left;
+}
+.location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.location input[type="text"] {
+    width: 120%;
+    padding: 10px;
+    font-size: large;
+    border-bottom: 1px solid black;
+}
+
+.location button[type="submit"] {
+    width: 150px;
+    height: 50px;
+    margin-top: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.location button[type="submit"]:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 767px) {
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 70px;
+    }
+    .option {
+        background-color: #ffffffd7;
+        box-shadow: 0 0px 0px rgba(255, 255, 255, 0.3);
+    }
+    .catName {
+        position: absolute;
+        top: -250px;
+        left: 0px;
+        font-size: 50px;
+        text-align: center;
+    }
+    .location {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .location input[type="text"] {
+        width: 110%;
+        padding: 10px;
+        font-size: 12px;
+        border-bottom: 1px solid black;
+    }
+
+    .location button[type="submit"] {
+        width: 150px;
+        height: 50px;
+        margin-top: 100px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .icon{
+        position: relative;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 10px;
+    }
+    .fa{
+        position: relative;
+        width: 70px;
+        height: 40px;
+        top: 0px;
+        font-size: 25px;
+        text-align: center;
+    }
+
+
+    nav{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        height:100%;
+        Left:0;
+        background-color: white;
+        width: 50px;
+        overflow: hidden;
+        transition: width 0.3s linear;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+    }
+    .logo img{
+        width: 40px;
+        height: 40px;
+    }
+    .logo{
+        text-align: center;
+        display: flex;
+        transition: all 0.5s ease;
+        margin:0px 0 0 0px;
+    }
+    a{
+        position: relative;
+        color:rgb(0, 0, 0);
+        font-size: 18px;
+        display: table;
+        width: 180px;
+        padding: 10px;
+    }
+    .fas{
+        position: relative;
+        width:70px;
+        height:40px;
+        top:14px;
+        font-size:20px;
+        text-align: center;
+        margin-left: -17px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Estilos para telas entre 768px e 1024px */
+    .catName{
+        position: relative;
+        font-size: 35px;
+        top: -80px;
+        margin-left: 240px;
+        text-align:center;
+    }
+    .option{
+        width: 600px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    /* Estilos para telas maiores que 1024px */
+}
+
+#back-button {
+    position: fixed;
+    top: 10px;
+    left: 100px;
+    z-index: -1;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+}
+
+#back-button .fa-solid {
+    font-size: 24px;
+}
