@@ -298,23 +298,23 @@ public class MyController {
         Iterable<Event> events = SaveEvent.getAllEvents();
         return events;
     }
-
+/*
     @GetMapping("/availableRidesForEvent/{eventID}")
-    public List<Ride> getAvailableRidesForEvent(@PathVariable String eventID) {
-        List<Ride> rides = RidesDAO.getAvailableRidesForEvent(eventID);
-        return rides;
+    public List<AcceptedRide> getAvailableRidesForEvent(@PathVariable String eventID) {
+        List<AcceptedRide> acceptedRides = RidesDAO.getAvailableRidesForEvent(eventID);
+        return acceptedRides;
     }
 
     @PostMapping("/insertRide")
-    public boolean insertRide(@RequestBody Ride ride) {
-        return RidesDAO.insertRide(ride.getRideDate(), ride.getEventID(), ride.getAvailableSeats(), ride.getUsername(), ride.isRideStatus());
+    public boolean insertRide(@RequestBody AcceptedRide acceptedRide) {
+        return RidesDAO.insertRide(acceptedRide.getRideDate(), acceptedRide.getEventID(), acceptedRide.getAvailableSeats(), acceptedRide.getUsername(), acceptedRide.isRideStatus());
     }
 
     @PostMapping("/takeRide/{rideID}/{username}")
     public boolean takeRide(@PathVariable int rideID, @PathVariable String username) {
         return RidesDAO.takeRide(rideID, username);
     }
-
+*/
     @GetMapping("/infoGameVideo")
     public String showInfoGameVideo(Model model){
         model.addAttribute("info", new RegisterGame());
