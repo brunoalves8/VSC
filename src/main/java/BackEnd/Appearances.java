@@ -1,16 +1,20 @@
 package BackEnd;
 
-public class Appearances {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class Appearances {
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("shirt")
     private int shirt;
-    private String timeID;
+    @JsonProperty("teamID")
+    private String teamID;
     private int match_id;
 
-    public Appearances(String name, int shirt, String timeID) {
+    public Appearances(String name, int shirt, String teamID) {
         this.name = name;
         this.shirt = shirt;
-        this.timeID = timeID;
+        this.teamID = teamID;
     }
 
     public String getName() {
@@ -21,8 +25,8 @@ public class Appearances {
         return shirt;
     }
 
-    public String getTimeID() {
-        return timeID;
+    public String getTeamID() {
+        return teamID;
     }
 
     public void setName(String name) {
@@ -33,8 +37,8 @@ public class Appearances {
         this.shirt = shirt;
     }
 
-    public void setTimeID(String timeID) {
-        this.timeID = timeID;
+    public void setTeamID(String teamID) {
+        this.teamID = teamID;
     }
 
     public int getMatch_id() {

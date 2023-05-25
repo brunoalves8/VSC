@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         alert("Data Inválida");
     }
 
-//function get active day day name and date and update eventday eventdate
+//function get active day name and date and update eventday eventdate
     function getActiveDay(date) {
         const day = new Date(year, month, date);
         const dayName = day.toString().split(" ")[0];
