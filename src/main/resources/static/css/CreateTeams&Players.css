@@ -4,6 +4,10 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
+body{
+    margin-top:30px;
+    align-items: center;
+}
 .container {
     max-width: 600px;
     margin: auto;
@@ -25,9 +29,10 @@ button {
     display: block;
     width:100%;
     border-radius: 15px;
+    font-size: 18px;
 }
 
-button {
+.button{
     height: 100%;
     width: 100%;
     border-radius: 10px;
@@ -40,7 +45,8 @@ button {
     background: linear-gradient(135deg, #ffffff, #000000);
 }
 button:hover {
-    background-color: #444;
+    background-color: #bdbcbc;
+    cursor: pointer;
 }
 
 .removeButton {
@@ -54,9 +60,8 @@ button:hover {
 }
 
 .removeButton:hover {
-    background-color: darkred;
+    background-color: rgb(155, 2, 2);
 }
-
 
 input[type="text"],
 input[type="number"] {
@@ -67,7 +72,17 @@ input[type="number"] {
     border: 1px solid #ccc;
     padding: 6px 10px;
 }
-
+.progress-text {
+    margin-top: 120px;
+    align-items: center;
+    font-size: 70px;
+    background: linear-gradient(to right, #000000 50%, #ddd 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 8s;
+}
 
 
 

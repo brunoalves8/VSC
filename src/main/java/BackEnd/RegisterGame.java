@@ -2,14 +2,17 @@ package BackEnd;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 public class RegisterGame {
     private String team1;
     private String team2;
     private Collection<Appearances> playersTeam1 = new HashSet<>();
     private Collection<Appearances> playersTeam2 = new HashSet<>();
+
 
 
     public RegisterGame(String team1, String team2, Collection<Appearances> playersTeam1, Collection<Appearances> playersTeam2) {
@@ -108,6 +111,25 @@ public class RegisterGame {
         }
     }
 
+    public static Iterable<Integer> getShirtNumbersTeam1(Collection<Appearances> playersTeam1){
+        List<Integer> shirtNumbersTeam1 = new ArrayList<>();
+
+        for(Appearances player: playersTeam1 ) {
+            shirtNumbersTeam1.add(player.getShirt());
+        }
+
+        return shirtNumbersTeam1;
+    }
+
+    public static Iterable<Integer> getShirtNumbersTeam2(Collection<Appearances> playersTeam2){
+        List<Integer> shirtNumbersTeam2 = new ArrayList<>();
+
+        for(Appearances player: playersTeam2 ) {
+            shirtNumbersTeam2.add(player.getShirt());
+        }
+
+        return shirtNumbersTeam2;
+    }
 
     public static boolean registerGame(String team1, String team2, Collection<Appearances> playersTeam1, Collection<Appearances> playersTeam2) {
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";

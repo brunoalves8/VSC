@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import BackEnd.Form;
 
@@ -16,7 +19,11 @@ import BackEnd.Form;
 @Controller
 public class MyController {
 
-
+    Collection<Appearances> playersTeam1 = new ArrayList<>();
+    Collection<Appearances> playersTeam2 = new ArrayList<>();
+    Collection<String> teams = new ArrayList<>();
+    Iterable<Integer> shirtNumTeam1;
+    Iterable<Integer> shirtNumTeam2;
     private final HttpSession session;
 
     public MyController(HttpSession session) {
@@ -338,9 +345,60 @@ public class MyController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("A Equipa digitada não se encontra no sistema");
         }
 
+        playersTeam1 = info.getPlayersTeam1();
+        playersTeam2 = info.getPlayersTeam2();
+        teams.add(info.getTeam1());
+        teams.add(info.getTeam2());
+        shirtNumTeam1 = RegisterGame.getShirtNumbersTeam1(info.getPlayersTeam1());
+        shirtNumTeam2 = RegisterGame.getShirtNumbersTeam2(info.getPlayersTeam2());
+
         RegisterGame.registerGame(info.getTeam1(),info.getTeam2(),info.getPlayersTeam1(),info.getPlayersTeam2());
 
         return ResponseEntity.ok("Informações guardadas com sucesso");
     }
+
+
+    @GetMapping("/registerCodes")
+    public String registerCodes(Model model){
+        model.addAttribute("info", new RegisterGame());
+        return "RegisterCodes";
+    }
+
+    @GetMapping("/playersTeam1")
+    @ResponseBody
+    public Iterable<Appearances> getPlayersTeam1() {
+        Iterable<Appearances> players1 = playersTeam1;
+        return players1;
+    }
+
+    @GetMapping("/playersTeam2")
+    @ResponseBody
+    public Iterable<Appearances> getPlayersTeam2() {
+        Iterable<Appearances> players2 = playersTeam2;
+        return players2;
+    }
+
+    @GetMapping("/teams")
+    @ResponseBody
+    public Iterable<String> getTeams() {
+        Iterable<String> teams1and2 = teams;
+        return teams1and2;
+    }
+
+    @GetMapping("/shirtNumbersTeam1")
+    @ResponseBody
+    public Iterable<Integer> getShirtNumbersTeam1() {
+        Iterable<Integer> shirtNumbersTeam1 = shirtNumTeam1;
+        return shirtNumbersTeam1;
+    }
+
+    @GetMapping("/shirtNumbersTeam2")
+    @ResponseBody
+    public Iterable<Integer> getShirtNumbersTeam2() {
+        Iterable<Integer> shirtNumbersTeam2 = shirtNumTeam2;
+        return shirtNumbersTeam2;
+    }
+
+
 
 }
