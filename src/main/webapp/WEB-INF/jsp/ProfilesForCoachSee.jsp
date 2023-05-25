@@ -30,8 +30,6 @@
             <p>1.75m<br><span class="data-label">Altura</span></p>
             <p>65 Kg<br><span class="data-label">Peso</span></p>
         </div>
-
-        <a href="#" class="edit-button">Editar Perfil</a>
     </div>
 </div>
 </body>

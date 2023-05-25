@@ -7,7 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <!---<title> Responsive Registration Form | CodingLab </title>--->
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserRegistration.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
