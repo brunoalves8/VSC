@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/RegisterCodes.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/plyr.js"></script>
 </head>
 <body>
 <div class="main-content">
@@ -22,9 +23,9 @@
         <button id="loadStream">Carregar Transmissão</button>
         <br>
         <!-- Adicione a tag video para exibir o vídeo -->
-        <video id="videoStream" controls>
-            <source src="./VITÓRIA SC x SL BENFICA PLAYOFF 11 - JOGO 1 - TAÇA FEDERAÇÃO - LIGA LIDL 2022_2023.mp4" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
+        <video id="videoStream" class="plyr" controls>
+            <source src="src/main/resources/static/videos/videoVSCvsSLB.webm" type="video/webm">
+             Seu navegador não suporta a tag de vídeo.
         </video>
         <label for="tipoJogada">Tipo de Jogada:</label>
         <select id="tipoJogada" name="tipoJogada">
@@ -116,6 +117,10 @@
     </script>
 </div>
 <script src="${pageContext.request.contextPath}/static/js/registerCodes.js"></script>
+<script>
+    const player = new Plyr('#videoStream');
+</script>
+
 </body>
 </html>
 
