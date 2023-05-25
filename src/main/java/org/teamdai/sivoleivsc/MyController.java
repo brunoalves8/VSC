@@ -343,4 +343,11 @@ public class MyController {
         return ResponseEntity.ok("Informações guardadas com sucesso");
     }
 
+    @GetMapping("/registerCodes")
+    public String showPageRegisterCode(Model model) {
+        model.addAttribute("codes", new RegisterGame());
+        return "RegisterCodes";
+    }
 }
+
+
