@@ -58,7 +58,7 @@ public class AcceptedRideDAO {
             while (rs.next()) {
                 String username = rs.getString("username");
                 String pickupLocation = rs.getString("pickupLocation");
-                RideRequest rideRequest = new RideRequest(0, username, null, eventID, 0, false, pickupLocation);
+                RideRequest rideRequest = new RideRequest(0, username, eventID, false, pickupLocation);
                 rideRequests.add(rideRequest);
             }
         } catch (SQLException e) {

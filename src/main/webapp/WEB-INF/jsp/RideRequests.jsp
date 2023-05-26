@@ -1,39 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" import="BackEnd.RideRequest, BackEnd.RideRequestDAO, java.util.List" %>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de Boleias</title>
+    <title>Pedidos de Carona</title>
 </head>
 <body>
-<h1>Listagem de Boleias</h1>
-<table>
+<h1>Pedidos de Carona</h1>
+
+<table border="1">
+    <thead>
     <tr>
         <th>Request ID</th>
         <th>Username</th>
-        <th>Ride Date</th>
         <th>Event ID</th>
-        <th>Requested Seats</th>
-        <th>Is Accepted</th>
-        <th>Pickup Location</th>
+        <th>Aceito</th>
+        <th>Local de Recolha</th>
     </tr>
-    <%
-        List<RideRequest> rideRequests = RideRequestDAO.getAllRideRequests();
-        for (RideRequest rideRequest : rideRequests) {
-    %>
-    <tr>
-        <td><%= rideRequest.getRequestID() %></td>
-        <td><%= rideRequest.getUsername() %></td>
-        <td><%= rideRequest.getRideDate() %></td>
-        <td><%= rideRequest.getEventID() %></td>
-        <td><%= rideRequest.getRequestedSeats() %></td>
-        <td><%= rideRequest.getIsAccepted() %></td>
-        <td><%= rideRequest.getPickupLocation() %></td>
-    </tr>
-    <% } %>
+    </thead>
+    <tbody>
+    <c:forEach items="${rideRequests}" var="rideRequest">
+        <tr>
+            <td>${rideRequest.requestID}</td>
+            <td>${rideRequest.username}</td>
+            <td>${rideRequest.eventID}</td>
+            <td>${rideRequest.isAccepted ? 'Sim' : 'Não'}</td>
+            <td>${rideRequest.pickupLocation}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
 </table>
 </body>
 </html>
