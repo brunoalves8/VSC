@@ -14,6 +14,16 @@ public class RideRequest {
     public RideRequest() {
     }
 
+    public RideRequest(String username, Date rideDate, int eventID, int requestedSeats, boolean isAccepted, String pickupLocation) {
+        //this.requestID = requestID;
+        this.username = username;
+        this.rideDate = rideDate;
+        this.eventID = eventID;
+        this.requestedSeats = requestedSeats;
+        this.isAccepted = isAccepted;
+        this.pickupLocation = pickupLocation;
+    }
+
     public RideRequest(int requestID, String username, Date rideDate, int eventID, int requestedSeats, boolean isAccepted, String pickupLocation) {
         this.requestID = requestID;
         this.username = username;
@@ -31,6 +41,7 @@ public class RideRequest {
     public void setRequestID(int requestID) {
         this.requestID = requestID;
     }
+
 
     public String getUsername() {
         return username;

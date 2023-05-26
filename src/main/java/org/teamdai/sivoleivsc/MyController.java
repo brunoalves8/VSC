@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -400,5 +403,59 @@ public class MyController {
     }
 
 
+
+    @GetMapping("/acceptedrides")
+    public List<AcceptedRide> getAllAcceptedRides() {
+        List<AcceptedRide> acceptedRides = AcceptedRideDAO.getAllAcceptedRides();
+        return acceptedRides;
+    }
+
+    @GetMapping("/unacceptedriderequests/{eventID}")
+    public List<RideRequest> getUnacceptedRideRequestsByEvent(@PathVariable int eventID) {
+        List<RideRequest> rideRequests = RideRequestDAO.getUnacceptedRideRequestsByEvent(eventID);
+        return rideRequests;
+    }
+
+    @DeleteMapping("/acceptedrides/{rideID}")
+    public boolean deleteAcceptedRideById(@PathVariable int rideID) {
+        boolean deleted = AcceptedRideDAO.deleteAcceptedRideById(rideID);
+        return deleted;
+    }
+
+    @PostMapping("/riderequests")
+    public boolean insertRideRequest(@RequestParam String username, @RequestParam String rideDate, @RequestParam int eventID, @RequestParam int requestedSeats, @RequestParam String pickupLocation) {
+        // convertendo a string da data em um objeto Date
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = formatter.parse(rideDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        RideRequest rideRequest = new RideRequest(username, date, eventID, requestedSeats, false, pickupLocation);
+        boolean inserted = RideRequestDAO.insertRideRequest(rideRequest.getUsername(), rideRequest.getRideDate(), rideRequest.getEventID(), rideRequest.getRequestedSeats(), rideRequest.getIsAccepted(), rideRequest.getPickupLocation());
+        return inserted;
+    }
+
+
+
+    @GetMapping("/riderequests")
+    public List<RideRequest> getAllRideRequests() {
+        List<RideRequest> rideRequests = RideRequestDAO.getAllRideRequests();
+        return rideRequests;
+    }
+
+    @GetMapping("/unacceptedriderequests")
+    public List<RideRequest> getUnacceptedRideRequests() {
+        List<RideRequest> rideRequests = RideRequestDAO.getUnacceptedRideRequests();
+        return rideRequests;
+    }
+
+    @DeleteMapping("/riderequests/{requestID}")
+    public boolean deleteRideRequestById(@PathVariable int requestID) {
+        boolean deleted = RideRequestDAO.deleteRideRequestById(requestID);
+        return deleted;
+    }
 
 }
