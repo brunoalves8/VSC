@@ -424,7 +424,6 @@ public class MyController {
 
     @PostMapping("/riderequests")
     public boolean insertRideRequest(@RequestParam String username, @RequestParam String rideDate, @RequestParam int eventID, @RequestParam int requestedSeats, @RequestParam String pickupLocation) {
-        // convertendo a string da data em um objeto Date
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
