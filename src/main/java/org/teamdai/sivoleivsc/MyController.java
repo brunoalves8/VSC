@@ -336,13 +336,13 @@ public class MyController {
         if (team1exist) {
 
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("A Equipa digitada não se encontra no sistema");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("A Equipa 1 introduzida não se encontra no sistema");
         }
 
         if (team2exist) {
 
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("A Equipa digitada não se encontra no sistema");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("A Equipa 2 introduzida não se encontra no sistema");
         }
 
         playersTeam1 = info.getPlayersTeam1();

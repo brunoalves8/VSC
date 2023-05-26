@@ -31,17 +31,20 @@
         <button onclick="addPlayer('playersTeam2', 'team2')">Adicionar jogador à Equipa 2</button>
     </div>
     <button id="saveBtn" >Salvar e Registrar Códigos</button>
+    <div class="progress-text" id="progress-text">
+        Vitória SC
+    </div>
 </div>
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
-        <a href="#" class="logo">
+        <a href="http://localhost:8080/coach" class="logo">
             <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
         <ul class="nav-links" id="nav-links">
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/coach">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>
@@ -64,7 +67,7 @@
                     <span class="nav-item">Definições</span>
                 </a></li>
             </div>
-            <li><a href="#" class="logout">
+            <li><a href="http://localhost:8080/login" class="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="nav-item">Sair</span>
             </a></li>

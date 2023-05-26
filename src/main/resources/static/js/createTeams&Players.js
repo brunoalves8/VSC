@@ -126,6 +126,13 @@ document.getElementById('saveBtn').addEventListener('click', function() {
     }
     sendData();
 
+    var progressText = document.getElementById("progress-text");
+    progressText.style.backgroundPosition = '0%';
+
+
+    setTimeout(function() {
+        window.location.href = "http://localhost:8080/registerCodes"; // mude para a URL desejada
+    }, 3500);  // Redireciona após 2 segundos, o mesmo tempo que definimos para a transição do texto.
     });
 
 
