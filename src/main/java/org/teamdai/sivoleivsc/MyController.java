@@ -8,6 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.sql.SQLException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -305,23 +310,23 @@ public class MyController {
         Iterable<Event> events = SaveEvent.getAllEvents();
         return events;
     }
-
+/*
     @GetMapping("/availableRidesForEvent/{eventID}")
-    public List<Ride> getAvailableRidesForEvent(@PathVariable String eventID) {
-        List<Ride> rides = RidesDAO.getAvailableRidesForEvent(eventID);
-        return rides;
+    public List<AcceptedRide> getAvailableRidesForEvent(@PathVariable String eventID) {
+        List<AcceptedRide> acceptedRides = RidesDAO.getAvailableRidesForEvent(eventID);
+        return acceptedRides;
     }
 
     @PostMapping("/insertRide")
-    public boolean insertRide(@RequestBody Ride ride) {
-        return RidesDAO.insertRide(ride.getRideDate(), ride.getEventID(), ride.getAvailableSeats(), ride.getUsername(), ride.isRideStatus());
+    public boolean insertRide(@RequestBody AcceptedRide acceptedRide) {
+        return RidesDAO.insertRide(acceptedRide.getRideDate(), acceptedRide.getEventID(), acceptedRide.getAvailableSeats(), acceptedRide.getUsername(), acceptedRide.isRideStatus());
     }
 
     @PostMapping("/takeRide/{rideID}/{username}")
     public boolean takeRide(@PathVariable int rideID, @PathVariable String username) {
         return RidesDAO.takeRide(rideID, username);
     }
-
+*/
     @GetMapping("/infoGameVideo")
     public String showInfoGameVideo(Model model){
         model.addAttribute("info", new RegisterGame());
@@ -398,6 +403,56 @@ public class MyController {
         Iterable<Integer> shirtNumbersTeam2 = shirtNumTeam2;
         return shirtNumbersTeam2;
     }
+
+
+/*
+    @GetMapping("/acceptedrides")
+    public List<AcceptedRide> getAllAcceptedRides() {
+        List<AcceptedRide> acceptedRides = AcceptedRideDAO.getAllAcceptedRides();
+        return acceptedRides;
+    }
+
+
+    @DeleteMapping("/acceptedrides/{rideID}")
+    public boolean deleteAcceptedRideById(@PathVariable int rideID) {
+        boolean deleted = AcceptedRideDAO.deleteAcceptedRideById(rideID);
+        return deleted;
+    }
+*/
+
+    @GetMapping("/unacceptedriderequests/{eventID}")
+    public List<RideRequest> getUnacceptedRideRequestsByEvent(@PathVariable int eventID) {
+        List<RideRequest> rideRequests = RideRequestDAO.getUnacceptedRideRequestsByEvent(eventID);
+        return rideRequests;
+    }
+
+    @GetMapping("/riderequests")
+    public String getRideRequests(Model model) {
+        List<RideRequest> rideRequests = RideRequestDAO.getAllRideRequests();
+        model.addAttribute("rideRequests", rideRequests);
+        return "RideRequests";
+    }
+
+    @PostMapping("/riderequests")
+    public int insertRideRequest(@RequestParam String username, @RequestParam int eventID, @RequestParam String pickupLocation) {
+        RideRequest rideRequest = new RideRequest(username, eventID, false, pickupLocation);
+        int requestID;
+        try {
+            requestID = RideRequestDAO.insertRideRequest(rideRequest.getUsername(), rideRequest.getEventID(), rideRequest.getIsAccepted(), rideRequest.getPickupLocation());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            requestID = -1; // Retorna -1 em caso de erro
+        }
+        return requestID;
+    }
+
+    @DeleteMapping("/riderequests/{requestID}")
+    public boolean deleteRideRequestById(@PathVariable int requestID) {
+        boolean deleted = RideRequestDAO.deleteRideRequestById(requestID);
+        return deleted;
+    }
+
+
 
 
 
