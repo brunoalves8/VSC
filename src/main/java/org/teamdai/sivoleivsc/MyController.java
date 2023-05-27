@@ -3,6 +3,7 @@ package org.teamdai.sivoleivsc;
 import BackEnd.*;
 import BackEnd.SaveEvent;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -451,8 +452,6 @@ public class MyController {
         boolean deleted = RideRequestDAO.deleteRideRequestById(requestID);
         return deleted;
     }
-
-
 
 
 
