@@ -258,12 +258,6 @@ public class MyController {
         return "Calendar";
     }
 
-    @PostMapping("/removeFormLink")
-    public String removeFormLink(@RequestParam String link) {
-        FormsDAO.deleteFormByLink(link);
-        return "redirect:/home";
-    }
-
     @GetMapping("/forms")
     public List<Form> getAllForms() {
         List<Form> forms = FormsDAO.getAllForms();
@@ -281,6 +275,14 @@ public class MyController {
         List<Form> forms = FormsDAO.getAllForms();
         model.addAttribute("forms", forms);
         return "QuestionnairiesListCoach";
+    }
+    @PostMapping("/coachQuestionnairies")
+    public String removeFormLink(@RequestParam String link, RedirectAttributes redirectAttributes) {
+        boolean isRemoved = FormsDAO.deleteFormByLink(link);
+        if(!isRemoved){
+            redirectAttributes.addFlashAttribute("error", "Failed to delete form with link: "+link);
+        }
+        return "redirect:/coachQuestionnairies";
     }
     @GetMapping("/playerQuestionnairies")
     public String showPlayerFormulariosPage(Model model) {

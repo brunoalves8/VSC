@@ -43,12 +43,15 @@
                                 <span><%= form.getEndDate() %></span>
                             </td>
                             <td style="width: 20%;">
-                                <a href="#" class="table-link danger">
+                                <form action="${pageContext.request.contextPath}/coachQuestionnairies" method="post">
+                                    <input type="hidden" name="link" value="<%= form.getLink() %>"/>
+                                    <button type="submit" class="table-link danger">
                                         <span class="fa-stack">
                                             <i class="fa fa-square fa-stack-2x"></i>
                                             <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                         </span>
-                                </a>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         <% } %>

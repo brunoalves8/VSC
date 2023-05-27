@@ -82,7 +82,7 @@
         </div>
 
         <div class="option">
-            <a href="#">
+            <a href="http://localhost:8080/coachQuestionnairies">
                 <div class="nameCat">
                     <i class="icon fa fa-trash"></i>
                     <span class="catName">Apagar Questionário</span>
