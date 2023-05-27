@@ -51,8 +51,9 @@
         </dependency>
 
         <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>jstl</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
 
         <dependency>
@@ -61,6 +62,44 @@
             <version>10.1.7</version>
             <scope>provided</scope>
         </dependency>
+
+
+
+
+
+
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+
+
+
+
+
+
+
+
+
+
 
 
         <dependency>

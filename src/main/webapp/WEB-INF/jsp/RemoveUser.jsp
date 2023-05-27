@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" import="BackEnd.FormsDAO, BackEnd.Form, java.util.List"%>
-
+         pageEncoding="UTF-8" import="BackEnd.RemoveAndListUser, BackEnd.Form, java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/UserList.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -30,43 +28,29 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <img src="./channels4_profile.jpg" alt="">
-                                <span class="user-link">Mila Kunis</span>
-                                <span class="user-subhead">Admin</span>
-                            </td>
-
-                            <td>
-                                <span>mila@gmail.com</span>
-                            </td>
-                            <td style="width: 20%;">
-                                <a href="#" class="table-link danger">
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-									</span>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="./channels4_profile.jpg" alt="">
-                                <span class="user-link">George Clooney</span>
-                                <span class="user-subhead">Member</span>
-                            </td>
-                            <td>
-                                <span>marlon@gmail.com</span>
-                            </td>
-                            <td style="width: 20%;">
-                                <a href="#" class="table-link danger">
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-									</span>
-                                </a>
-                            </td>
-                        </tr>
+                        <%
+                            List<String> listAllUsers = RemoveAndListUser.listAllUsers();
+                            for (String listuser : listAllUsers){
+                        %>
+                            <tr>
+                                <td>
+                                    <img src="./channels4_profile.jpg" alt="">
+                                    <span class="user-link">${user.username}</span>
+                                    <span class="user-subhead">Member</span>
+                                </td>
+                                <td>
+                                    <span>${user.email}</span>
+                                </td>
+                                <td style="width: 20%;">
+                                    <a href="${pageContext.request.contextPath}/removeUser?username=${user.username}" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %>
                         </tbody>
                     </table>
                 </div>

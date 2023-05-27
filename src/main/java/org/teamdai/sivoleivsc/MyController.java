@@ -166,26 +166,24 @@ public class MyController {
 
 
     @GetMapping("/removeUser")
-    public String showRemoveUser(Model model, HttpSession session){
+    public String handleRemoveUser(Model model, HttpSession session, @RequestParam(value = "username", required = false) String username){
         User user = (User) session.getAttribute("user");
         if(user instanceof Director) {
-            model.addAttribute("user", new User());
+            if(username != null) {
+                boolean removed = RemoveUser.removeUser(username);
+                if (removed) {
+                    model.addAttribute("success", "Utilizador removido!");
+                } else {
+                    model.addAttribute("error", "Utilizador não existe!");
+                }
+            }
+            List<String> users = RemoveAndListUser.listAllUsers();
+            model.addAttribute("users", users);
             return "RemoveUser";
         }
         return "Login";
     }
 
-    @PostMapping("/removeUser")
-    public String processRemoveUserForm(@ModelAttribute("user") User user, Model model) {
-        boolean removed = RemoveUser.removeUser(user.getUsername());
-        if (removed) {
-            model.addAttribute("success", "Utilizador removido!");
-        } else {
-            model.addAttribute("error", "Utilizador não existe!");
-        }
-
-        return "RemoveUser";
-    }
 
     @GetMapping("/userSettings")
     public String showUserSettings(Model model, HttpSession session){
@@ -273,11 +271,17 @@ public class MyController {
         return forms;
     }
 
-    @GetMapping("/formularios")
-    public String showFormulariosPage(Model model) {
+    @GetMapping("/coachQuestionnairies")
+    public String showCoachFormulariosPage(Model model) {
         List<Form> forms = FormsDAO.getAllForms();
         model.addAttribute("forms", forms);
-        return "QuestionnairiesList";
+        return "QuestionnairiesListCoach";
+    }
+    @GetMapping("/playerQuestionnairies")
+    public String showPlayerFormulariosPage(Model model) {
+        List<Form> forms = FormsDAO.getAllForms();
+        model.addAttribute("forms", forms);
+        return "QuestionnairiesListPlayer";
     }
 
 
