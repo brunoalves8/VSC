@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" import="BackEnd.RemoveAndListUser, BackEnd.Form, java.util.List"%>
+         pageEncoding="UTF-8" import="BackEnd.RemoveAndListUser, BackEnd.User, java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +18,14 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="main-box clearfix">
+                <% String successMessage = (String) request.getAttribute("successMessage");
+                    String errorMessage = (String) request.getAttribute("errorMessage");
+                    if (successMessage != null) { %>
+                <p class="success-message"><%= successMessage %></p>
+                <% }
+                    if (errorMessage != null) { %>
+                <p class="error-message"><%= errorMessage %></p>
+                <% } %>
                 <div class="table-responsive">
                     <table class="table user-list">
                         <thead>
@@ -29,27 +37,30 @@
                         </thead>
                         <tbody>
                         <%
-                            List<String> listAllUsers = RemoveAndListUser.listAllUsers();
-                            for (String listuser : listAllUsers){
+                            List<User> listUsers = RemoveAndListUser.listAllUsers();
+                            for (User user : listUsers){
                         %>
-                            <tr>
-                                <td>
-                                    <img src="./channels4_profile.jpg" alt="">
-                                    <span class="user-link">${user.username}</span>
-                                    <span class="user-subhead">Member</span>
-                                </td>
-                                <td>
-                                    <span>${user.email}</span>
-                                </td>
-                                <td style="width: 20%;">
-                                    <a href="${pageContext.request.contextPath}/removeUser?username=${user.username}" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <img src="static/images/channels4_profile.jpg" alt="">
+                                <span class="user-link">${user.username}<%= user.getUsername() %></span>
+                                <span class="user-subhead"></span>
+                            </td>
+                            <td>
+                                <span>${user.email}<%= user.getEmail() %></span>
+                            </td>
+                            <td style="width: 20%;">
+                                <form action="${pageContext.request.contextPath}/removeUser" method="post">
+                                    <input type="hidden" name="username" value="<%= user.getUsername() %>"/>
+                                    <button type="submit" class="table-link danger">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                         <% } %>
                         </tbody>
                     </table>
@@ -62,7 +73,7 @@
     <nav>
         <div class="nav-header"></div>
         <a href="#" class="logo">
-            <img src="./Logo-512x512-1.png" alt="Vitória SC Logo">
+            <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
         <ul class="nav-links">

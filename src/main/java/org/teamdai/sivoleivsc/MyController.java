@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import BackEnd.Form;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -166,22 +167,26 @@ public class MyController {
 
 
     @GetMapping("/removeUser")
-    public String handleRemoveUser(Model model, HttpSession session, @RequestParam(value = "username", required = false) String username){
+    public String showRemoveUser(Model model, HttpSession session){
         User user = (User) session.getAttribute("user");
         if(user instanceof Director) {
-            if(username != null) {
-                boolean removed = RemoveUser.removeUser(username);
-                if (removed) {
-                    model.addAttribute("success", "Utilizador removido!");
-                } else {
-                    model.addAttribute("error", "Utilizador não existe!");
-                }
-            }
-            List<String> users = RemoveAndListUser.listAllUsers();
-            model.addAttribute("users", users);
+            model.addAttribute("user", new User());
+            model.addAttribute("allUsers", RemoveAndListUser.listAllUsers());
             return "RemoveUser";
         }
         return "Login";
+    }
+    @PostMapping("/removeUser")
+    public String removeUser(@RequestParam String username, RedirectAttributes redirectAttributes) {
+        boolean wasSuccessful = RemoveAndListUser.removeUser(username);
+
+        if (wasSuccessful) {
+            redirectAttributes.addFlashAttribute("successMessage", "Utilizador removido com sucesso.");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Ocorreu um erro ao tentar remover o utilizador.");
+        }
+
+        return "redirect:/removeUser";
     }
 
 

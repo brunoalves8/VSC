@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RemoveAndListUser {
 
-    public static boolean removeUser(String username){
+    public static boolean removeUser(String username) {
         // Conectar ao banco de dados
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
@@ -18,31 +18,24 @@ public class RemoveAndListUser {
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
+            int rowsAffected = 0;
+
             String sql1 = "DELETE FROM Players WHERE username = ?";
             stmt = conn.prepareStatement(sql1);
             stmt.setString(1, username);
-            int rowsAffectedPlayers = stmt.executeUpdate();
-            if (rowsAffectedPlayers > 0) {
-                return true;
-            }
+            rowsAffected += stmt.executeUpdate();
 
             String sql2 = "DELETE FROM Coach WHERE username = ?";
             stmt = conn.prepareStatement(sql2);
             stmt.setString(1, username);
-            int rowsAffectedCoach = stmt.executeUpdate();
-            if (rowsAffectedCoach > 0) {
-                return true;
-            }
+            rowsAffected += stmt.executeUpdate();
 
             String sql3 = "DELETE FROM Scouter WHERE username = ?";
             stmt = conn.prepareStatement(sql3);
             stmt.setString(1, username);
-            int rowsAffectedScouter = stmt.executeUpdate();
-            if (rowsAffectedScouter > 0) {
-                return true;
-            }
+            rowsAffected += stmt.executeUpdate();
 
-            return false;
+            return rowsAffected > 0;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,7 +66,7 @@ public class RemoveAndListUser {
         }
     }
 
-    public static List<String> listAllUsers(){
+    public static List<User> listAllUsers() {
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
         String dbPassword = "vsc.DAI23";
@@ -81,27 +74,30 @@ public class RemoveAndListUser {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
-        List<String> users = new ArrayList<>();
+        List<User> users = new ArrayList<>();
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
             stmt = conn.createStatement();
 
-            String sql1 = "SELECT username FROM Players";
+            String sql1 = "SELECT username, password, email FROM Players";
             rs = stmt.executeQuery(sql1);
             while (rs.next()) {
-                users.add(rs.getString("username"));
+                User userObj = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"));
+                users.add(userObj);
             }
 
-            String sql2 = "SELECT username FROM Coach";
+            String sql2 = "SELECT username, password, email FROM Coach";
             rs = stmt.executeQuery(sql2);
             while (rs.next()) {
-                users.add(rs.getString("username"));
+                User userObj = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"));
+                users.add(userObj);
             }
 
-            String sql3 = "SELECT username FROM Scouter";
+            String sql3 = "SELECT username, password, email FROM Scouter";
             rs = stmt.executeQuery(sql3);
             while (rs.next()) {
-                users.add(rs.getString("username"));
+                User userObj = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"));
+                users.add(userObj);
             }
 
             return users;
@@ -110,7 +106,7 @@ public class RemoveAndListUser {
             e.printStackTrace();
             return null;
         } finally {
-            // Fechar o ResultSet, o Statement e a Connection
+            // Close the ResultSet, the Statement and the Connection
             if (rs != null) {
                 try {
                     rs.close();
