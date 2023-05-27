@@ -16,7 +16,7 @@
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
-        <a href="#" class="logo">
+        <a href="http://localhost:8080/director" class="logo">
             <img src="/static/images/Logo-512x512-1.png" alt="Vitória SC Logo"/>
             <span class="nav-item">Voleibol VSC</span>
         </a>
@@ -25,24 +25,6 @@
                 <li><a href="http://localhost:8080/director">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
-                </a></li>
-            </div>
-            <div class="navOPT">
-                <li><a href="#">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">Perfil</span>
-                </a></li>
-            </div>
-            <div class="navOPT">
-                <li><a href="#">
-                    <i class="fas fa-tasks"></i>
-                    <span class="nav-item">Tarefas</span>
-                </a></li>
-            </div>
-            <div class="navOPT">
-                <li><a href="#">
-                    <i class="fas fa-cog"></i>
-                    <span class="nav-item">Definições</span>
                 </a></li>
             </div>
             <li><a href="http://localhost:8080/login" class="logout">
@@ -84,13 +66,6 @@
                     <span class="catName">Remover Utilizador</span>
                 </div>
             </a>
-        </div>
-
-        <div class="option"><a href="#">
-            <div class="nameCat">
-                <i class=" icon fa-regular fa-clipboard"></i>
-                <span class="catName">Relatório de Estatísticas</span>
-            </div></a>
         </div>
 
     </div>
