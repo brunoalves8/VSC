@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
     <!-- Import CSS file (style.css) -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}css/Profile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Profile.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -19,17 +18,39 @@
     </div>
     <div class="profile-info">
         <div class="profile-details">
-            <h2>Username</h2>
-            <p class="data-label">Tipo de utilizador</p>
+            <h2>${user.username}</h2>
+            <p class="data-label">${user.userType}</p>
         </div>
         <div class="data-row">
-            <p>Nome<br><span class="data-label">Nome</span></p>
-            <p>20<br><span class="data-label">Idade</span></p>
+            <p>Nome<br><span class="data-label">${user.name}</span></p>
+            <p>Idade<br><span class="data-label">${user.age}</span></p>
         </div>
         <div class="data-row">
-            <p>1.75m<br><span class="data-label">Altura</span></p>
-            <p>65 Kg<br><span class="data-label">Peso</span></p>
+            <p>Altura<br><span class="data-label">${user.height}</span></p>
+            <p>Peso<br><span class="data-label">${user.weight}</span></p>
         </div>
+
+        <%-- Exibir informações específicas do jogador --%>
+        <c:if test="${player != null}">
+            <div class="data-row">
+                <p>Posição<br><span class="data-label">${player.position}</span></p>
+                <p>Número da camisola<br><span class="data-label">${player.shirtNumber}</span></p>
+            </div>
+        </c:if>
+
+        <%-- Exibir informações específicas do treinador --%>
+        <c:if test="${coach != null}">
+            <div class="data-row">
+                <p>Equipe<br><span class="data-label">${coach.team}</span></p>
+            </div>
+        </c:if>
+
+        <%-- Exibir informações específicas do diretor --%>
+        <c:if test="${director != null}">
+            <div class="data-row">
+                <%-- Exiba informações específicas do diretor --%>
+            </div>
+        </c:if>
 
         <a href="#" class="edit-button">Editar Perfil</a>
     </div>

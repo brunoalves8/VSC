@@ -464,6 +464,27 @@ public class MyController {
         return deleted;
     }
 
+    @GetMapping("/profile")
+    public String showProfile(Model model) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            if (user instanceof Player) {
+                model.addAttribute("player", (Player) user);
+                return "profile";
+            } else if (user instanceof Coach) {
+                model.addAttribute("coach", (Coach) user);
+                return "profile";
+            } else if (user instanceof Director) {
+                model.addAttribute("director", (Director) user);
+                return "profile";
+            }
+        }
+        return "login";
+    }
+
+
+
 
 
 }
