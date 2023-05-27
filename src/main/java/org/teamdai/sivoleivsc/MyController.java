@@ -215,6 +215,22 @@ public class MyController {
      return "UserSettings";
     }
 
+    @GetMapping("/userSettingsCoach")
+    public String showUserSettingsCoach(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user instanceof Coach) {
+            model.addAttribute("coach", new Coach());
+            return "UserSettings";
+        }
+        return "Login";
+    }
+
+    @PostMapping("/userSettingsCoach")
+    public String processUserSettingsForm(@ModelAttribute("coach") Coach coach, Model model) {
+        boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(coach.getUsername());
+        return "UserSettings";
+    }
+
     @PostMapping("/changePassword")
     public String processChangePasswordForm(@ModelAttribute("passwordForm") PasswordForm passwordForm, Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -248,7 +264,7 @@ public class MyController {
     @PostMapping("/criarQuestionario")
     public String addFormLink(@ModelAttribute("form") Form form, Model model) {
         FormsDAO.insertForm(form.getLink(), form.getName(), form.getEndDate());
-        return "redirect:/home";
+        return "redirect:/criarQuestionario";
     }
 
 
@@ -280,7 +296,7 @@ public class MyController {
     public String removeFormLink(@RequestParam String link, RedirectAttributes redirectAttributes) {
         boolean isRemoved = FormsDAO.deleteFormByLink(link);
         if(!isRemoved){
-            redirectAttributes.addFlashAttribute("error", "Failed to delete form with link: "+link);
+            redirectAttributes.addFlashAttribute("error", "Erro ao tentar eliminar formulário: "+link);
         }
         return "redirect:/coachQuestionnairies";
     }
@@ -465,19 +481,19 @@ public class MyController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(Model model) {
+    public String showProfile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
 
         if (user != null) {
             if (user instanceof Player) {
                 model.addAttribute("player", (Player) user);
-                return "profile";
+                return "Profile";
             } else if (user instanceof Coach) {
                 model.addAttribute("coach", (Coach) user);
-                return "profile";
+                return "Profile";
             } else if (user instanceof Director) {
                 model.addAttribute("director", (Director) user);
-                return "profile";
+                return "Profile";
             }
         }
         return "login";

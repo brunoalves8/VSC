@@ -18,7 +18,7 @@
     </div>
     <div class="profile-info">
         <div class="profile-details">
-            <h2>${user.username}</h2>
+                    <h2>${user.username}</h2>
             <p class="data-label">${user.userType}</p>
         </div>
         <div class="data-row">

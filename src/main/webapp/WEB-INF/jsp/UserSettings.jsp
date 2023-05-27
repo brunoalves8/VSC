@@ -52,13 +52,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Posição</label>
-                                <input type="text" class="form-control"  value="Central" name="position"required>
+                                <input type="text" class="form-control"  value="ex:Central" name="position"required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Altura (cm)</label>
-                                <input type="text" class="form-control" value="187" name="height"required>
+                                <input type="text" class="form-control" value="ex:187" name="height"required>
                             </div>
                         </div>
                         <div class="col-md-6">
