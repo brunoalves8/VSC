@@ -20,9 +20,12 @@
     </div>
     <div class="profile-info">
         <%
+            String type = "";
             User user = (User)session.getAttribute("user"); //Assuming user data is stored in session
             if(user instanceof Coach) {
                 Coach coach = (Coach) user;
+                type = "coach";
+
         %>
 
         <div class="profile-details">
@@ -36,6 +39,8 @@
         <%
         } else if(user instanceof Player) {
             Player player = (Player) user;
+            type = "player";
+
         %>
         <div class="profile-details">
             <h2><%= player.getUsername() %></h2>
@@ -54,7 +59,7 @@
         <%
             }
         %>
-        <a href="#" class="edit-button">Editar Perfil</a>
+        <a href="http://localhost:8080/userSettings" class="edit-button">Editar Perfil</a>
     </div>
 </div>
 </body>
@@ -67,30 +72,30 @@
     </a>
     <ul class="nav-links">
         <div class="navOPT">
-            <li><a href="#">
+            <li><a href="http://localhost:8080/<%=type%>">
                 <i class="fas fa-home"></i>
                 <span class="nav-item">Menu</span>
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="#">
+            <li><a href="http://localhost:8080/profile">
                 <i class="fas fa-user"></i>
                 <span class="nav-item">Perfil</span>
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="#">
+            <li><a href="http://localhost:8080/">
                 <i class="fas fa-tasks"></i>
-                <span class="nav-item">Tarefas</span>
+                <span class="nav-item">Questionários</span>
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="#">
+            <li><a href="http://localhost:8080/userSettings">
                 <i class="fas fa-cog"></i>
                 <span class="nav-item">Definições</span>
             </a></li>
         </div>
-        <li><a href="#" class="logout">
+        <li><a href="http://localhost:8080/login" class="logout">
             <i class="fas fa-sign-out-alt"></i>
             <span class="nav-item">Sair</span>
         </a></li>

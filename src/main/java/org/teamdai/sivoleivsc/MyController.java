@@ -197,6 +197,9 @@ public class MyController {
         if(user instanceof Player) {
             model.addAttribute("player", new Player());
             return "UserSettings";
+        }else if(user instanceof Coach) {
+            model.addAttribute("coach", new Coach());
+            return "UserSettings";
         }
         return "Login";
     }
@@ -204,16 +207,21 @@ public class MyController {
     @PostMapping("/userSettings")
     public String processUserSettingsForm(@ModelAttribute("player") Player player, Model model) {
         boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(player.getUsername());
-
         if (userAlreadyExists) {
             UserSettings.addInfoPlayer(player.getPosition(), player.getHeight(), (int) player.getWeight(),
                     player.getShirtNumber(), player.getBirthDate(), player.getUsername());
+
+            // Get the updated player
+            Player updatedPlayer = UserSettings.getPlayerByUsername(player.getUsername());
+
+            // Add the updated player to the model
+            model.addAttribute("player", updatedPlayer);
+
             return "UserSettings";
         } else {
-
             model.addAttribute("error", "Utilizador não existe!");
         }
-     return "UserSettings";
+        return "UserSettings";
     }
 
     @GetMapping("/userSettingsCoach")

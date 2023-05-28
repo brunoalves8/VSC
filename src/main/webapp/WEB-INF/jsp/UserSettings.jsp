@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Username</label>
+                                <label>Nome</label>
                                 <input type="text" class="form-control" value="${sessionScope.user.username}" name="username"required>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Altura (cm)</label>
-                                <input type="text" class="form-control" value="ex:187" name="height"required>
+                                <input type="text" class="form-control" value="187" name="height"required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -82,7 +82,7 @@
                     </div>
                     <div>
                         <button class="btn btn-primary">Atualizar</button>
-                        <button class="btn btn-light">Cancelar</button>
+                        <button class="btn btn-light" onclick="window.location.href = 'http:localhost:8080/profile';">Cancelar</button>
                     </div>
                 </div>
                 </form:form>
