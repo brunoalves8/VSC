@@ -2,6 +2,7 @@ package org.teamdai.sivoleivsc;
 
 import BackEnd.*;
 import BackEnd.SaveEvent;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -275,6 +276,13 @@ public class MyController {
     public String showCalendar(Model model){
         model.addAttribute("player", new Player());
         return "Calendar";
+    }
+
+
+    @GetMapping("/calendarPlayer")
+    public String showCalendarPlayer(Model model){
+        model.addAttribute("player", new Player());
+        return "CalendarPlayer";
     }
 
     @GetMapping("/forms")
@@ -570,9 +578,11 @@ public class MyController {
         RideRequest rideRequest = new RideRequest();
         List<RideRequest> requests = rideRequest.findUsernameRideRequest(username);
         model.addAttribute("requests", requests);
-        model.addAttribute("username", username);
         return "StatusRides";
     }
+
+
+
 
 
 

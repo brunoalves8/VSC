@@ -152,17 +152,18 @@ body{
 .option{
     position: relative;
     background-color: var(--sectionBack);
-    width: 300px;
-    height: 110px;
+    width: 500px;
+    height: 200px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;  /* Alterado de row para column */
     justify-content: center;
     align-items: center;
     padding: 20px 20px 40px;
     border-radius: 10px;
     transition: .3s;
 }
+
 .nameCat{
     font-weight: bold;
     width: 100%;
@@ -171,6 +172,43 @@ body{
     align-items: center;
     padding-right: 50px;
 }
+.athleteName1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.athleteName{
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.pickupLocation1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.pickupLocation{
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+}
+
+
+
+
 .icon{
     position: relative;
     font-size: 50px;

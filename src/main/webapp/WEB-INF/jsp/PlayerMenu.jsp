@@ -75,7 +75,7 @@
             </div></a>
         </div>
 
-        <div class="option"><a href="http://localhost:8080/calendar">
+        <div class="option"><a href="http://localhost:8080/calendarPlayer">
             <div class="nameCat">
                 <i class="icon fa-regular fa-calendar"></i>
                 <span class="catName">Calendarização de Treinos e Jogos</span>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="option">
-            <a href="http://localhost:8080/formularios">
+            <a href="http://localhost:8080/playerQuestionnairies">
                 <div class="nameCat">
                     <i class="icon fa-regular fa-pen-to-square"></i>
                     <span class="catName">Questionários</span>

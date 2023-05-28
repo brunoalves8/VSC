@@ -92,7 +92,7 @@
             </a>
         </div>
 
-        <div class="option"><a href="#">
+        <div class="option"><a href="/ridesSubMenu">
             <div class="nameCat">
                 <i class=" icon fa-solid fa-car"></i>
                 <span class="catName">Boleias</span>

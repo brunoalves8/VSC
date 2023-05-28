@@ -1,6 +1,8 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="BackEnd.RideRequest" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
+<%@ page import="BackEnd.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -65,8 +67,6 @@
     </script>
 </div>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <div class="container">
 
     <div class="header">
@@ -74,27 +74,91 @@
     </div>
 
     <div class="options">
-        <c:forEach var="request" items="${requests}">
-            <div class="option">
-                <div class="nameCat">
-                    <span class="catName">${request.nameEvent}</span>
-                </div>
-                <div class="athleteName">
-                    <span>${request.username}</span>
-                </div>
-                <div class="pickupLocation">
-                    <span>${request.pickupLocation}</span>
-                </div>
-                <div class="estado">
-                    <span>${request.isAccepted ? 'Atribuida' : 'Não Atribuida'}</span>
-                </div>
+        <%
+
+            // Estabelecer a conexão com o banco de dados
+            String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+            String user = "IntelliJ";
+            String dbPassword = "vsc.DAI23";
+
+            User userLogado = (User) session.getAttribute("user");
+
+            Connection conn = null;
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+
+            try {
+                conn = DriverManager.getConnection(url, user, dbPassword);
+
+                // Consultar os pedidos de boleia do utilizador logado na tabela "RideRequests"
+                String query = "SELECT * FROM RideRequests WHERE username=?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, userLogado.getUsername()); // Supondo que o username do usuário logado esteja na sessão
+                rs = pstmt.executeQuery();
+
+                // Gerar dinamicamente a lista de pedidos de boleia
+                while (rs.next()) {
+                    int requestID = rs.getInt("requestID");
+                    String eventName = rs.getString("nameEvent");
+                    String driverUsername = rs.getString("driverUsername");
+                    String username = rs.getString("username");
+                    String pickupLocation = rs.getString("pickupLocation");
+                    boolean isAccepted = rs.getBoolean("isAccepted");
+                    String isAcceptedStatus = isAccepted ? "Atribuida" : "Não Atribuida";
+        %>
+        <div class="option">
+            <div class="nameCat">
+                <span class="catName"><%= eventName %></span>
             </div>
-        </c:forEach>
+            <div class="athleteName1">
+                <%--@declare id="driver"--%>
+                <label for="driver"  ><strong>Condutor:  </strong></label>
+                <span><%= driverUsername %></span>
+            </div>
+            <div class="pickupLocation1">
+                <%--@declare id="pickuplocation"--%>
+                <label for="pickupLocation" ><strong>Localização:  </strong></label>
+                <span><%= pickupLocation %></span>
+            </div>
+            <div class="estado">
+                <span><%= isAcceptedStatus %></span>
+            </div>
+        </div>
+        <%
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                // Fechar a conexão com o banco de dados
+                if (rs != null) {
+                    try {
+                        rs.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (pstmt != null) {
+                    try {
+                        pstmt.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (conn != null) {
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        %>
+
     </div>
 
 </div>
 
 
-<button id="back-button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+
 </body>
 </html>
