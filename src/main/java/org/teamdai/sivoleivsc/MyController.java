@@ -349,23 +349,7 @@ public class MyController {
         Iterable<Event> events = SaveEvent.getAllEvents();
         return events;
     }
-/*
-    @GetMapping("/availableRidesForEvent/{eventID}")
-    public List<AcceptedRide> getAvailableRidesForEvent(@PathVariable String eventID) {
-        List<AcceptedRide> acceptedRides = RidesDAO.getAvailableRidesForEvent(eventID);
-        return acceptedRides;
-    }
 
-    @PostMapping("/insertRide")
-    public boolean insertRide(@RequestBody AcceptedRide acceptedRide) {
-        return RidesDAO.insertRide(acceptedRide.getRideDate(), acceptedRide.getEventID(), acceptedRide.getAvailableSeats(), acceptedRide.getUsername(), acceptedRide.isRideStatus());
-    }
-
-    @PostMapping("/takeRide/{rideID}/{username}")
-    public boolean takeRide(@PathVariable int rideID, @PathVariable String username) {
-        return RidesDAO.takeRide(rideID, username);
-    }
-*/
     @GetMapping("/infoGameVideo")
     public String showInfoGameVideo(Model model){
         model.addAttribute("info", new RegisterGame());
@@ -447,53 +431,6 @@ public class MyController {
         return "CoachGamesSubMenu";
     }
 
-/*
-    @GetMapping("/acceptedrides")
-    public List<AcceptedRide> getAllAcceptedRides() {
-        List<AcceptedRide> acceptedRides = AcceptedRideDAO.getAllAcceptedRides();
-        return acceptedRides;
-    }
-
-
-    @DeleteMapping("/acceptedrides/{rideID}")
-    public boolean deleteAcceptedRideById(@PathVariable int rideID) {
-        boolean deleted = AcceptedRideDAO.deleteAcceptedRideById(rideID);
-        return deleted;
-    }
-*/
-
-    @GetMapping("/unacceptedriderequests/{eventID}")
-    public List<RideRequest> getUnacceptedRideRequestsByEvent(@PathVariable int eventID) {
-        List<RideRequest> rideRequests = RideRequestDAO.getUnacceptedRideRequestsByEvent(eventID);
-        return rideRequests;
-    }
-
-    @GetMapping("/riderequests")
-    public String getRideRequests(Model model) {
-        List<RideRequest> rideRequests = RideRequestDAO.getAllRideRequests();
-        model.addAttribute("rideRequests", rideRequests);
-        return "RideRequests";
-    }
-
-    @PostMapping("/riderequests")
-    public int insertRideRequest(@RequestParam String username, @RequestParam int eventID, @RequestParam String pickupLocation) {
-        RideRequest rideRequest = new RideRequest(username, eventID, false, pickupLocation);
-        int requestID;
-        try {
-            requestID = RideRequestDAO.insertRideRequest(rideRequest.getUsername(), rideRequest.getEventID(), rideRequest.getIsAccepted(), rideRequest.getPickupLocation());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            requestID = -1; // Retorna -1 em caso de erro
-        }
-        return requestID;
-    }
-
-    @DeleteMapping("/riderequests/{requestID}")
-    public boolean deleteRideRequestById(@PathVariable int requestID) {
-        boolean deleted = RideRequestDAO.deleteRideRequestById(requestID);
-        return deleted;
-    }
-
     @GetMapping("/profile")
     public ModelAndView profile(HttpSession session) {
         ModelAndView mav = new ModelAndView("Profile");
@@ -513,6 +450,19 @@ public class MyController {
         }
         return mav;
     }
+
+    @PostMapping ("/profile2")
+    public ModelAndView profile2(@RequestParam("usernamePlayer") String username, HttpSession session) {
+        ModelAndView mav = new ModelAndView("ProfileForUserNotLog");
+
+        Player player = UserSettings.getPlayerByUsername(username);
+        session.setAttribute("profileViewUser", player);
+        mav.addObject("user", player);
+
+        return mav;
+    }
+
+
     @PostMapping("/profile")
     public String editProfile(@ModelAttribute Player player, HttpSession session) {
         // Here you can add your logic to update the user details.
@@ -524,8 +474,6 @@ public class MyController {
         }
         return "redirect:/profile";
     }
-
-
 
     //Pedir Boleia
     @GetMapping("/askForRide")
@@ -581,10 +529,9 @@ public class MyController {
         return "StatusRides";
     }
 
-
-
-
-
-
+    @GetMapping("/listPlayers")
+    public String showListOfPlayers(Model model) {
+        return "ListPlayers";
+    }
 }
 

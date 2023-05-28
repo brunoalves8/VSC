@@ -21,6 +21,11 @@ public class Player extends User{
 
     }
 
+    public Player(String name, int shirtNumber) {
+        this.name = name;
+        this.shirtNumber = shirtNumber;
+    }
+
     public Player(String username) {
         super(username);
     }

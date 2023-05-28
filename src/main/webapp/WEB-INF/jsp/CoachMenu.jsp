@@ -62,7 +62,7 @@
 
     <div class="options">
 
-        <div class="option"><a href="#">
+        <div class="option"><a href="http://localhost:8080/listPlayers">
             <div class="nameCat">
                 <i class="icon fa-solid fa-arrow-trend-up text-center mr-1"></i>
                 <span class="catName">Físico dos Atletas</span>

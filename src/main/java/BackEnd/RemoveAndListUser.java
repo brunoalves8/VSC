@@ -130,4 +130,57 @@ public class RemoveAndListUser {
             }
         }
     }
+
+    public static List<Player> listAllPlayers() {
+        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+        String user = "IntelliJ";
+        String dbPassword = "vsc.DAI23";
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        List<Player> players = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+            stmt = conn.createStatement();
+
+            String sql1 = "SELECT name, shirt_number FROM Players";
+            rs = stmt.executeQuery(sql1);
+            while (rs.next()) {
+                Player userObj = new Player(rs.getString("name"), rs.getInt("shirt_number"));
+                players.add(userObj);
+            }
+
+
+
+            return players;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // Close the ResultSet, the Statement and the Connection
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
 }
