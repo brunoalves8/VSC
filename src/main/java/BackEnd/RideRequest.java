@@ -11,6 +11,7 @@ public class RideRequest {
     private int requestID;
     private String username;
     private String driverUsername;
+    private String nameEvent;
     private Date rideDate;
     private int eventID;
     private int requestedSeats;
@@ -54,6 +55,26 @@ public class RideRequest {
 
     public RideRequest() {
 
+    }
+
+    public void setDriverUsername(String driverUsername) {
+        this.driverUsername = driverUsername;
+    }
+
+    public String getNameEvent() {
+        return nameEvent;
+    }
+
+    public void setNameEvent(String nameEvent) {
+        this.nameEvent = nameEvent;
+    }
+
+    public boolean isAccepted() {
+        return isAccepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        isAccepted = accepted;
     }
 
     public int getRequestID() {
@@ -294,7 +315,7 @@ public class RideRequest {
         }
     }
 
-    public void insertDataOfRequest(int EventID, String username, String pickupLocation){
+    public boolean insertDataOfRequest(int EventID, String username, String pickupLocation, String nameEvent){
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
         String dbPassword = "vsc.DAI23";
@@ -306,20 +327,21 @@ public class RideRequest {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
             // Inserir os dados na tabela RideRequest
-            String insertQuery = "INSERT INTO RideRequests (EventID, pickupLocation, username) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO RideRequests (EventID, pickupLocation, username, nameEvent) VALUES (?, ?, ?,?)";
             pstmt = conn.prepareStatement(insertQuery);
             pstmt.setInt(1, EventID);
             pstmt.setString(2, pickupLocation);
             pstmt.setString(3, username);
+            pstmt.setString(4, nameEvent);
             pstmt.executeUpdate();
 
             // Exibir uma mensagem de sucesso ou redirecionar para outra página, se necessário
-            ResponseEntity.ok("Pedido de boleia submetido com sucesso!");
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
             // Exibir uma mensagem de erro ou redirecionar para uma página de erro, se necessário
-            System.err.println("Não foi possivel submeter o pedido de boleia!");
+            return false;
         } finally {
             // Fechar a conexão com o banco de dados
             if (pstmt != null) {
@@ -338,4 +360,111 @@ public class RideRequest {
             }
         }
     }
+
+    public List<RideRequest> findUsernameRideRequest(String username){
+        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+        String user = "IntelliJ";
+        String dbPassword = "vsc.DAI23";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<RideRequest> rideRequests = new ArrayList<>();
+
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+
+            // Consultar a tabela RideRequest
+            String selectQuery = "SELECT * FROM RideRequests WHERE  username=?";
+            pstmt = conn.prepareStatement(selectQuery);
+            pstmt.setString(1, username);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                RideRequest rideRequest = new RideRequest();
+                rideRequest.setRequestID(rs.getInt("requestID"));
+                rideRequest.setUsername(rs.getString("username"));
+                rideRequest.setEventID(rs.getInt("eventID"));
+                rideRequest.setPickupLocation(rs.getString("pickupLocation"));
+                rideRequest.setIsAccepted(rs.getBoolean("isAccepted"));
+
+                // Adicionar à lista
+                rideRequests.add(rideRequest);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Fechar a conexão com o banco de dados
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Retornar a lista de RideRequests
+        return rideRequests;
+    }
+
+
+    public void acceptRideRequest(int requestID, String driverUsername){
+        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+        String user = "IntelliJ";
+        String dbPassword = "vsc.DAI23";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+
+            // Atualizar os campos isAccepted e driverUsername na tabela RideRequests
+            String updateQuery = "UPDATE RideRequests SET isAccepted = 1, driverUsername = ? WHERE requestID = ?";
+            pstmt = conn.prepareStatement(updateQuery);
+            pstmt.setString(1, driverUsername);
+            pstmt.setInt(2, requestID);
+            pstmt.executeUpdate();
+
+            System.out.println("Pedido de boleia aceito com sucesso!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Não foi possível aceitar o pedido de boleia.");
+        } finally {
+            // Fechar a conexão com o banco de dados
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
 }

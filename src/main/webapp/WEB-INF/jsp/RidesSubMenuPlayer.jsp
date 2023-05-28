@@ -80,7 +80,7 @@
         </div>
 
         <div class="option">
-            <a href="http://localhost:8080/offerRide">
+            <a href="http://localhost:8080/showOfferRide">
                 <div class="nameCat">
                     <i class="icon fa-solid fa-car"></i>
                     <span class="catName">Oferecer Boleia</span>

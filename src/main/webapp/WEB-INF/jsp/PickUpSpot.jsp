@@ -78,6 +78,7 @@
                 <div class="nameCat">
                     <%
                         String eventIdString = (String) request.getParameter("eventID");
+                        String eventName = (String) request.getParameter("eventName");
                         int eventId = -1; // Definir um valor padrão
                         if (eventIdString != null) {
                             try {
@@ -93,15 +94,21 @@
                             out.println("EventID não encontrado na sessão.");
                         }
                     %>
-                    <span class="catName"><%= eventId%></span>
+                    <%
+
+                    %>
+                    <span class="catName"><%= eventName%></span>
                 </div>
             </a>
             <div class="location">
-                <form  action="/insertDataOfLocation?eventId={eventId}" method="post">
+                <form action="/insertDataOfLocation" method="post">
                     <label for="local">Local de recolha:</label>
                     <input type="text" id="local" name="pickupLocation" required>
+                    <input type="hidden" name="eventId" value="<%= eventId %>">
+                    <input type="hidden" name="eventName" value="<%= eventName %>">
                     <button type="submit">Enviar</button>
                 </form>
+
             </div>
         </div>
 

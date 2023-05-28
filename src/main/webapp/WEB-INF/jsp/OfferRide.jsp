@@ -1,3 +1,5 @@
+<%@ page import="java.sql.*" %>
+<%@ page import="com.sun.java.accessibility.util.EventID" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -70,57 +72,79 @@
     </div>
 
     <div class="options">
+        <%
+            // Estabelecer a conexão com o banco de dados
+            String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+            String user = "IntelliJ";
+            String dbPassword = "vsc.DAI23";
 
-        <div class="option"><a href="#">
-            <div class="nameCat">
-                <span class="catName">Evento 1</span>
-            </div></a>
+            Connection conn = null;
+            Statement stmt = null;
+            ResultSet rs = null;
+
+            try {
+                conn = DriverManager.getConnection(url, user, dbPassword);
+
+                // Consultar os pedidos de boleia da tabela "RideRequests"
+                stmt = conn.createStatement();
+                String query = "SELECT * FROM RideRequests";
+                rs = stmt.executeQuery(query);
+
+                // Gerar dinamicamente a lista de pedidos de boleia
+                while (rs.next()) {
+                    int requestID = rs.getInt("requestID");
+                    String eventName = rs.getString("nameEvent");
+                    String username = rs.getString("username");
+                    String pickupLocation = rs.getString("pickupLocation");
+        %>
+
+        <div class="option">
+            <a href="/offerRide?requestID=<%=requestID%>">
+                <div class="nameCat">
+                    <span class="catName"><%= eventName %></span>
+                </div>
+            </a>
             <div class="athleteName">
-                <span>Nome do Atleta</span>
+                <span><%= username %></span>
             </div>
             <div class="pickupLocation">
-                <span>Local de Recolha</span>
+                <span><%= pickupLocation %></span>
             </div>
         </div>
+        <%
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                // Fechar a conexão com o banco de dados
+                if (rs != null) {
+                    try {
+                        rs.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (stmt != null) {
+                    try {
+                        stmt.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (conn != null) {
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        %>
 
-        <div class="option"><a href="#">
-            <div class="nameCat">
-                <span class="catName">Evento 2</span>
-            </div></a>
-            <div class="athleteName">
-                <span>Nome do Atleta</span>
-            </div>
-            <div class="pickupLocation">
-                <span>Local de Recolha</span>
-            </div>
-        </div>
-
-        <div class="option"><a href="#">
-            <div class="nameCat">
-                <span class="catName">Evento 3</span>
-            </div></a>
-            <div class="athleteName">
-                <span>Nome do Atleta</span>
-            </div>
-            <div class="pickupLocation">
-                <span>Local de Recolha</span>
-            </div>
-        </div>
-
-        <div class="option"><a href="#">
-            <div class="nameCat">
-                <span class="catName">Evento 4</span>
-            </div></a>
-            <div class="athleteName">
-                <span>Nome do Atleta</span>
-            </div>
-            <div class="pickupLocation">
-                <span>Local de Recolha</span>
-            </div>
-        </div>
 
     </div>
 </div>
+
 
 <button id="back-button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
 </body>
