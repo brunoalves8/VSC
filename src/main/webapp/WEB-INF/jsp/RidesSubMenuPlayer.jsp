@@ -71,16 +71,16 @@
     <div class="options">
 
         <div class="option">
-            <a href="#">
+            <a href="http://localhost:8080/askForRide">
                 <div class="nameCat">
                     <i class="icon fa-solid fa-car"></i>
-                    <span class="catName">Pedir Boleia</span>
+                    <span class="catName" >Pedir Boleia</span>
                 </div>
             </a>
         </div>
 
         <div class="option">
-            <a href="#">
+            <a href="http://localhost:8080/offerRide">
                 <div class="nameCat">
                     <i class="icon fa-solid fa-car"></i>
                     <span class="catName">Oferecer Boleia</span>
@@ -89,7 +89,7 @@
         </div>
 
         <div class="option">
-            <a href="#">
+            <a href="http://localhost:8080/statusRides">
                 <div class="nameCat">
                     <i class="icon fa fa-clipboard-check"></i>
                     <span class="catName">Estado da Boleia</span>

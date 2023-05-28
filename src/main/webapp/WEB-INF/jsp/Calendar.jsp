@@ -25,7 +25,7 @@
         <div class="calendar">
             <div class="month">
                 <i class="fas fa-angle-left prev"></i>
-                <a href="#" class="logo">
+                <a href="http://localhost:8080/" class="logo">
                     <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
                 </a>
                 <div class="date">dezembro 2015</div>

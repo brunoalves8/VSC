@@ -21,10 +21,12 @@
     <div class="profile-info">
         <%
             String type = "";
+            String questions = "";
             User user = (User)session.getAttribute("user"); //Assuming user data is stored in session
             if(user instanceof Coach) {
                 Coach coach = (Coach) user;
                 type = "coach";
+                questions = "coachQuestionnairies";
 
         %>
 
@@ -40,6 +42,7 @@
         } else if(user instanceof Player) {
             Player player = (Player) user;
             type = "player";
+            questions = "playerQuestionnairies";
 
         %>
         <div class="profile-details">
@@ -84,9 +87,9 @@
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="http://localhost:8080/">
+            <li><a href="http://localhost:8080/<%=questions%>">
                 <i class="fas fa-tasks"></i>
-                <span class="nav-item">Questionários</span>
+                <span class="nav-item">Tarefas</span>
             </a></li>
         </div>
         <div class="navOPT">

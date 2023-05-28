@@ -1,3 +1,8 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="static java.lang.Integer.parseInt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -67,28 +72,41 @@
 
     <div class="options">
 
+
         <div class="option">
             <a href="#">
                 <div class="nameCat">
-                    <span class="catName">Evento 1</span>
+                    <%
+                        String eventIdString = (String) request.getParameter("eventID");
+                        int eventId = -1; // Definir um valor padrão
+                        if (eventIdString != null) {
+                            try {
+                                eventId = Integer.parseInt(eventIdString);
+
+
+                            } catch (NumberFormatException e) {
+                                // Tratamento de erro aqui
+                                e.printStackTrace();
+                            }
+                        } else {
+                            // eventIdString é nulo. Lidar com isso aqui.
+                            out.println("EventID não encontrado na sessão.");
+                        }
+                    %>
+                    <span class="catName"><%= eventId%></span>
                 </div>
             </a>
             <div class="location">
-                <input type="text" placeholder="Introduza o local de recolha">
-                <button type="submit">Enviar</button>
+                <form  action="/insertDataOfLocation?eventId={eventId}" method="post">
+                    <label for="local">Local de recolha:</label>
+                    <input type="text" id="local" name="pickupLocation" required>
+                    <button type="submit">Enviar</button>
+                </form>
             </div>
         </div>
 
     </div>
-    <div class="form-container" style="display:none;">
-        <form>
-            <label for="local">Local de recolha:</label>
-            <input type="text" id="local" name="local">
-            <button type="submit">Submeter</button>
-        </form>
-    </div>
-</div>
 
-<button id="back-button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+</div>
 </body>
 </html>

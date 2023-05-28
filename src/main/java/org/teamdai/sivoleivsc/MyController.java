@@ -3,7 +3,6 @@ package org.teamdai.sivoleivsc;
 import BackEnd.*;
 import BackEnd.SaveEvent;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,13 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.ParseException;
-
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import BackEnd.Form;
 import org.springframework.web.servlet.ModelAndView;
@@ -519,5 +513,49 @@ public class MyController {
         }
         return "redirect:/profile";
     }
+
+
+
+    //Pedir Boleia
+    @GetMapping("/askForRide")
+    public String showAskForRide(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+
+        return "AskForRide";
+    }
+
+    @PostMapping("/insertDataOfLocation")
+    public RideRequest showinsertDataOfLocation(Model model, HttpSession session, RideRequest request,@RequestParam("eventId") int eventId, @RequestParam("local") String localrecolha) {
+        User user = (User) session.getAttribute("user");
+        RideRequest req = new RideRequest();
+        req.insertDataOfRequest(eventId,user.getUsername(),localrecolha);
+        return request;
+    }
+
+
+
+    //Menu das boleias
+    @GetMapping("/ridesSubMenu")
+    public String showRidesSubMenuPlayer(Model model) {
+        return "RidesSubMenuPlayer";
+    }
+
+    //Aba que aparece para introduzir a localização após pedir boleia um evento
+    @GetMapping("/pickUpSpot")
+    public String showPickUpSpot(Model model) {
+        return "PickUpSpot";
+    }
+
+    @GetMapping("/offerRide")
+    public String showOfferRide(Model model) {
+        return "OfferRide";
+    }
+
+    @GetMapping("/statusRides")
+    public String showStatusRides(Model model) {
+        return "StatusRides";
+    }
+
 }
 

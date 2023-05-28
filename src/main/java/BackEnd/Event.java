@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalTime;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Event {
 
@@ -20,7 +19,7 @@ public class Event {
     @JsonProperty("date")
     private LocalDate date;
 
-    public Event() {
+    public Event(String nameOfEvent) {
 
     }
 
