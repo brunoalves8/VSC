@@ -69,7 +69,7 @@
             </div></a>
         </div>
 
-        <div class="option"><a href="#">
+        <div class="option"><a href="http://localhost:8080/coachGamesSubMenu">
             <div class="nameCat">
                 <i class=" icon fa-solid fa-volleyball"></i>
                 <span class="catName">Jogos</span>

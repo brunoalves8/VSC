@@ -434,7 +434,10 @@ public class MyController {
         Iterable<Integer> shirtNumbersTeam2 = shirtNumTeam2;
         return shirtNumbersTeam2;
     }
-
+    @GetMapping("/coachGamesSubMenu")
+    public String showGames(Model model){
+        return "CoachGamesSubMenu";
+    }
 
 /*
     @GetMapping("/acceptedrides")

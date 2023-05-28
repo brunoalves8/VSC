@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +17,13 @@
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
-        <a href="#" class="logo">
+        <a href="http://localhost:8080/coach" class="logo">
             <img src="/static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
         <ul class="nav-links">
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/coach">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>
@@ -44,7 +46,7 @@
                     <span class="nav-item">Definições</span>
                 </a></li>
             </div>
-            <li><a href="#" class="logout">
+            <li><a href="http://localhost:8080/login" class="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="nav-item">Sair</span>
             </a></li>
@@ -68,14 +70,14 @@
 
     <div class="options">
 
-        <div class="option"><a href="#">
+        <div class="option"><a href="http://localhost:8080/registerCodes">
             <div class="nameCat">
                 <i class="icon fa-solid fa-magnifying-glass text-center mr-1"></i>
                 <span class="catName">Visualizar Momentos do Jogo</span>
             </div></a>
         </div>
 
-        <div class="option"><a href="#">
+        <div class="option"><a href="http://localhost:8080/infoGameVideo">
             <div class="nameCat">
                 <i class=" icon fa-solid fa-volleyball"></i>
                 <span class="catName">Criar Jogo</span>

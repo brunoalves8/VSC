@@ -15,17 +15,17 @@
 <body>
 
 <div class="container">
-    <div class="team">
+    <div class="team"> Equipa 1
         <input type="text" placeholder="Nome da Equipa 1" id="teamName1">
-        <div id="playersTeam1">
+        <div id="playersTeam1"> Jogador:
             <!-- Jogadores serão adicionados aqui dinamicamente -->
         </div>
         <button onclick="addPlayer('playersTeam1','team1')">Adicionar jogador à Equipa 1</button>
     </div>
-    <div class="team">
+    <div class="team"> Equipa 2
 
         <input type="text" placeholder="Nome da Equipa 2" id="teamName2">
-        <div id="playersTeam2">
+        <div id="playersTeam2">Jogador:
             <!-- Jogadores serão adicionados aqui dinamicamente -->
         </div>
         <button onclick="addPlayer('playersTeam2', 'team2')">Adicionar jogador à Equipa 2</button>

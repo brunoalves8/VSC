@@ -121,7 +121,8 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="http://localhost:8080/userSettings">
+                <li>
+                    <a href="http://localhost:8080/userSettings">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Perfil</span>
                 </a></li>
