@@ -11,6 +11,7 @@ public class RideRequest {
     private int requestID;
     private String username;
     private String driverUsername;
+    private String nameEvent;
     private Date rideDate;
     private int eventID;
     private int requestedSeats;
@@ -54,6 +55,26 @@ public class RideRequest {
 
     public RideRequest() {
 
+    }
+
+    public void setDriverUsername(String driverUsername) {
+        this.driverUsername = driverUsername;
+    }
+
+    public String getNameEvent() {
+        return nameEvent;
+    }
+
+    public void setNameEvent(String nameEvent) {
+        this.nameEvent = nameEvent;
+    }
+
+    public boolean isAccepted() {
+        return isAccepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        isAccepted = accepted;
     }
 
     public int getRequestID() {
@@ -340,7 +361,7 @@ public class RideRequest {
         }
     }
 
-    public RideRequest findRideRequest(int requestID){
+    public List<RideRequest> findUsernameRideRequest(String username){
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
         String dbPassword = "vsc.DAI23";
@@ -348,25 +369,27 @@ public class RideRequest {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        List<RideRequest> rideRequests = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
             // Consultar a tabela RideRequest
-            String selectQuery = "SELECT * FROM RideRequests WHERE  requestID=?";
+            String selectQuery = "SELECT * FROM RideRequests WHERE  username=?";
             pstmt = conn.prepareStatement(selectQuery);
-            pstmt.setInt(1, requestID);
+            pstmt.setString(1, username);
 
             rs = pstmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 RideRequest rideRequest = new RideRequest();
                 rideRequest.setRequestID(rs.getInt("requestID"));
                 rideRequest.setUsername(rs.getString("username"));
                 rideRequest.setEventID(rs.getInt("eventID"));
                 rideRequest.setPickupLocation(rs.getString("pickupLocation"));
+                rideRequest.setIsAccepted(rs.getBoolean("isAccepted"));
 
-                // Retornar o objeto RideRequest
-                return rideRequest;
+                // Adicionar à lista
+                rideRequests.add(rideRequest);
             }
 
         } catch (Exception e) {
@@ -396,8 +419,8 @@ public class RideRequest {
             }
         }
 
-        // Retornar null se nenhum RideRequest corresponder ao requestID fornecido
-        return null;
+        // Retornar a lista de RideRequests
+        return rideRequests;
     }
 
 
@@ -442,5 +465,6 @@ public class RideRequest {
             }
         }
     }
+
 
 }

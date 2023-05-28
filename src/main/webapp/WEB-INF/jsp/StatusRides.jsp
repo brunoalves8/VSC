@@ -1,3 +1,6 @@
+<%@ page import="java.sql.*" %>
+<%@ page import="BackEnd.RideRequest" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -62,6 +65,8 @@
     </script>
 </div>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="container">
 
     <div class="header">
@@ -69,45 +74,27 @@
     </div>
 
     <div class="options">
-
-        <div class="option"><a>
-            <div class="nameCat">
-                <span class="catName">Evento 1</span>
-            </div></a>
-            <div class="estado">
-                <span>Atribuida</span>
+        <c:forEach var="request" items="${requests}">
+            <div class="option">
+                <div class="nameCat">
+                    <span class="catName">${request.nameEvent}</span>
+                </div>
+                <div class="athleteName">
+                    <span>${request.username}</span>
+                </div>
+                <div class="pickupLocation">
+                    <span>${request.pickupLocation}</span>
+                </div>
+                <div class="estado">
+                    <span>${request.isAccepted ? 'Atribuida' : 'Não Atribuida'}</span>
+                </div>
             </div>
-        </div>
-
-        <div class="option"><a>
-            <div class="nameCat">
-                <span class="catName">Evento 2</span>
-            </div></a>
-            <div class="estado">
-                <span>Não Atribuida</span>
-            </div>
-        </div>
-
-        <div class="option"><a>
-            <div class="nameCat">
-                <span class="catName">Evento 3</span>
-            </div></a>
-            <div class="estado">
-                <span>Atribuida</span>
-            </div>
-        </div>
-
-        <div class="option"><a>
-            <div class="nameCat">
-                <span class="catName">Evento 4</span>
-            </div></a>
-            <div class="estado">
-                <span>Não Atribuida</span>
-            </div>
-        </div>
-
+        </c:forEach>
     </div>
+
 </div>
+
+
 <button id="back-button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
 </body>
 </html>

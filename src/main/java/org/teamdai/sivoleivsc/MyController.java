@@ -562,9 +562,16 @@ public class MyController {
     }
 
     @GetMapping("/statusRides")
-    public String showStatusRides(Model model) {
+    public String showStatusRides(Model model, HttpSession session ) {
+        String username = (String) session.getAttribute("username");
+        RideRequest rideRequest = new RideRequest();
+        List<RideRequest> requests = rideRequest.findUsernameRideRequest(username);
+        model.addAttribute("requests", requests);
+        model.addAttribute("username", username);
         return "StatusRides";
     }
+
+
 
 }
 
