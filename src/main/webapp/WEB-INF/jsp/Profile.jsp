@@ -18,47 +18,37 @@
     </div>
     <div class="profile-info">
         <div class="profile-details">
-            <h2>${user.getUsername()}</h2>
-            <p class="data-label">${user.getClass().getSimpleName()}</p>
+                    <h2>${user.username}</h2>
+            <p class="data-label">${user.userType}</p>
         </div>
         <div class="data-row">
-            <p>Nome<br><span class="data-label">${user.getName()}</span></p>
-            <p>Idade<br><span class="data-label">${user.getAge()}</span></p>
+            <p>Nome<br><span class="data-label">${user.name}</span></p>
+            <p>Idade<br><span class="data-label">${user.age}</span></p>
+        </div>
+        <div class="data-row">
+            <p>Altura<br><span class="data-label">${user.height}</span></p>
+            <p>Peso<br><span class="data-label">${user.weight}</span></p>
         </div>
 
-        <%-- Verificar se o usuário é um jogador (Player) --%>
-        <c:if test="${user instanceof Player}">
+        <%-- Exibir informações específicas do jogador --%>
+        <c:if test="${player != null}">
             <div class="data-row">
-                <%-- Cast do objeto user para Player --%>
-
-                <c:set var="player" value="${user}" />
-                <p>Altura<br><span class="data-label">${player.getHeight()}</span></p>
-                <p>Peso<br><span class="data-label">${player.getWeight()}</span></p>
-                <p>Posição<br><span class="data-label">${player.getPosition()}</span></p>
-                <p>Número da camisola<br><span class="data-label">${player.getShirtNumber()}</span></p>
-
-                <%-- Exibir outros atributos do jogador aqui --%>
+                <p>Posição<br><span class="data-label">${player.position}</span></p>
+                <p>Número da camisola<br><span class="data-label">${player.shirtNumber}</span></p>
             </div>
         </c:if>
 
-        <%-- Verificar se o usuário é um treinador (Coach) --%>
-
-        <c:if test="${user instanceof Coach}">
+        <%-- Exibir informações específicas do treinador --%>
+        <c:if test="${coach != null}">
             <div class="data-row">
-                <%-- Cast do objeto user para Coach --%>
-                <c:set var="coach" value="${user}" />
-                <p>Equipa<br><span class="data-label">${coach.getTeam()}</span></p>
-                <%-- Exibir outros atributos do treinador aqui --%>
+                <p>Equipe<br><span class="data-label">${coach.team}</span></p>
             </div>
         </c:if>
 
-        <%-- Verificar se o usuário é um diretor (Director) --%>
-
-        <c:if test="${user instanceof Director}">
+        <%-- Exibir informações específicas do diretor --%>
+        <c:if test="${director != null}">
             <div class="data-row">
-                <%-- Cast do objeto user para Director --%>
-                <c:set var="director" value="${user}" />
-                <%-- Exibir informações específicas do diretor aqui --%>
+                <%-- Exiba informações específicas do diretor --%>
             </div>
         </c:if>
 
