@@ -525,13 +525,23 @@ public class MyController {
         return "AskForRide";
     }
 
+    /*
     @PostMapping("/insertDataOfLocation")
     public RideRequest showinsertDataOfLocation(Model model, HttpSession session, RideRequest request,@RequestParam("eventId") int eventId, @RequestParam("local") String localrecolha) {
         User user = (User) session.getAttribute("user");
         RideRequest req = new RideRequest();
         req.insertDataOfRequest(eventId,user.getUsername(),localrecolha);
         return request;
+    }*/
+
+    @PostMapping("/insertDataOfLocation")
+    public String showinsertDataOfLocation(HttpSession session, @RequestParam("eventId") int eventId, @RequestParam("pickupLocation") String pickupLocation) {
+        User user = (User) session.getAttribute("user");
+        RideRequest req = new RideRequest();
+        boolean success = req.insertDataOfRequest(eventId, user.getUsername(), pickupLocation);
+        return success ? "RidesSubMenuPlayer" : "askForRide";
     }
+
 
 
 

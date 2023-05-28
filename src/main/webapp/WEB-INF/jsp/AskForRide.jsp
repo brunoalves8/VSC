@@ -99,7 +99,7 @@
         %>
 
         <div class="option">
-            <a href="http://localhost:8080/pickUpSpot?eventID=<%= eventID %>">
+            <a href="http://localhost:8080/pickUpSpot?eventName=<%=eventName%>&eventID=<%=eventID%>">
                 <div class="nameCat">
                     <span class="catName"><%= eventName %></span>
                 </div>

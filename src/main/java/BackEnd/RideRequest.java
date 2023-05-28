@@ -294,7 +294,7 @@ public class RideRequest {
         }
     }
 
-    public void insertDataOfRequest(int EventID, String username, String pickupLocation){
+    public boolean insertDataOfRequest(int EventID, String username, String pickupLocation){
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
         String dbPassword = "vsc.DAI23";
@@ -314,12 +314,12 @@ public class RideRequest {
             pstmt.executeUpdate();
 
             // Exibir uma mensagem de sucesso ou redirecionar para outra página, se necessário
-            ResponseEntity.ok("Pedido de boleia submetido com sucesso!");
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
             // Exibir uma mensagem de erro ou redirecionar para uma página de erro, se necessário
-            System.err.println("Não foi possivel submeter o pedido de boleia!");
+            return false;
         } finally {
             // Fechar a conexão com o banco de dados
             if (pstmt != null) {
