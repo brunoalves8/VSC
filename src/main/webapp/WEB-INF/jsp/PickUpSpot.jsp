@@ -105,6 +105,7 @@
                     <label for="local">Local de recolha:</label>
                     <input type="text" id="local" name="pickupLocation" required>
                     <input type="hidden" name="eventId" value="<%= eventId %>">
+                    <input type="hidden" name="eventName" value="<%= eventName %>">
                     <button type="submit">Enviar</button>
                 </form>
 

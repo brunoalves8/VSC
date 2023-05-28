@@ -525,21 +525,20 @@ public class MyController {
         return "AskForRide";
     }
 
-    /*
     @PostMapping("/insertDataOfLocation")
-    public RideRequest showinsertDataOfLocation(Model model, HttpSession session, RideRequest request,@RequestParam("eventId") int eventId, @RequestParam("local") String localrecolha) {
+    public String showinsertDataOfLocation(HttpSession session,@RequestParam("eventName") String eventName, @RequestParam("eventId") int eventId, @RequestParam("pickupLocation") String pickupLocation) {
         User user = (User) session.getAttribute("user");
         RideRequest req = new RideRequest();
-        req.insertDataOfRequest(eventId,user.getUsername(),localrecolha);
-        return request;
-    }*/
-
-    @PostMapping("/insertDataOfLocation")
-    public String showinsertDataOfLocation(HttpSession session, @RequestParam("eventId") int eventId, @RequestParam("pickupLocation") String pickupLocation) {
-        User user = (User) session.getAttribute("user");
-        RideRequest req = new RideRequest();
-        boolean success = req.insertDataOfRequest(eventId, user.getUsername(), pickupLocation);
+        boolean success = req.insertDataOfRequest(eventId, user.getUsername(), pickupLocation,eventName);
         return success ? "RidesSubMenuPlayer" : "askForRide";
+    }
+
+    @GetMapping("/offerRide")
+    public String doOfferRide(HttpSession session, @RequestParam("requestID") int requestID) {
+        User user = (User) session.getAttribute("user");
+        RideRequest req = new RideRequest();
+        req.acceptRideRequest(requestID, user.getUsername());
+        return "RidesSubMenuPlayer";
     }
 
 
@@ -557,7 +556,7 @@ public class MyController {
         return "PickUpSpot";
     }
 
-    @GetMapping("/offerRide")
+    @GetMapping("/showOfferRide")
     public String showOfferRide(Model model) {
         return "OfferRide";
     }

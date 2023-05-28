@@ -294,7 +294,7 @@ public class RideRequest {
         }
     }
 
-    public boolean insertDataOfRequest(int EventID, String username, String pickupLocation){
+    public boolean insertDataOfRequest(int EventID, String username, String pickupLocation, String nameEvent){
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
         String user = "IntelliJ";
         String dbPassword = "vsc.DAI23";
@@ -306,11 +306,12 @@ public class RideRequest {
             conn = DriverManager.getConnection(url, user, dbPassword);
 
             // Inserir os dados na tabela RideRequest
-            String insertQuery = "INSERT INTO RideRequests (EventID, pickupLocation, username) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO RideRequests (EventID, pickupLocation, username, nameEvent) VALUES (?, ?, ?,?)";
             pstmt = conn.prepareStatement(insertQuery);
             pstmt.setInt(1, EventID);
             pstmt.setString(2, pickupLocation);
             pstmt.setString(3, username);
+            pstmt.setString(4, nameEvent);
             pstmt.executeUpdate();
 
             // Exibir uma mensagem de sucesso ou redirecionar para outra página, se necessário
@@ -338,4 +339,108 @@ public class RideRequest {
             }
         }
     }
+
+    public RideRequest findRideRequest(int requestID){
+        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+        String user = "IntelliJ";
+        String dbPassword = "vsc.DAI23";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+
+            // Consultar a tabela RideRequest
+            String selectQuery = "SELECT * FROM RideRequests WHERE  requestID=?";
+            pstmt = conn.prepareStatement(selectQuery);
+            pstmt.setInt(1, requestID);
+
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                RideRequest rideRequest = new RideRequest();
+                rideRequest.setRequestID(rs.getInt("requestID"));
+                rideRequest.setUsername(rs.getString("username"));
+                rideRequest.setEventID(rs.getInt("eventID"));
+                rideRequest.setPickupLocation(rs.getString("pickupLocation"));
+
+                // Retornar o objeto RideRequest
+                return rideRequest;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Fechar a conexão com o banco de dados
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Retornar null se nenhum RideRequest corresponder ao requestID fornecido
+        return null;
+    }
+
+
+    public void acceptRideRequest(int requestID, String driverUsername){
+        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+        String user = "IntelliJ";
+        String dbPassword = "vsc.DAI23";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+
+            // Atualizar os campos isAccepted e driverUsername na tabela RideRequests
+            String updateQuery = "UPDATE RideRequests SET isAccepted = 1, driverUsername = ? WHERE requestID = ?";
+            pstmt = conn.prepareStatement(updateQuery);
+            pstmt.setString(1, driverUsername);
+            pstmt.setInt(2, requestID);
+            pstmt.executeUpdate();
+
+            System.out.println("Pedido de boleia aceito com sucesso!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Não foi possível aceitar o pedido de boleia.");
+        } finally {
+            // Fechar a conexão com o banco de dados
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
