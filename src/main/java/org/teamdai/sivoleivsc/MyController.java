@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import BackEnd.Form;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -228,7 +229,7 @@ public class MyController {
     @PostMapping("/userSettingsCoach")
     public String processUserSettingsForm(@ModelAttribute("coach") Coach coach, Model model) {
         boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(coach.getUsername());
-        return "UserSettings";
+        return "CoachSettings";
     }
 
     @PostMapping("/changePassword")
@@ -481,26 +482,34 @@ public class MyController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(Model model, HttpSession session) {
+    public ModelAndView profile(HttpSession session) {
+        ModelAndView mav = new ModelAndView("Profile");
         User user = (User) session.getAttribute("user");
-
-        if (user != null) {
+        if (user == null) {
+            mav.setViewName("redirect:/login");
+        } else {
             if (user instanceof Player) {
-                model.addAttribute("player", (Player) user);
-                return "Profile";
+                Player player = UserSettings.getPlayerByUsername(user.getUsername());
+                session.setAttribute("user", player);
+                mav.addObject("user", player);
             } else if (user instanceof Coach) {
-                model.addAttribute("coach", (Coach) user);
-                return "Profile";
-            } else if (user instanceof Director) {
-                model.addAttribute("director", (Director) user);
-                return "Profile";
+                Coach coach = UserSettings.getCoachByUsername(user.getUsername());
+                session.setAttribute("user", coach);
+                mav.addObject("user", coach);
             }
         }
-        return "login";
+        return mav;
     }
-
-
-
-
-
+    @PostMapping("/profile")
+    public String editProfile(@ModelAttribute Player player, HttpSession session) {
+        // Here you can add your logic to update the user details.
+        boolean isUpdated = UserSettings.updateUser(player); // Update user in your database
+        if (isUpdated) {
+            // Once updated, replace the user object in the session.
+            Player updatedPlayer = UserSettings.getPlayerByUsername(player.getUsername());
+            session.setAttribute("user", updatedPlayer);
+        }
+        return "redirect:/profile";
+    }
 }
+

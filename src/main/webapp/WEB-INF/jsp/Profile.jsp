@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+         import="BackEnd.User, BackEnd.Coach, BackEnd.Player, java.util.List"%>
+<%@ page import="BackEnd.RemoveAndListUser" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,65 +10,50 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
     <!-- Import CSS file (style.css) -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Profile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/Profile.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div class="profile">
     <div class="profile-header">
-        <img src="static/images/channels4_profile.png" alt="Profile Image" class="profile-image">
+        <img src="static/images/channels4_profile.jpg" alt="Profile Image" class="profile-image">
     </div>
     <div class="profile-info">
+        <%
+            User user = (User)session.getAttribute("user"); //Assuming user data is stored in session
+            if(user instanceof Coach) {
+                Coach coach = (Coach) user;
+        %>
+
         <div class="profile-details">
-<<<<<<< HEAD
-            <h2>${user.getUsername()}</h2>
-            <p class="data-label">${user.getClass().getSimpleName()}</p>
-=======
-                    <h2>${user.username}</h2>
-            <p class="data-label">${user.userType}</p>
->>>>>>> origin/master
+            <h2><%= coach.getUsername() %></h2>
+            <p class="data-label">Coach</p>
         </div>
         <div class="data-row">
-            <p>Nome<br><span class="data-label">${user.getName()}</span></p>
-            <p>Idade<br><span class="data-label">${user.getAge()}</span></p>
+            <p><%= coach.getName() %><br><span class="data-label">Nome</span></p>
+            <p><%= coach.getEmail() %><br><span class="data-label">Email</span></p>
         </div>
-
-        <%-- Verificar se o usuário é um jogador (Player) --%>
-        <c:if test="${user instanceof Player}">
-            <div class="data-row">
-                <%-- Cast do objeto user para Player --%>
-
-                <c:set var="player" value="${user}" />
-                <p>Altura<br><span class="data-label">${player.getHeight()}</span></p>
-                <p>Peso<br><span class="data-label">${player.getWeight()}</span></p>
-                <p>Posição<br><span class="data-label">${player.getPosition()}</span></p>
-                <p>Número da camisola<br><span class="data-label">${player.getShirtNumber()}</span></p>
-
-                <%-- Exibir outros atributos do jogador aqui --%>
-            </div>
-        </c:if>
-
-        <%-- Verificar se o usuário é um treinador (Coach) --%>
-
-        <c:if test="${user instanceof Coach}">
-            <div class="data-row">
-                <%-- Cast do objeto user para Coach --%>
-                <c:set var="coach" value="${user}" />
-                <p>Equipa<br><span class="data-label">${coach.getTeam()}</span></p>
-                <%-- Exibir outros atributos do treinador aqui --%>
-            </div>
-        </c:if>
-
-        <%-- Verificar se o usuário é um diretor (Director) --%>
-
-        <c:if test="${user instanceof Director}">
-            <div class="data-row">
-                <%-- Cast do objeto user para Director --%>
-                <c:set var="director" value="${user}" />
-                <%-- Exibir informações específicas do diretor aqui --%>
-            </div>
-        </c:if>
-
+        <%
+        } else if(user instanceof Player) {
+            Player player = (Player) user;
+        %>
+        <div class="profile-details">
+            <h2><%= player.getUsername() %></h2>
+            <p class="data-label">Player</p>
+        </div>
+        <div class="data-row">
+            <p><%= player.getName() %><br><span class="data-label">Nome</span></p>
+            <p><%= player.getBirthDate() %><br><span class="data-label">Data de Nascimento</span></p>
+        </div>
+        <div class="data-row">
+            <p><%= player.getHeight() %>m<br><span class="data-label">Altura</span></p>
+            <p><%= player.getWeight() %> Kg<br><span class="data-label">Peso</span></p>
+            <p><%= player.getPosition() %><br><span class="data-label">Posição</span></p>
+            <p><%= player.getShirtNumber() %><br><span class="data-label">Número de Camisola</span></p>
+        </div>
+        <%
+            }
+        %>
         <a href="#" class="edit-button">Editar Perfil</a>
     </div>
 </div>
