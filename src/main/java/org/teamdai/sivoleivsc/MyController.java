@@ -224,7 +224,7 @@ public class MyController {
         User user = (User) session.getAttribute("user");
         if(user instanceof Coach) {
             model.addAttribute("coach", new Coach());
-            return "UserSettings";
+            return "CoachSettings";
         }
         return "Login";
     }
