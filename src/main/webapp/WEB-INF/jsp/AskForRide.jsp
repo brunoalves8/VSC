@@ -26,7 +26,7 @@
         </a>
         <ul class="nav-links">
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="/">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>

@@ -68,7 +68,7 @@
         <%
             }
         %>
-        <a href="http://localhost:8080/userSettings" class="edit-button">Editar Perfil</a>
+
     </div>
 </div>
 </body>

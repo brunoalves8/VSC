@@ -144,10 +144,10 @@ public class RemoveAndListUser {
             conn = DriverManager.getConnection(url, user, dbPassword);
             stmt = conn.createStatement();
 
-            String sql1 = "SELECT name, shirt_number FROM Players";
+            String sql1 = "SELECT username,name, shirt_number FROM Players";
             rs = stmt.executeQuery(sql1);
             while (rs.next()) {
-                Player userObj = new Player(rs.getString("name"), rs.getInt("shirt_number"));
+                Player userObj = new Player(rs.getString("username"), rs.getInt("shirt_number"),rs.getString("name"));
                 players.add(userObj);
             }
 

@@ -39,8 +39,9 @@
                         <tbody>
                 <%
                     List<Player> listPlayers = RemoveAndListUser.listAllPlayers();
+
                     for (Player player : listPlayers){
-                       String p=player.getUsername();
+
                 %>
                 <tr>
                     <td>
@@ -52,15 +53,16 @@
                         <span><%= player.getShirtNumber() %></span>
                     </td>
                     <td style="width: 20%;">
-                        <form action="${pageContext.request.contextPath}/profile2?usernamePlayer=<%=p%>" method="post">
-                            <input type="hidden" name="username" value="<%= p %>"/>
+                        <form action="/profile2" method="get">
+                            <input type="hidden" name="usernamePlayer" value="<%= player.getUsername() %>" />
                             <button type="submit" class="table-link danger">
-                                        <span class="fa-stack">
-
-                                            <i class="fa-solid fa-link"></i>
-                                        </span>
+                                <span class="fa-stack">
+                                    <i class="fa-solid fa-link"></i>
+                                </span>
                             </button>
                         </form>
+
+
                     </td>
                 </tr>
                 <% } %>

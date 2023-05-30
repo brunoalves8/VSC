@@ -451,8 +451,9 @@ public class MyController {
         return mav;
     }
 
-    @PostMapping ("/profile2")
+    @GetMapping("/profile2")
     public ModelAndView profile2(@RequestParam("usernamePlayer") String username, HttpSession session) {
+        System.out.println("Username: " + username); // Isto irá imprimir o valor de username no console
         ModelAndView mav = new ModelAndView("ProfileForUserNotLog");
 
         Player player = UserSettings.getPlayerByUsername(username);
@@ -461,6 +462,8 @@ public class MyController {
 
         return mav;
     }
+
+
 
 
     @PostMapping("/profile")

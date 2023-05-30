@@ -21,9 +21,10 @@ public class Player extends User{
 
     }
 
-    public Player(String name, int shirtNumber) {
+    public Player(String username, int shirtNumber,String name) {
         this.name = name;
         this.shirtNumber = shirtNumber;
+        this.setUsername(username);
     }
 
     public Player(String username) {
@@ -121,5 +122,10 @@ public class Player extends User{
         double heightMeters = height / 100; // converter para metros
         double bmi = weight / (heightMeters * heightMeters);
         return bmi;
+    }
+
+    public String getUser(){
+        String user= super.getUsername();
+        return user;
     }
 }
