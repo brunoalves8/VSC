@@ -22,11 +22,13 @@
         <%
             String type = "";
             String questions = "";
+            String Type = "";
             User user = (User)session.getAttribute("user"); //Assuming user data is stored in session
             if(user instanceof Coach) {
                 Coach coach = (Coach) user;
                 type = "coach";
                 questions = "coachQuestionnairies";
+                Type="Coach";
 
         %>
 
@@ -43,6 +45,7 @@
             Player player = (Player) user;
             type = "player";
             questions = "playerQuestionnairies";
+            Type="";
 
         %>
         <div class="profile-details">
@@ -62,7 +65,7 @@
         <%
             }
         %>
-        <a href="http://localhost:8080/userSettings" class="edit-button">Editar Perfil</a>
+        <a href="http://localhost:8080/userSettings<%=Type%>" class="edit-button">Editar Perfil</a>
     </div>
 </div>
 </body>
@@ -93,7 +96,7 @@
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="http://localhost:8080/userSettings">
+            <li><a href="http://localhost:8080/userSettings<%=Type%>">
                 <i class="fas fa-cog"></i>
                 <span class="nav-item">Definições</span>
             </a></li>

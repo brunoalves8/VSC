@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
          import="java.util.List"%>
 <%@ page import="BackEnd.*" %>
+<%@ page import="BackEnd.Coach" %>
+<%@ page import="BackEnd.User" %>
+<%@ page import="BackEnd.Player" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,6 +25,7 @@
         <%
             String type = "";
             String questions = "";
+            String Type="";
             User user = null;
             String username = request.getParameter("usernamePlayer");
             if(username != null) {
@@ -32,8 +36,8 @@
             if(user instanceof Coach) {
                 Coach coach = (Coach) user;
                 type = "coach";
+                Type="Coach";
                 questions = "coachQuestionnairies";
-
         %>
 
         <div class="profile-details">
@@ -49,6 +53,7 @@
             Player player = (Player) user;
             type = "player";
             questions = "playerQuestionnairies";
+            Type = "";
 
         %>
         <div class="profile-details">
@@ -99,7 +104,7 @@
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="http://localhost:8080/userSettings">
+            <li><a href="http://localhost:8080/userSettings<%=Type%>">
                 <i class="fas fa-cog"></i>
                 <span class="nav-item">Definições</span>
             </a></li>

@@ -16,7 +16,7 @@
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
-        <a href="#" class="logo">
+        <a href="http://localhost:8080/coach" class="logo">
             <img src="/static/images/Logo-512x512-1.png" alt="Vitória SC Logo"/>
             <span class="nav-item">Voleibol VSC</span>
         </a>

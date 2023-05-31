@@ -23,20 +23,23 @@
         <%
             String type = "";
             String questions = "";
+            String Type = "";
             User user1 = (User)session.getAttribute("user"); //Assuming user data is stored in session
             if(user1 instanceof Coach) {
                 Coach coach = (Coach) user1;
                 type = "coach";
+                Type = "Coach";
                 questions = "coachQuestionnairies";
             } else if(user1 instanceof Player) {
                 Player player = (Player) user1;
                 type = "player";
                 questions = "playerQuestionnairies";
+                Type = "";
             }
 
         %>
         <div class="nav-header"></div>
-        <a href="#" class="logo">
+        <a href="http://localhost:8080/<%=type%>" class="logo">
             <img src="/static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
@@ -60,7 +63,7 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="http://localhost:8080/userSettings">
+                <li><a href="http://localhost:8080/userSettings<%=Type%>">
                     <i class="fas fa-cog"></i>
                     <span class="nav-item">Definições</span>
                 </a></li>

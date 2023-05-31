@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
 </head>
 
+
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
@@ -76,13 +77,13 @@
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
-        <a href="http://localhost:8080/director" class="logo">
+        <a href="http://localhost:8080/coach" class="logo">
             <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
         <ul class="nav-links">
             <div class="navOPT">
-                <li><a href="http://localhost:8080/director">
+                <li><a href="http://localhost:8080/coach">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Menu</span>
                 </a></li>
@@ -100,7 +101,7 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/userSettingsCoach">
                     <i class="fas fa-cog"></i>
                     <span class="nav-item">Definições</span>
                 </a></li>
