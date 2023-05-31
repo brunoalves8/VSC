@@ -29,7 +29,7 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/profile">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Perfil</span>
                 </a></li>
@@ -41,7 +41,7 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/userSettingsCoach">
                     <i class="fas fa-cog"></i>
                     <span class="nav-item">Definições</span>
                 </a></li>
