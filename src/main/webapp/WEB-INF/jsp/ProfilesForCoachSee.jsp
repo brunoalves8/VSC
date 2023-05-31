@@ -36,19 +36,19 @@
 
 <nav>
     <div class="nav-header"></div>
-    <a href="#" class="logo">
+    <a href="http://localhost:8080/coach" class="logo">
         <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
         <span class="nav-item">Voleibol VSC</span>
     </a>
     <ul class="nav-links">
         <div class="navOPT">
-            <li><a href="#">
+            <li><a href="http://localhost:8080/coach">
                 <i class="fas fa-home"></i>
                 <span class="nav-item">Menu</span>
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="#">
+            <li><a href="http://localhost:8080/profile">
                 <i class="fas fa-user"></i>
                 <span class="nav-item">Perfil</span>
             </a></li>
@@ -60,12 +60,12 @@
             </a></li>
         </div>
         <div class="navOPT">
-            <li><a href="#">
+            <li><a href="http://localhost:8080/userSettingsCoach">
                 <i class="fas fa-cog"></i>
                 <span class="nav-item">Definições</span>
             </a></li>
         </div>
-        <li><a href="#" class="logout">
+        <li><a href="http://localhost:8080/login" class="logout">
             <i class="fas fa-sign-out-alt"></i>
             <span class="nav-item">Sair</span>
         </a></li>

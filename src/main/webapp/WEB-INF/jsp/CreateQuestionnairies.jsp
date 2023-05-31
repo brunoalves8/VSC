@@ -43,7 +43,7 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/coach">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Perfil</span>
                 </a></li>

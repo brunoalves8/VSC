@@ -75,7 +75,7 @@
 
 <nav>
     <div class="nav-header"></div>
-    <a href="#" class="logo">
+    <a href="http://localhost:8080/<%=type%>" class="logo">
         <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
         <span class="nav-item">Voleibol VSC</span>
     </a>

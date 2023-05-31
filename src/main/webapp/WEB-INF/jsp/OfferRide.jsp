@@ -48,7 +48,7 @@
                     <span class="nav-item">Definições</span>
                 </a></li>
             </div>
-            <li><a href="#" class="logout">
+            <li><a href="http://localhost:8080/login" class="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="nav-item">Sair</span>
             </a></li>
