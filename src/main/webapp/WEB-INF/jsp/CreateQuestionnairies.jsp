@@ -23,8 +23,8 @@
         <input type="text" id="link" name="link" required>
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" required>
-        <label for="endDate">Data:</label>
-        <input type="date" id="endDate" name="endDate" pattern="\d{4}-\d{2}-\d{2}" required>
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date" pattern="\d{4}-\d{2}-\d{2}" required>
         <button class="submit">Salvar</button>
     </form>
 </div>

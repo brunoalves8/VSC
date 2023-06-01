@@ -3,19 +3,38 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Side Menu Bar</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/CoachSubMenuQuestionnaires.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Jogadas - Voleibol</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/RegisterCodes.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
-
+    <script src="/static/js/plyr.js"></script>
 </head>
-
 <body>
+<div class="main-content">
+    <form id="jogadaForm">
+    <!-- Adicionar o campo para inserir a URL da transmissão -->
+    <label for="streamUrl">URL da Transmissão:</label>
+    <input type="text" id="streamUrl" name="streamUrl">
+    <br>
+    <button id="loadStream">Carregar Transmissão</button>
+    <br>
+    <!-- Adicionar a tag video para exibir o vídeo -->
+    <video id="videoStream" class="plyr" controls>
+        <source src="src/main/resources/static/videos/videoVSCvsSLB.webm" type="video/webm">
+        Seu navegador não suporta a tag de vídeo.
+    </video>
+    <div id="resultado">
+        <p id="codigoJogada"></p>
+        <div id="listaJogadas">Lista de Jogadas:</div>
+    </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
@@ -37,6 +56,12 @@
                 </a></li>
             </div>
             <div class="navOPT">
+                <li><a href="#">
+                    <i class="fas fa-tasks"></i>
+                    <span class="nav-item">Tarefas</span>
+                </a></li>
+            </div>
+            <div class="navOPT">
                 <li><a href="http://localhost:8080/userSettingsCoach">
                     <i class="fas fa-cog"></i>
                     <span class="nav-item">Definições</span>
@@ -49,7 +74,7 @@
         </ul>
     </nav>
     <script>
-        var toggleMenu = document.getElementById('nav-links');
+        var toggleMenu = document.querySelector('.nav-links');
         var nav = document.querySelector('nav');
 
         toggleMenu.addEventListener('click', function() {
@@ -57,34 +82,10 @@
         });
     </script>
 </div>
+<script src="${pageContext.request.contextPath}/static/js/seeCodes.js"></script>
+<script>
+    const player = new Plyr('#videoStream');
+</script>
 
-<div class="container">
-
-    <div class="header">
-        <h1>Vitória Sport Clube</h1>
-    </div>
-
-    <div class="options">
-
-        <div class="option">
-            <a href="http://localhost:8080/criarQuestionario">
-                <div class="nameCat">
-                    <i class="icon fa fa-plus"></i>
-                    <span class="catName">Criar Questionário</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="option">
-            <a href="http://localhost:8080/coachQuestionnairies">
-                <div class="nameCat">
-                    <i class="icon fa fa-trash"></i>
-                    <span class="catName">Apagar Questionário</span>
-                </div>
-            </a>
-        </div>
-
-    </div>
-</div>
 </body>
 </html>

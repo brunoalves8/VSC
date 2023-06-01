@@ -30,12 +30,13 @@
             if(user1 instanceof Coach) {
                 Coach coach = (Coach) user1;
                 type = "coach";
-                Type = "Coach";
+                Type = "userSettingsCoach";
                 questions = "coachQuestionnairies";
             } else if(user1 instanceof Player) {
                 Player player = (Player) user1;
                 type = "player";
-                Type = "";
+                Type = "userSettings";
+
                 questions = "playerQuestionnairies";
             }
         %>
@@ -58,13 +59,13 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/<%=questions%>">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Tarefas</span>
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="http://localhost:8080/userSettings<%=Type%>">
+                <li><a href="http://localhost:8080/<%=Type%>">
                     <i class="fas fa-cog"></i>
                     <span class="nav-item">Definições</span>
                 </a></li>
@@ -165,8 +166,5 @@
 
     </div>
 </div>
-
-
-<button id="back-button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
 </body>
 </html>

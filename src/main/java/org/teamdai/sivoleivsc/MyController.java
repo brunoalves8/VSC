@@ -232,7 +232,7 @@ public class MyController {
     @PostMapping("/userSettingsCoach")
     public String processUserSettingsForm(@ModelAttribute("coach") Coach coach, Model model) {
         boolean userAlreadyExists = UserSettings.verifyIfPlayerExists(coach.getUsername());
-        return "CoachSettings";
+        return "CoachMenu";
     }
 
     @PostMapping("/changePassword")
@@ -392,6 +392,11 @@ public class MyController {
         return "RegisterCodes";
     }
 
+    @GetMapping("/seeCodes")
+    public String seeCodes(Model model){
+        return "SeeCodes";
+    }
+
     @GetMapping("/playersTeam1")
     @ResponseBody
     public Iterable<Appearances> getPlayersTeam1() {
@@ -532,9 +537,40 @@ public class MyController {
         return "StatusRides";
     }
 
+    @PostMapping("/adicionar-jogada")
+    public ResponseEntity<String> adicionarJogada(@RequestBody Play jogada) {
+
+        boolean insertedPlay = Play.insertPlay(jogada);
+
+        if (insertedPlay) {
+            return ResponseEntity.ok("Evento adicionado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao adicionar evento");
+        }
+    }
+
     @GetMapping("/listPlayers")
     public String showListOfPlayers(Model model) {
         return "ListPlayers";
     }
+
+    @GetMapping("/listGames")
+    public String showListGames(Model model) {
+        List<RegisterGame> games = RegisterGame.getAllGames();
+        return "ListGames";
+    }
+
+
+
+    /*@GetMapping("/eventos")
+    @ResponseBody
+    public Iterable<Play> getPlays() {
+        Iterable<Play> plays ;
+        return plays;
+    }*/
+
+
+
+
 }
 

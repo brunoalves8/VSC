@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" import="BackEnd.RemoveAndListUser, BackEnd.User, java.util.List"%>
-<%@ page import="BackEnd.Player" %>
+         pageEncoding="UTF-8" import="BackEnd.RegisterGame, BackEnd.Form, java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,65 +7,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User List</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/UserList.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserList.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6132df651f.js" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-
-
 <body>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class="main-box clearfix">
-                <% String successMessage = (String) request.getAttribute("successMessage");
-                    String errorMessage = (String) request.getAttribute("errorMessage");
-                    if (successMessage != null) { %>
-                <p class="success-message"><%= successMessage %></p>
-                <% }
-                    if (errorMessage != null) { %>
-                <p class="error-message"><%= errorMessage %></p>
-                <% } %>
                 <div class="table-responsive">
                     <table class="table user-list">
                         <thead>
                         <tr>
-                            <th><span>Nome</span></th>
-                            <th><span>Número Camisola</span></th>
+                            <th><span>ID Jogo</span></th>
+                            <th><span>Equipas</span></th>
+                            <th><span>Data</span></th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>
-                <%
-                    List<Player> listPlayers = RemoveAndListUser.listAllPlayers();
-
-                    for (Player player : listPlayers){
-
-                %>
-                <tr>
-                    <td>
-                        <img src="" alt="">
-                        <span class="user-link"><%= player.getName()%></span>
-                        <span class="user-subhead"></span>
-                    </td>
-                    <td>
-                        <span><%= player.getShirtNumber() %></span>
-                    </td>
-                    <td style="width: 20%;">
-                        <form action="/profile2" method="get">
-                            <input type="hidden" name="usernamePlayer" value="<%= player.getUsername() %>" />
-                            <button type="submit" class="table-link danger">
-                                <span class="fa-stack">
-                                    <i class="fa-solid fa-link"></i>
-                                </span>
-                            </button>
-                        </form>
-
-
-                    </td>
-                </tr>
-                <% } %>
+                        <%
+                            List<RegisterGame> games = RegisterGame.getAllGames();
+                            for (RegisterGame game : games) {
+                        %>
+                        <tr>
+                            <td>
+                                <span><%= game.getCode_match() %></span>
+                            </td>
+                            <td>
+                                <a href="http://localhost:8080/registerCodes" target="_blank"><%= game.getTeam1()%> VS <%= game.getTeam2() %></a>
+                            </td>
+                            <td>
+                                <span><%= game.getDate() %></span>
+                            </td>
+                        </tr>
+                        <% } %>
                         </tbody>
                     </table>
                 </div>

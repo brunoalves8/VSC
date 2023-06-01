@@ -128,7 +128,21 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li>
+                    <%
+                        Object userObject1 = session.getAttribute("user");
+                        String URL = "";
+                        // Determine o perfil do utilizador e defina o link apropriado
+                        if (userObject != null ) {
+                            User user = (User) userObject;
+                            if (user instanceof Player) {
+                                URL = "http://localhost:8080/playerQuestionnairies";
+                            } else if (user instanceof Coach) {
+                                URL = "http://localhost:8080/coachQuestionnaries";
+                            }
+                        }
+                    %>
+                    <a href="<%= URL %>">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Tarefas</span>
                 </a></li>

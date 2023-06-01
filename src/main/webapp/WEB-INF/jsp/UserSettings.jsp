@@ -82,7 +82,7 @@
                     </div>
                     <div>
                         <button class="btn btn-primary">Atualizar</button>
-                        <button class="btn btn-light" onclick="window.location.href = 'http:localhost:8080/profile';">Cancelar</button>
+                        <a href="http://localhost:8080/player" class="btn btn-light">Cancelar</a>
                     </div>
                 </div>
                 </form:form>
@@ -114,7 +114,7 @@
                     </div>
                     <div>
                         <button type="submit" form="form2" class="btn btn-primary">Atualizar</button>
-                        <button class="btn btn-light">Cancelar</button>
+                        <a href="http://localhost:8080/player" class="btn btn-light">Cancelar</a>
                     </div>
                     </form:form>
                 </div>

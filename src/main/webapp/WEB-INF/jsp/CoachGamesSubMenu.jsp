@@ -35,12 +35,6 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
-                    <i class="fas fa-tasks"></i>
-                    <span class="nav-item">Tarefas</span>
-                </a></li>
-            </div>
-            <div class="navOPT">
                 <li><a href="http://localhost:8080/userSettingsCoach">
                     <i class="fas fa-cog"></i>
                     <span class="nav-item">Definições</span>
@@ -70,7 +64,7 @@
 
     <div class="options">
 
-        <div class="option"><a href="http://localhost:8080/registerCodes">
+        <div class="option"><a href="http://localhost:8080/listGames">
             <div class="nameCat">
                 <i class="icon fa-solid fa-magnifying-glass text-center mr-1"></i>
                 <span class="catName">Visualizar Momentos do Jogo</span>

@@ -63,7 +63,7 @@
                         </div>
                     <div>
                         <button class="btn btn-primary">Atualizar</button>
-                        <button class="btn btn-light">Cancelar</button>
+                        <a href="http://localhost:8080/coach" class="btn btn-light">Cancelar</a>
                     </div>
                 </div>
                 </form:form>
@@ -95,7 +95,7 @@
                         </div>
                         <div>
                             <button type="submit" form="form2" class="btn btn-primary">Atualizar</button>
-                            <button class="btn btn-light">Cancelar</button>
+                            <a href="http://localhost:8080/coach" class="btn btn-light">Cancelar</a>
                         </div>
                     </form:form>
                 </div>

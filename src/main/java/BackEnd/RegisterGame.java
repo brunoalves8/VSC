@@ -1,5 +1,7 @@
 package BackEnd;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,11 +10,15 @@ import java.util.HashSet;
 import java.util.List;
 
 public class RegisterGame {
+
+    private int code_match;
+    public static int match_code;
     private String team1;
     private String team2;
     private Collection<Appearances> playersTeam1 = new HashSet<>();
     private Collection<Appearances> playersTeam2 = new HashSet<>();
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private java.util.Date date;
 
 
     public RegisterGame(String team1, String team2, Collection<Appearances> playersTeam1, Collection<Appearances> playersTeam2) {
@@ -20,6 +26,13 @@ public class RegisterGame {
         this.team2 = team2;
         this.playersTeam1 = playersTeam1;
         this.playersTeam2 = playersTeam2;
+    }
+
+    public RegisterGame(int code_match, String team1, String team2, java.util.Date date) {
+        this.code_match = code_match;
+        this.team1 = team1;
+        this.team2 = team2;
+        this.date = date;
     }
 
     public RegisterGame() {
@@ -58,6 +71,29 @@ public class RegisterGame {
         this.playersTeam2 = playersTeam2;
     }
 
+    public int getCode_match() {
+        return code_match;
+    }
+
+    public void setCode_match(int code_match) {
+        this.code_match = code_match;
+    }
+
+    public java.util.Date getDate() {
+        return date;
+    }
+
+    public void setDate(java.util.Date date) {
+        this.date = date;
+    }
+
+    public static int getMatch_code() {
+        return match_code;
+    }
+
+    public static void setMatch_code(int match_code) {
+        RegisterGame.match_code = match_code;
+    }
 
     public static Boolean verifyIfTeamExists(String teamID) {
         String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
@@ -174,6 +210,7 @@ public class RegisterGame {
             int code_match = 0;
             if(rs1.next()) {
                 code_match = rs1.getInt("code_match");
+                RegisterGame.match_code = rs1.getInt("code_match");
             }
 
 
@@ -226,4 +263,148 @@ public class RegisterGame {
             }
         }
     }
+
+
+
+    public static List<RegisterGame> getAllGames() {
+        List<RegisterGame> games = new ArrayList<>();
+
+        // Conectar ao banco de dados
+        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+        String user = "IntelliJ";
+        String dbPassword = "vsc.DAI23";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+
+            // Fazer uma consulta ao banco de dados para buscar todos os registos
+            String sql = "SELECT code_match, game_date, home_team_id, away_team_id FROM Game";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            // Ler os resultados da consulta e criar objetos Game correspondentes
+            while (rs.next()) {
+                int code_match1 = rs.getInt("code_match");
+                java.util.Date game_date = rs.getDate("game_date");
+                String team1 = rs.getString("home_team_id");
+                String team2 = rs.getString("away_team_id");
+                RegisterGame game = new RegisterGame(code_match1, team1, team2, game_date);
+                games.add(game);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fechar o ResultSet, o Statement e a Connection
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+        return games;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*public static List<Appearances> ListOfGames(){
+        String url = "jdbc:sqlserver://vsc23.database.windows.net:1433;database=VSC";
+        String user = "IntelliJ";
+        String dbPassword = "vsc.DAI23";
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        List<Appearances> games = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+            stmt = conn.createStatement();
+
+            String sql1 = "SELECT username, password, email FROM Players";
+            rs = stmt.executeQuery(sql1);
+            while (rs.next()) {
+                User userObj = new User(rs.getString("username"), rs.getString("password"), rs.getString("email"));
+                games.add(userObj);
+            }
+
+            return games;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // Close the ResultSet, the Statement and the Connection
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+
+
+
+
+
+
+    }*/
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -61,7 +61,7 @@
 <div class="nav-container">
     <nav>
         <div class="nav-header"></div>
-        <a href="#" class="logo">
+        <a href="http://localhost:8080/player" class="logo">
             <img src="static/images/Logo-512x512-1.png" alt="Vitória SC Logo">
             <span class="nav-item">Voleibol VSC</span>
         </a>
@@ -95,7 +95,7 @@
                 </a></li>
             </div>
             <div class="navOPT">
-                <li><a href="#">
+                <li><a href="http://localhost:8080/playerQuestionnairies">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Tarefas</span>
                 </a></li>

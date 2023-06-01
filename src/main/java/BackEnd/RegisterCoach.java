@@ -111,7 +111,7 @@ public class RegisterCoach {
             stmt.setString(1, name);
             stmt.setString(2, username);
             stmt.setString(3, password);
-            stmt.setInt(4, 1234);
+            stmt.setString(4, "VSC");
             stmt.setInt(5, phoneNumber);
             stmt.setString(6, email);
             stmt.setString(7, type);
