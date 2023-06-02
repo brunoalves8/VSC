@@ -19,7 +19,7 @@
 <%--@elvariable id="user" type=""--%>
     <section class="main">
         <div class="login-container">
-            <p class="title">Volei VSC</p>
+            <p class="title">Vólei VSC</p>
             <div class="separator"></div>
             <p class="welcome-message"></p>
             <% if (request.getAttribute("error") != null) { %>
